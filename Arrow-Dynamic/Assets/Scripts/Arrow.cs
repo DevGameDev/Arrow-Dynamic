@@ -31,7 +31,8 @@ public class Arrow : MonoBehaviour
     private void StickArrow(Collision collision)
     {
         rb.isKinematic = true;
-        rb.detectCollisions = false;
+        // rb.detectCollisions = false;
+        gameObject.layer = LayerMask.NameToLayer("environment");
         GetComponent<Collider>().enabled = false;
 
         transform.SetParent(collision.transform);
