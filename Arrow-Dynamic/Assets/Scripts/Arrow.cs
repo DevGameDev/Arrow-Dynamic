@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float impactSpeedThreshold = 5.0f;
+    public string arrowTipName = "ArrowTip";
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        
+        if (rb.velocity.magnitude > impactSpeedThreshold)
+        {
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                if (contact.thisCollider.name == arrowTipName)
+                {
+                    StickArrow(collision);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void StickArrow(Collision collision)
+    {
+        rb.isKinematic = true;
+        rb.detectCollisions = false;
+        GetComponent<Collider>().enabled = false;
+
+        transform.SetParent(collision.transform);
     }
 }

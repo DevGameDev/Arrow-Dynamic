@@ -61,6 +61,7 @@ public class PlayerBow : MonoBehaviour
             arrowRigidbody.isKinematic = false;
             arrowRigidbody.useGravity = true;
             arrowTransform.parent = null;
+            arrowTransform = null;
             Vector3 shootDirection = cameraTransform.forward;
             arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
 
@@ -80,9 +81,9 @@ public class PlayerBow : MonoBehaviour
                 currentArrow = null;
             }
         }
-        float test = 2.0f * Mathf.Abs(Mathf.Sin(Time.time));
+        // float test = 2.0f * Mathf.Abs(Mathf.Sin(Time.time));
 
-        UpdateBowPullAnimation(test);
+        UpdateBowPullAnimation(currentPullTime);
     }
 
     void UpdateBowPullAnimation(float pullTime)
@@ -96,8 +97,11 @@ public class PlayerBow : MonoBehaviour
         else
             handTransform.localPosition = Vector3.Lerp(handMinPullPosition, handMaxPullPosition, (pullRatio - 0.5f) * 2);
 
-        arrowTransform.localPosition = Vector3.Lerp(arrowRestPosition, arrowPullPosition, pullRatio);
-        arrowTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(arrowRestRotation), Quaternion.Euler(arrowPullRotation), pullRatio);
+        if (arrowTransform)
+        {
+            arrowTransform.localPosition = Vector3.Lerp(arrowRestPosition, arrowPullPosition, pullRatio);
+            arrowTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(arrowRestRotation), Quaternion.Euler(arrowPullRotation), pullRatio);
+        }
         bowTransform.localPosition = Vector3.Lerp(bowRestPosition, bowPullPosition, pullRatio);
         bowTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(bowRestRotation), Quaternion.Euler(bowPulledRotation), pullRatio);
     }
