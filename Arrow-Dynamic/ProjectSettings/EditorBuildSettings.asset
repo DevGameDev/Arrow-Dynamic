@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Testing Scenes/DevinScene.unity
-    guid: 81c514c1531fcae46afedc11958341b6
   - enabled: 1
     path: Assets/Scenes/JungleScene.unity
     guid: bce08863403789042a8f592387671009
