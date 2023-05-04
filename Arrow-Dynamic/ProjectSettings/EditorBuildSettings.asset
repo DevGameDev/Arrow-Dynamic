@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JungleScene.unity
+    path: Assets/Scenes/Gameplay.unity
     guid: bce08863403789042a8f592387671009
   m_configObjects: {}

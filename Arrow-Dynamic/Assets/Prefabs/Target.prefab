@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materials:
-  - {fileID: 2100000, guid: 2297bd37a04169f0796c1ad184ce524a, type: 2}
-  - {fileID: 2100000, guid: 0e05c64c884078017b7e2b5aa84ff166, type: 2}
-  - {fileID: 2100000, guid: 507eba37ee3c435aaa6f27ed82cbd456, type: 2}
+  - {fileID: 2100000, guid: 29f5b42ac39ab8641b4d2651c8dc4f4f, type: 2}
+  - {fileID: 2100000, guid: 3dddc436db1594c45bbb2b183e66d2af, type: 2}
+  - {fileID: 2100000, guid: d11cddd2d926af4408fd3d892c232e01, type: 2}
   count: 0
   red: {fileID: 2100000, guid: 507eba37ee3c435aaa6f27ed82cbd456, type: 2}
   isColliding: 0
