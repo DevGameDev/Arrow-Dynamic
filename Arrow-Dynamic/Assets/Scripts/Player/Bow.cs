@@ -15,7 +15,6 @@ public class Bow : MonoBehaviour
     public float arrowSpeed = 50.0f;
     public float arrowReadyTime = 0.25f;
     public float maxPullTime = 2.0f;
-    public float pitchAdjustmentFactor = 0.2f;
 
     [Header("Animation Positions")]
     public Vector3 handRestPosition;
@@ -56,13 +55,19 @@ public class Bow : MonoBehaviour
             ReleaseBow();
         }
         else
-            currentPullTime -= Time.deltaTime;
+            currentPullTime -= 2 * Time.deltaTime;
 
         UpdateBowPullAnimation(currentPullTime);
     }
 
     private void PullBow()
     {
+        if (currentPullTime > arrowReadyTime && !isBowPulled) // So can't spam
+        {
+            currentPullTime -= 2 * Time.deltaTime;
+            return;
+        }
+
         if (!isBowPulled)
         {
             InitializeBowPull();
@@ -80,7 +85,7 @@ public class Bow : MonoBehaviour
     private void InitializeBowPull()
     {
         isBowPulled = true;
-        Quaternion shootRotation = Quaternion.LookRotation(CalculateAdjustedShootDirection());
+        Quaternion shootRotation = cameraTransform.rotation;
         currentArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, shootRotation);
         arrowTransform = currentArrow.transform;
         arrowTransform.parent = cameraTransform;
@@ -95,7 +100,7 @@ public class Bow : MonoBehaviour
         Rigidbody arrowRigidbody = currentArrow.GetComponent<Rigidbody>();
         arrowRigidbody.isKinematic = false;
         arrowRigidbody.useGravity = true;
-        Vector3 shootDirection = CalculateAdjustedShootDirection();
+        Vector3 shootDirection = cameraTransform.forward;
         arrowTransform.parent = null;
         // arrowTransform.rotation = Quaternion.LookRotation(shootDirection);
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
@@ -129,15 +134,5 @@ public class Bow : MonoBehaviour
             arrowTransform.localPosition = Vector3.Lerp(arrowRestPosition, arrowPullPosition, pullRatio);
             arrowTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(arrowRestRotation), Quaternion.Euler(arrowPullRotation), pullRatio);
         }
-    }
-
-    private Vector3 CalculateAdjustedShootDirection()
-    {
-        Vector3 cameraForward = cameraTransform.forward;
-        Vector3 cameraForwardHorizontal = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
-        float pitchAngle = Vector3.Angle(cameraForward, cameraForwardHorizontal);
-
-        Vector3 adjustedShootDirection = Quaternion.AngleAxis(pitchAngle * pitchAdjustmentFactor, cameraTransform.right) * cameraForward;
-        return adjustedShootDirection;
     }
 }

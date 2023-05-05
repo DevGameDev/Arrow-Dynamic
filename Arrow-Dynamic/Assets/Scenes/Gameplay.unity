@@ -1700,43 +1700,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
---- !u!4 &383252218 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3206171989064761131, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-  m_PrefabInstance: {fileID: 1430764687}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &383252224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383252205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16f4d2d8e10ad347a0b5d593b1e0f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 8343367845841526730, guid: 0c9763c258641d94db846047b5721d19, type: 3}
-  arrowSpawnPoint: {fileID: 694831090}
-  cameraTransform: {fileID: 1542194563}
-  handTransform: {fileID: 106991789}
-  bowTransform: {fileID: 590841890}
-  arrowSpeed: 5
-  arrowReadyTime: 0.1
-  maxPullTime: 0.8
-  pitchAdjustmentFactor: -0.3
-  handRestPosition: {x: 0.68, y: -0.6, z: 0.8}
-  handMinPullPosition: {x: 0.6, y: -0.3, z: 1.21}
-  handMaxPullPosition: {x: 0.51, y: -0.14, z: 0.72}
-  arrowRestPosition: {x: 0.5, y: -0.45, z: 0.8}
-  arrowPullPosition: {x: 0.38, y: -0.09, z: 1}
-  arrowRestRotation: {x: 106.98, y: 0, z: 0}
-  arrowPullRotation: {x: 90, y: 0, z: 0}
-  bowRestPosition: {x: 0.3, y: -0.36, z: 1.13}
-  bowPullPosition: {x: 0.34, y: 0.01, z: 1.12}
-  bowRestRotation: {x: -20, y: 90, z: 0}
-  bowPulledRotation: {x: -75, y: 90, z: 0}
 --- !u!1 &405587694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd60ffa89e91f64d98009f585c855de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: 8ce2e928af610a044ae6f887aca67ce2, type: 2}
 --- !u!114 &466316678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3142,48 +3105,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7631506047299143373, guid: 3712fbb4392816247af6fda323ace7a2, type: 3}
   m_PrefabInstance: {fileID: 1928913104}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &590841889 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2944334589402488951, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-  m_PrefabInstance: {fileID: 1430764687}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &590841890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2564712134492256973, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
   m_PrefabInstance: {fileID: 1430764687}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &590841893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590841889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16f4d2d8e10ad347a0b5d593b1e0f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 0}
-  arrowSpawnPoint: {fileID: 0}
-  cameraTransform: {fileID: 0}
-  handTransform: {fileID: 0}
-  bowTransform: {fileID: 0}
-  arrowSpeed: 50
-  arrowReadyTime: 0.25
-  maxPullTime: 2
-  pitchAdjustmentFactor: 0.2
-  handRestPosition: {x: 0, y: 0, z: 0}
-  handMinPullPosition: {x: 0, y: 0, z: 0}
-  handMaxPullPosition: {x: 0, y: 0, z: 0}
-  arrowRestPosition: {x: 0, y: 0, z: 0}
-  arrowPullPosition: {x: 0, y: 0, z: 0}
-  arrowRestRotation: {x: 0, y: 0, z: 0}
-  arrowPullRotation: {x: 0, y: 0, z: 0}
-  bowRestPosition: {x: 0, y: 0, z: 0}
-  bowPullPosition: {x: 0, y: 0, z: 0}
-  bowRestRotation: {x: 0, y: 0, z: 0}
-  bowPulledRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &668577063
 GameObject:
   m_ObjectHideFlags: 0
@@ -5644,126 +5570,6 @@ PrefabInstance:
       propertyPath: pitchAdjustmentFactor
       value: -0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: maxPullTime
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowReadyTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: playerTransform
-      value: 
-      objectReference: {fileID: 383252218}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowPullPosition.x
-      value: 0.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowPullPosition.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowPullPosition.z
-      value: 1.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowRestPosition.y
-      value: -0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowRestPosition.z
-      value: 1.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowRestRotation.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowRestRotation.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handRestPosition.x
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handRestPosition.y
-      value: -0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowPullPosition.x
-      value: 0.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowPullPosition.y
-      value: -0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowPullPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowPullRotation.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowRestPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowRestPosition.y
-      value: -0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowRestPosition.z
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowRestRotation.x
-      value: 106.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowPulledRotation.x
-      value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: bowPulledRotation.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handMaxPullPosition.x
-      value: 0.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handMaxPullPosition.y
-      value: -0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handMaxPullPosition.z
-      value: 0.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handMinPullPosition.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: handMinPullPosition.z
-      value: 1.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: pitchAdjustmentFactor
-      value: -0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-      propertyPath: arrowPitchAdjustmentFactor
-      value: -0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 5083397292898972836, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
       propertyPath: m_Material
       value: 
@@ -5820,6 +5626,150 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowPrefab
+      value: 
+      objectReference: {fileID: 8343367845841526730, guid: 0c9763c258641d94db846047b5721d19, type: 3}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: maxPullTime
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowTransform
+      value: 
+      objectReference: {fileID: 590841890}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 106991789}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowReadyTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowSpawnPoint
+      value: 
+      objectReference: {fileID: 694831090}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1542194563}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowPullPosition.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowPullPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowPullPosition.z
+      value: 1.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowRestPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowRestPosition.y
+      value: -0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowRestPosition.z
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowRestRotation.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowRestRotation.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handRestPosition.x
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handRestPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handRestPosition.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowPullPosition.x
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowPullPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowPullPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowPullRotation.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowRestPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowRestPosition.y
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowRestPosition.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: arrowRestRotation.x
+      value: 106.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowPulledRotation.x
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: bowPulledRotation.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handMaxPullPosition.x
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handMaxPullPosition.y
+      value: -0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handMaxPullPosition.z
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handMinPullPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handMinPullPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: handMinPullPosition.z
+      value: 1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: pitchAdjustmentFactor
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8813675921109242782, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
       propertyPath: speed
       value: 20
@@ -5832,9 +5782,7 @@ PrefabInstance:
       propertyPath: doubleJumpForce
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4643171383458096967, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
-    - {fileID: 3980223879149305362, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
 --- !u!1 &1458544072
 GameObject:

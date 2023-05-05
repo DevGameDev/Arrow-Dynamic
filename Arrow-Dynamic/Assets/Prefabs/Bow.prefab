@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3440464414231496889}
   - component: {fileID: 1734211025536485148}
   - component: {fileID: 4608819542837949398}
-  - component: {fileID: 4257542903785049190}
+  - component: {fileID: 5974666942445013960}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4257542903785049190
+--- !u!114 &5974666942445013960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16f4d2d8e10ad347a0b5d593b1e0f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 8343367845841526730, guid: 0c9763c258641d94db846047b5721d19, type: 3}
+  arrowPrefab: {fileID: 0}
   arrowSpawnPoint: {fileID: 0}
   cameraTransform: {fileID: 0}
   handTransform: {fileID: 0}

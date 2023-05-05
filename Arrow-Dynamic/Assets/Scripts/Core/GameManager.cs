@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        SettingsManager.Instance.OnSettingsApplied -= UpdateSettings;
         SaveState();
     }
 

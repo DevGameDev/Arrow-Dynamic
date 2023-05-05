@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 5083397292898972836}
   - component: {fileID: 4460179600545358673}
   - component: {fileID: 8813675921109242782}
-  - component: {fileID: 4643171383458096967}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -165,37 +164,6 @@ MonoBehaviour:
   jumpForce: 5
   doubleJumpForce: 4
   groundCheckDistance: 1.6
---- !u!114 &4643171383458096967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3663312889090453963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16f4d2d8e10ad347a0b5d593b1e0f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 8343367845841526730, guid: 0c9763c258641d94db846047b5721d19, type: 3}
-  arrowSpawnPoint: {fileID: 7593711134881033223}
-  cameraTransform: {fileID: 6393824963616414886}
-  handTransform: {fileID: 6447390643365531486}
-  bowTransform: {fileID: 2564712134492256973}
-  arrowSpeed: 50
-  arrowReadyTime: 0.25
-  maxPullTime: 2
-  handRestPosition: {x: 0.4, y: -0.4, z: 0.8}
-  handMinPullPosition: {x: 0.3, y: -0.3, z: 0.7}
-  handMaxPullPosition: {x: -0.1, y: -0.2, z: 0.6}
-  arrowRestPosition: {x: 0.4, y: -0.4, z: 1}
-  arrowPullPosition: {x: 0.2, y: -0.3, z: 0.9}
-  arrowRestRotation: {x: 0, y: 0, z: 0}
-  arrowPullRotation: {x: 0, y: 0, z: 0}
-  bowRestPosition: {x: 0.3, y: -0.3, z: 0.8}
-  bowPullPosition: {x: 0.1, y: -0.2, z: 0.7}
-  bowRestRotation: {x: 0, y: 0, z: 0}
-  bowPulledRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &5733435274962830622
 GameObject:
   m_ObjectHideFlags: 0
