@@ -4,6 +4,6 @@
 public enum ArrowType
 {
     Basic,
-    Explosive,
+    Ice,
     // Add other arrow types here
 }

@@ -29,8 +29,6 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Returns the room at the given grid coordinates.
     /// </summary>
-    /// <param name="x">The x-coordinate of the room.</param>
-    /// <param name="y">The y-coordinate of the room.</param>
     /// <returns>The room at the given coordinates, or null if the coordinates are invalid.</returns>
     public Room GetRoom(int x, int y)
     {
@@ -43,9 +41,6 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Sets the room at the given grid coordinates.
     /// </summary>
-    /// <param name="x">The x-coordinate of the room.</param>
-    /// <param name="y">The y-coordinate of the room.</param>
-    /// <param name="room">The room to set at the given coordinates.</param>
     public void SetRoom(int x, int y, Room room)
     {
         if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight)
@@ -57,7 +52,6 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Returns the grid coordinates of the room containing the given position.
     /// </summary>
-    /// <param name="position">The position to check.</param>
     /// <returns>The grid coordinates of the room containing the position, or (-1, -1) if the position is not inside any room.</returns>
     public Vector2Int GetRoomCoordinates(Vector3 position)
     {

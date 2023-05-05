@@ -15,15 +15,6 @@ public class Arrow : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update arrow rotation based on its velocity
-    void Update()
-    {
-        if (rb.velocity != Vector3.zero)
-        {
-            // transform.rotation = Quaternion.LookRotation(rb.velocity.normalized);
-        }
-    }
-
     // Detect arrow collision and stick it if the impact is strong enough
     void OnCollisionEnter(Collision collision)
     {
