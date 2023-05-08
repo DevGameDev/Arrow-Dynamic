@@ -13,16 +13,21 @@ public class WeaponWheelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab)){
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
             weaponWheelSelected = !weaponWheelSelected;
         }
-        if(weaponWheelSelected){
+        if (weaponWheelSelected)
+        {
             anim.SetBool("OpenWeaponWheel", true);
-        }else{
+        }
+        else
+        {
             anim.SetBool("OpenWeaponWheel", false);
         }
 
-        switch (weaponID){
+        switch (weaponID)
+        {
             case 0:
                 selectedItem.sprite = noImage;
                 break;
@@ -31,7 +36,7 @@ public class WeaponWheelController : MonoBehaviour
                 break;
             case 2:
                 Debug.Log("Regular_Arrow2");
-                break;            
+                break;
             case 3:
                 Debug.Log("Regular_Arrow3");
                 break;
@@ -52,6 +57,6 @@ public class WeaponWheelController : MonoBehaviour
                 break;
         }
 
-        
+
     }
 }

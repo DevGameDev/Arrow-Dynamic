@@ -1,55 +1,127 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Controls basic player movement and all movement abilities. 
-/// </summary>
-/// <remarks>
-/// All movement is with physics (using a rigidbody)
-/// </remarks>
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public float jumpForce = 5.0f;
-    public float doubleJumpForce = 4.0f;
-    public float groundCheckDistance = 0.5f;
+    public PlayerMovement Instance { get; set; }
 
+    private GameSettings settings;
+    private GameState state;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            GameManager.Instance.HandleGameQuit(false, "Duplicate PlayerMovement's");
+        }
+    }
+
+    // Components
     private Rigidbody rb;
+    private CapsuleCollider col;
+
+    // State
     private bool canDoubleJump = false;
+    private bool isSprinting = false;
+    private bool isCrouching = false;
+    private bool isAiming = false;
 
     void Start()
     {
+        settings = GameManager.GetSettings();
+        state = GameManager.GetState();
+
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 moveDirection = transform.TransformDirection(new Vector3(horizontal, 0, vertical))
-         * speed;
+        // Check for sprint input
+        isSprinting = Input.GetKey(settings.input.sprintKey);
 
-        rb.AddForce(moveDirection * Time.deltaTime, ForceMode.VelocityChange);
+        // Check for crouch input
+        if (Input.GetKeyDown(settings.input.crouchKey))
+        {
+            isCrouching = !isCrouching;
+            col.height = isCrouching ? settings.gameplay.crouchHeight : settings.gameplay.standingHeight;
+        }
 
+        // Grounded check and jump
         if (IsGrounded())
         {
             canDoubleJump = true;
             if (Input.GetButtonDown("Jump"))
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                rb.AddForce(Vector3.up * settings.gameplay.jumpForce, ForceMode.Impulse);
             }
         }
         else if (canDoubleJump && Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(Vector3.up * doubleJumpForce, ForceMode.VelocityChange);
+            Vector3 currentVelocity = rb.velocity;
+            currentVelocity.y = 0;
+            rb.velocity = currentVelocity;
+            rb.AddForce(Vector3.up * settings.gameplay.doubleJumpForce, ForceMode.Impulse);
             canDoubleJump = false;
         }
+
+        // Calculate movement direction
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
+
+        // Calculate the base speed
+        float currentSpeed = settings.gameplay.speed;
+        if (vertical < 0)
+        {
+            currentSpeed *= settings.gameplay.reverseSpeedMultiplier;
+        }
+        else if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        {
+            currentSpeed *= settings.gameplay.sidewaysSpeedMultiplier;
+        }
+
+        // Apply sprint multiplier
+        if (isSprinting && vertical > 0)
+        {
+            currentSpeed *= settings.gameplay.sprintSpeedMultiplier;
+        }
+
+        // Calculate target velocity
+        Vector3 moveDirection = transform.TransformDirection(inputDirection);
+        Vector3 targetVelocity = moveDirection * currentSpeed;
+
+        // Apply crouch and aim multipliers
+        if (isCrouching) targetVelocity *= settings.gameplay.crouchSpeedMultiplier;
+        if (isAiming) targetVelocity *= settings.gameplay.aimSpeedMultiplier;
+
+        // Update the Rigidbody's velocity
+        targetVelocity.y = rb.velocity.y;
+        if (targetVelocity.magnitude == 0)
+            rb.velocity = Vector3.zero;
+        else
+            rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, Time.deltaTime * 20f);
     }
 
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+        Vector3 groundCheckPosition = transform.position;
+        groundCheckPosition.y -= col.bounds.extents.y;
+        return Physics.CheckSphere(groundCheckPosition, settings.gameplay.groundCheckRadius, settings.gameplay.groundMask);
+    }
+
+    public void UpdateAimSpeedMultiplier(bool active)
+    {
+        isAiming = active;
+    }
+
+    public float GetHorizontalSpeedRatio()
+    {
+        return rb.velocity.x + rb.velocity.z;
     }
 }

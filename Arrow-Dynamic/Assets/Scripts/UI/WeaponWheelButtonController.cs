@@ -7,7 +7,7 @@ public class WeaponWheelButtonController : MonoBehaviour
     public int ID;
     public string itemName;
     public TextMeshProUGUI itemText;
-    public Image selectedItem; 
+    public Image selectedItem;
     public Sprite icon;
 
     private Animator anim;
@@ -24,7 +24,8 @@ public class WeaponWheelButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(selected){
+        if (selected)
+        {
             selectedItem.sprite = icon;
             itemText.text = itemName;
         }
@@ -38,18 +39,21 @@ public class WeaponWheelButtonController : MonoBehaviour
 
     }
 
-    public void Deselected(){
+    public void Deselected()
+    {
         selected = false;
         WeaponWheelController.weaponID = 0;
-        
+
     }
 
-    public void HoverEnter(){
+    public void HoverEnter()
+    {
         anim.SetBool("Hover", true);
         itemText.text = itemName;
     }
 
-    public void HoverExit(){
+    public void HoverExit()
+    {
         anim.SetBool("Hover", false);
         itemText.text = "";
     }

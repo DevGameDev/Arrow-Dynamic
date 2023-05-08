@@ -7,13 +7,7 @@ public class Arrow : MonoBehaviour
 {
     public float impactSpeedThreshold = 5.0f;
     public string arrowTipName = "ArrowTip";
-    private Rigidbody rb;
-
-    // Initialize the rigidbody component
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    public Rigidbody rb;
 
     // Detect arrow collision and stick it if the impact is strong enough
     void OnCollisionEnter(Collision collision)
@@ -36,7 +30,6 @@ public class Arrow : MonoBehaviour
     {
         rb.isKinematic = true;
         gameObject.layer = LayerMask.NameToLayer("environment");
-        GetComponent<Collider>().enabled = false;
 
         transform.SetParent(collision.transform);
     }

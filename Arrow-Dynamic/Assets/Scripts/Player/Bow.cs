@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bow : MonoBehaviour
 {
+    private GameSettings settings;
+    private GameState state;
+
     [Header("References")]
+    public GameObject playerObj;
     public GameObject arrowPrefab;
     public Transform arrowSpawnPoint;
     public Transform cameraTransform;
     public Transform handTransform;
-    public Transform bowTransform;
-
-    [Header("Settings")]
-    public float arrowSpeed = 50.0f;
-    public float arrowReadyTime = 0.25f;
-    public float maxPullTime = 2.0f;
 
     [Header("Animation Positions")]
     public Vector3 handRestPosition;
@@ -34,6 +30,16 @@ public class Bow : MonoBehaviour
     private Transform arrowTransform;
     private bool arrowReady = false;
     private bool isBowPulled = false;
+
+    private PlayerMovement playerMovement;
+
+    void Start()
+    {
+        settings = GameManager.GetSettings();
+        state = GameManager.GetState();
+
+        playerMovement = playerObj.GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -62,7 +68,7 @@ public class Bow : MonoBehaviour
 
     private void PullBow()
     {
-        if (currentPullTime > arrowReadyTime && !isBowPulled) // So can't spam
+        if (currentPullTime > settings.gameplay.arrowReadyTime && !isBowPulled) // So can't spam
         {
             currentPullTime -= 2 * Time.deltaTime;
             return;
@@ -71,15 +77,16 @@ public class Bow : MonoBehaviour
         if (!isBowPulled)
         {
             InitializeBowPull();
+            playerMovement.UpdateAimSpeedMultiplier(true);
         }
-        else if (currentPullTime > arrowReadyTime)
+        else if (currentPullTime > settings.gameplay.arrowReadyTime)
         {
             arrowReady = true;
         }
 
         // Increase the bow pull distance up to the maximum
         currentPullTime += Time.deltaTime;
-        currentPullTime = Mathf.Clamp(currentPullTime, 0, maxPullTime);
+        currentPullTime = Mathf.Clamp(currentPullTime, 0, settings.gameplay.maxPullTime);
     }
 
     private void InitializeBowPull()
@@ -95,15 +102,15 @@ public class Bow : MonoBehaviour
     {
         arrowReady = false;
         isBowPulled = false;
+        playerMovement.UpdateAimSpeedMultiplier(false);
 
         // Shoot the arrow
-        Rigidbody arrowRigidbody = currentArrow.GetComponent<Rigidbody>();
+        Rigidbody arrowRigidbody = currentArrow.GetComponent<Arrow>().rb;
         arrowRigidbody.isKinematic = false;
         arrowRigidbody.useGravity = true;
         Vector3 shootDirection = cameraTransform.forward;
         arrowTransform.parent = null;
-        // arrowTransform.rotation = Quaternion.LookRotation(shootDirection);
-        arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
+        arrowRigidbody.AddForce(shootDirection * currentPullTime * settings.gameplay.arrowSpeed, ForceMode.Impulse);
 
         arrowTransform = null;
     }
@@ -112,6 +119,7 @@ public class Bow : MonoBehaviour
     {
         isBowPulled = false;
         currentPullTime = 0.0f;
+        playerMovement.UpdateAimSpeedMultiplier(false);
 
         if (currentArrow != null)
         {
@@ -124,11 +132,11 @@ public class Bow : MonoBehaviour
     {
         if (currentArrow == null) return;
 
-        float pullRatio = pullTime / maxPullTime;
+        float pullRatio = pullTime / settings.gameplay.maxPullTime;
 
         handTransform.localPosition = Vector3.Lerp(handRestPosition, handMaxPullPosition, pullRatio);
-        bowTransform.localPosition = Vector3.Lerp(bowRestPosition, bowPullPosition, pullRatio);
-        bowTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(bowRestRotation), Quaternion.Euler(bowPulledRotation), pullRatio);
+        transform.localPosition = Vector3.Lerp(bowRestPosition, bowPullPosition, pullRatio);
+        transform.localRotation = Quaternion.Lerp(Quaternion.Euler(bowRestRotation), Quaternion.Euler(bowPulledRotation), pullRatio);
         if (arrowTransform)
         {
             arrowTransform.localPosition = Vector3.Lerp(arrowRestPosition, arrowPullPosition, pullRatio);
