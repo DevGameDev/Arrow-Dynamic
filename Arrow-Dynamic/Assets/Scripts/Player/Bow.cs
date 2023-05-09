@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bow : MonoBehaviour
@@ -25,6 +26,10 @@ public class Bow : MonoBehaviour
     public Vector3 bowRestRotation;
     public Vector3 bowPulledRotation;
 
+    [Header("Auto Fire")]
+    public float autoFireInterval = 1.0f;
+    private bool autoFireActive = false;
+
     private float currentPullTime = 0.0f;
     private GameObject currentArrow = null;
     private Transform arrowTransform;
@@ -43,6 +48,18 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            autoFireActive = !autoFireActive;
+            if (autoFireActive)
+            {
+                StartCoroutine(StartAutoFire());
+            }
+            else
+            {
+                StopCoroutine(StartAutoFire());
+            }
+        }
         HandleBowPull();
     }
 
@@ -77,7 +94,7 @@ public class Bow : MonoBehaviour
         if (!isBowPulled)
         {
             InitializeBowPull();
-            playerMovement.UpdateAimSpeedMultiplier(true);
+            playerMovement.UpdateAimingState(true);
         }
         else if (currentPullTime > settings.gameplay.arrowReadyTime)
         {
@@ -102,7 +119,7 @@ public class Bow : MonoBehaviour
     {
         arrowReady = false;
         isBowPulled = false;
-        playerMovement.UpdateAimSpeedMultiplier(false);
+        playerMovement.UpdateAimingState(false);
 
         // Shoot the arrow
         Rigidbody arrowRigidbody = currentArrow.GetComponent<Arrow>().rb;
@@ -119,7 +136,7 @@ public class Bow : MonoBehaviour
     {
         isBowPulled = false;
         currentPullTime = 0.0f;
-        playerMovement.UpdateAimSpeedMultiplier(false);
+        playerMovement.UpdateAimingState(false);
 
         if (currentArrow != null)
         {
@@ -141,6 +158,30 @@ public class Bow : MonoBehaviour
         {
             arrowTransform.localPosition = Vector3.Lerp(arrowRestPosition, arrowPullPosition, pullRatio);
             arrowTransform.localRotation = Quaternion.Lerp(Quaternion.Euler(arrowRestRotation), Quaternion.Euler(arrowPullRotation), pullRatio);
+        }
+    }
+
+    IEnumerator StartAutoFire()
+    {
+        while (autoFireActive)
+        {
+            // Begin pulling the bow
+            if (!isBowPulled)
+            {
+                InitializeBowPull();
+                playerMovement.UpdateAimingState(true);
+            }
+
+            // Gradually pull the bow to its maximum over maxPullTime duration
+            float pullStartTime = Time.time;
+            while (Time.time - pullStartTime < settings.gameplay.maxPullTime)
+            {
+                currentPullTime = Mathf.Lerp(0, settings.gameplay.maxPullTime, (Time.time - pullStartTime) / settings.gameplay.maxPullTime);
+                yield return null;
+            }
+            currentPullTime = settings.gameplay.maxPullTime;
+            ReleaseBow();
+            yield return new WaitForSeconds(autoFireInterval);
         }
     }
 }

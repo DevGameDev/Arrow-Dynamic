@@ -33,13 +33,16 @@ public class GameplaySettings
 
     [Header("Player Movement")]
     public float speed = 10.0f;
+    public float smoothingFactor = 20f;
     public float sidewaysSpeedMultiplier = 0.9f;
     public float reverseSpeedMultiplier = 0.6f;
     public float sprintSpeedMultiplier = 1.5f;
     public float crouchSpeedMultiplier = 0.7f;
     public float aimSpeedMultiplier = 0.8f;
+    public float airSpeedMultiplier = 0.25f;
     public float jumpForce = 5.0f;
     public float doubleJumpForce = 4.0f;
+    public bool airControl = false;
     public float groundCheckRadius = 0.5f;
     public LayerMask groundMask;
     public float crouchHeight = 0.5f;

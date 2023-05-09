@@ -45,13 +45,6 @@ public class PlayerMovement : MonoBehaviour
         // Check for sprint input
         isSprinting = Input.GetKey(settings.input.sprintKey);
 
-        // Check for crouch input
-        if (Input.GetKeyDown(settings.input.crouchKey))
-        {
-            isCrouching = !isCrouching;
-            col.height = isCrouching ? settings.gameplay.crouchHeight : settings.gameplay.standingHeight;
-        }
-
         // Grounded check and jump
         if (IsGrounded())
         {
@@ -81,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentSpeed *= settings.gameplay.reverseSpeedMultiplier;
         }
-        else if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        else if (Mathf.Abs(horizontal) >= Mathf.Abs(vertical))
         {
             currentSpeed *= settings.gameplay.sidewaysSpeedMultiplier;
         }
@@ -96,16 +89,28 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = transform.TransformDirection(inputDirection);
         Vector3 targetVelocity = moveDirection * currentSpeed;
 
-        // Apply crouch and aim multipliers
-        if (isCrouching) targetVelocity *= settings.gameplay.crouchSpeedMultiplier;
+        // Apply crouch and aim multipliers / aim height
+        if (Input.GetKey(settings.input.crouchKey))
+        {
+            col.height = settings.gameplay.crouchHeight;
+            targetVelocity *= settings.gameplay.crouchSpeedMultiplier;
+        }
+        else
+            col.height = settings.gameplay.standingHeight;
+
         if (isAiming) targetVelocity *= settings.gameplay.aimSpeedMultiplier;
 
-        // Update the Rigidbody's velocity
+        // If can't control in air.
+        if (!IsGrounded())
+        {
+            if (!settings.gameplay.airControl) return;
+
+            targetVelocity = (targetVelocity * settings.gameplay.airSpeedMultiplier) + (rb.velocity * (1 - settings.gameplay.airSpeedMultiplier));
+        }
+
         targetVelocity.y = rb.velocity.y;
-        if (targetVelocity.magnitude == 0)
-            rb.velocity = Vector3.zero;
-        else
-            rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, Time.deltaTime * 20f);
+
+        rb.velocity = Vector4.Lerp(rb.velocity, targetVelocity, Time.deltaTime * settings.gameplay.smoothingFactor);
     }
 
     bool IsGrounded()
@@ -115,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(groundCheckPosition, settings.gameplay.groundCheckRadius, settings.gameplay.groundMask);
     }
 
-    public void UpdateAimSpeedMultiplier(bool active)
+    public void UpdateAimingState(bool active)
     {
         isAiming = active;
     }
