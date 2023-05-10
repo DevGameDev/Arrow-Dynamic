@@ -71,6 +71,6 @@
 /Arrow-Dynamic/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /Arrow-Dynamic/[Aa]ssets/[Ss]treamingAssets/aa/*
 
-*.asset
+# *.asset
 *.code-workspace
 /Arrow-Dynamic/.vscode/settings.json
