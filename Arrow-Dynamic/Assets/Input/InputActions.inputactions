@@ -332,7 +332,7 @@
             "id": "fb272de3-aa42-49c7-b576-2b4d35e3f820",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Open",
                     "type": "Button",
                     "id": "5efdf3be-b9b8-49f7-9f4d-70145901cac5",
                     "expectedControlType": "Button",
@@ -344,12 +344,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c090b010-c146-4ade-9188-72cb2b64ab0a",
-                    "path": "",
+                    "id": "193a1053-da15-4751-8cb9-0638eea72b14",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Open",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

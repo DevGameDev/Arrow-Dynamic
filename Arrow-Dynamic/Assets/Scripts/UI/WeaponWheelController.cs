@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 public class WeaponWheelController : MonoBehaviour
 {
     public Animator anim;
@@ -9,11 +9,10 @@ public class WeaponWheelController : MonoBehaviour
     public Sprite noImage;
     public static int weaponID;
 
-
     // Update is called once per frame
-    void Update()
+    public void input_action(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (context.performed)
         {
             weaponWheelSelected = !weaponWheelSelected;
         }

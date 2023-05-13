@@ -354,7 +354,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""id"": ""fb272de3-aa42-49c7-b576-2b4d35e3f820"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Open"",
                     ""type"": ""Button"",
                     ""id"": ""5efdf3be-b9b8-49f7-9f4d-70145901cac5"",
                     ""expectedControlType"": ""Button"",
@@ -366,12 +366,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c090b010-c146-4ade-9188-72cb2b64ab0a"",
-                    ""path"": """",
+                    ""id"": ""193a1053-da15-4751-8cb9-0638eea72b14"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Open"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -396,7 +396,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Menus_Quit = m_Menus.FindAction("Quit", throwIfNotFound: true);
         // Arrow Wheel
         m_ArrowWheel = asset.FindActionMap("Arrow Wheel", throwIfNotFound: true);
-        m_ArrowWheel_Newaction = m_ArrowWheel.FindAction("New action", throwIfNotFound: true);
+        m_ArrowWheel_Open = m_ArrowWheel.FindAction("Open", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -614,12 +614,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     // Arrow Wheel
     private readonly InputActionMap m_ArrowWheel;
     private List<IArrowWheelActions> m_ArrowWheelActionsCallbackInterfaces = new List<IArrowWheelActions>();
-    private readonly InputAction m_ArrowWheel_Newaction;
+    private readonly InputAction m_ArrowWheel_Open;
     public struct ArrowWheelActions
     {
         private @InputActions m_Wrapper;
         public ArrowWheelActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_ArrowWheel_Newaction;
+        public InputAction @Open => m_Wrapper.m_ArrowWheel_Open;
         public InputActionMap Get() { return m_Wrapper.m_ArrowWheel; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -629,16 +629,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ArrowWheelActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ArrowWheelActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Open.started += instance.OnOpen;
+            @Open.performed += instance.OnOpen;
+            @Open.canceled += instance.OnOpen;
         }
 
         private void UnregisterCallbacks(IArrowWheelActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Open.started -= instance.OnOpen;
+            @Open.performed -= instance.OnOpen;
+            @Open.canceled -= instance.OnOpen;
         }
 
         public void RemoveCallbacks(IArrowWheelActions instance)
@@ -674,6 +674,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     }
     public interface IArrowWheelActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnOpen(InputAction.CallbackContext context);
     }
 }
