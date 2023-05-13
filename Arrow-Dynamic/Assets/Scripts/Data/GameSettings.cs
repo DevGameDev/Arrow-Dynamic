@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Settings", order = 0)]
 public class GameSettings : ScriptableObject
 {
+    // public 
     [Header("Developer Settings")]
     public DeveloperSettings developer;
 
@@ -18,12 +19,22 @@ public class GameSettings : ScriptableObject
 
     [Header("Audio Settings")]
     public AudioSettings audio;
+
+    // For notifying other scripts that something changed. 
+    public static Action OnSettingsChanged;
+    public void NotifySettingsChanged()
+    {
+        OnSettingsChanged?.Invoke();
+        Debug.Log("Settings Updated.");
+    }
 }
 
 [Serializable]
 public class DeveloperSettings
 {
     public bool debugEnabled = true;
+    public bool autoFireEnabled = false;
+    public float autoFireInterval = 1.0f;
 }
 
 [Serializable]
@@ -33,7 +44,7 @@ public class GameplaySettings
 
     [Header("Player Movement")]
     public float speed = 10.0f;
-    public float smoothingFactor = 20f;
+    public float moveSmoothing = 20f;
     public float sidewaysSpeedMultiplier = 0.9f;
     public float reverseSpeedMultiplier = 0.6f;
     public float sprintSpeedMultiplier = 1.5f;
@@ -60,41 +71,6 @@ public class InputSettings
 {
     [Header("Mouse")]
     public float mouseSensitivity = 2;
-
-    [Header("Movement")]
-    public KeyCode moveForwardKey = KeyCode.W;
-    public KeyCode moveBackwardKey = KeyCode.S;
-    public KeyCode moveLeftKey = KeyCode.A;
-    public KeyCode moveRightKey = KeyCode.D;
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode crouchKey = KeyCode.LeftControl;
-
-    [Header("Actions")]
-    public KeyCode pullKey = KeyCode.Mouse0;
-    public KeyCode cancelKey = KeyCode.Q;
-    public KeyCode interactKey = KeyCode.E;
-    public KeyCode meleeAttackKey = KeyCode.F;
-
-    [Header("Abilities")]
-    public KeyCode ability1Key = KeyCode.Alpha1;
-    public KeyCode ability2Key = KeyCode.Alpha2;
-    public KeyCode ability3Key = KeyCode.Alpha3;
-
-    [Header("Menus")]
-    public KeyCode pauseKey = KeyCode.Escape;
-    public KeyCode arrowWheelKey = KeyCode.Tab;
-
-    [Header("Quick Slots")]
-    public KeyCode quickSlot1Key = KeyCode.Alpha1;
-    public KeyCode quickSlot2Key = KeyCode.Alpha2;
-    public KeyCode quickSlot3Key = KeyCode.Alpha3;
-    public KeyCode quickSlot4Key = KeyCode.Alpha4;
-    public KeyCode quickSlot5Key = KeyCode.Alpha5;
-    public KeyCode quickSlot6Key = KeyCode.Alpha6;
-    public KeyCode quickSlot7Key = KeyCode.Alpha7;
-    public KeyCode quickSlot8Key = KeyCode.Alpha8;
-    public KeyCode quickSlot9Key = KeyCode.Alpha9;
 }
 
 [Serializable]

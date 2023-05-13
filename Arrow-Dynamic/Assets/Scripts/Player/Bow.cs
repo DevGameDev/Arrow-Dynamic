@@ -1,13 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bow : MonoBehaviour
 {
-    private GameSettings settings;
-    private GameState state;
+    //////////////////////////////////////////////////
+    // Instance Settings
+    //////////////////////////////////////////////////
 
     [Header("References")]
-    public GameObject playerObj;
+    public PlayerController playerController;
     public GameObject arrowPrefab;
     public Transform arrowSpawnPoint;
     public Transform cameraTransform;
@@ -26,90 +28,75 @@ public class Bow : MonoBehaviour
     public Vector3 bowRestRotation;
     public Vector3 bowPulledRotation;
 
-    [Header("Auto Fire")]
-    public float autoFireInterval = 1.0f;
-    private bool autoFireActive = false;
+    //////////////////////////////////////////////////
+    // Public Properties and Methods
+    //////////////////////////////////////////////////
+
+    public void HandlePull(InputAction.CallbackContext context)
+    {
+        if (isCoolingDown)
+        {
+            if (currentPullTime == 0.0f) isCoolingDown = false;
+            else return;
+        }
+        if (context.performed)
+        {
+            if (arrowReady) ReleaseBow();
+        }
+        else if (context.started)
+        {
+            if (!isBowPulled) InitializeBowPull();
+            if (currentPullTime > arrowReadyTime) arrowReady = true;
+
+            currentPullTime += Time.deltaTime;
+        }
+
+        currentPullTime = Mathf.Clamp(currentPullTime, 0, maxPullTime);
+
+        UpdateBowPullAnimation(currentPullTime);
+    }
+
+    public void HandleCancel(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isBowPulled = false;
+            isCoolingDown = true;
+        }
+    }
+
+    //////////////////////////////////////////////////
+    // Private Fields and Methods
+    //////////////////////////////////////////////////
 
     private float currentPullTime = 0.0f;
     private GameObject currentArrow = null;
     private Transform arrowTransform;
     private bool arrowReady = false;
     private bool isBowPulled = false;
+    private bool isCoolingDown = false;
 
-    private PlayerMovement playerMovement;
-
-    void Start()
+    private void Start()
     {
-        settings = GameManager.GetSettings();
-        state = GameManager.GetState();
-
-        playerMovement = playerObj.GetComponent<PlayerMovement>();
+        UpdateSettings();
+        GameSettings.OnSettingsChanged += UpdateSettings;
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            autoFireActive = !autoFireActive;
-            if (autoFireActive)
-            {
-                StartCoroutine(StartAutoFire());
-            }
-            else
-            {
-                StopCoroutine(StartAutoFire());
-            }
-        }
-        HandleBowPull();
+        if (!isBowPulled) currentPullTime -= 2 * Time.deltaTime;
     }
 
-    private void HandleBowPull()
+    private void OnDestroy()
     {
-        if (Input.GetMouseButton(1))
-        {
-            CancelBowPull();
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            PullBow();
-        }
-        else if (arrowReady)
-        {
-            ReleaseBow();
-        }
-        else
-            currentPullTime -= 2 * Time.deltaTime;
-
-        UpdateBowPullAnimation(currentPullTime);
-    }
-
-    private void PullBow()
-    {
-        if (currentPullTime > settings.gameplay.arrowReadyTime && !isBowPulled) // So can't spam
-        {
-            currentPullTime -= 2 * Time.deltaTime;
-            return;
-        }
-
-        if (!isBowPulled)
-        {
-            InitializeBowPull();
-            playerMovement.UpdateAimingState(true);
-        }
-        else if (currentPullTime > settings.gameplay.arrowReadyTime)
-        {
-            arrowReady = true;
-        }
-
-        // Increase the bow pull distance up to the maximum
-        currentPullTime += Time.deltaTime;
-        currentPullTime = Mathf.Clamp(currentPullTime, 0, settings.gameplay.maxPullTime);
+        GameSettings.OnSettingsChanged -= UpdateSettings;
     }
 
     private void InitializeBowPull()
     {
         isBowPulled = true;
         Quaternion shootRotation = cameraTransform.rotation;
+        if (currentArrow != null) Destroy(currentArrow);
         currentArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, shootRotation);
         arrowTransform = currentArrow.transform;
         arrowTransform.parent = cameraTransform;
@@ -117,9 +104,9 @@ public class Bow : MonoBehaviour
 
     private void ReleaseBow()
     {
+        isCoolingDown = true;
         arrowReady = false;
         isBowPulled = false;
-        playerMovement.UpdateAimingState(false);
 
         // Shoot the arrow
         Rigidbody arrowRigidbody = currentArrow.GetComponent<Arrow>().rb;
@@ -127,29 +114,16 @@ public class Bow : MonoBehaviour
         arrowRigidbody.useGravity = true;
         Vector3 shootDirection = cameraTransform.forward;
         arrowTransform.parent = null;
-        arrowRigidbody.AddForce(shootDirection * currentPullTime * settings.gameplay.arrowSpeed, ForceMode.Impulse);
+        arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
 
         arrowTransform = null;
-    }
-
-    private void CancelBowPull()
-    {
-        isBowPulled = false;
-        currentPullTime = 0.0f;
-        playerMovement.UpdateAimingState(false);
-
-        if (currentArrow != null)
-        {
-            Destroy(currentArrow);
-            currentArrow = null;
-        }
     }
 
     private void UpdateBowPullAnimation(float pullTime)
     {
         if (currentArrow == null) return;
 
-        float pullRatio = pullTime / settings.gameplay.maxPullTime;
+        float pullRatio = pullTime / maxPullTime;
 
         handTransform.localPosition = Vector3.Lerp(handRestPosition, handMaxPullPosition, pullRatio);
         transform.localPosition = Vector3.Lerp(bowRestPosition, bowPullPosition, pullRatio);
@@ -163,25 +137,50 @@ public class Bow : MonoBehaviour
 
     IEnumerator StartAutoFire()
     {
-        while (autoFireActive)
+        while (true)
         {
             // Begin pulling the bow
             if (!isBowPulled)
             {
                 InitializeBowPull();
-                playerMovement.UpdateAimingState(true);
+                // playerController.UpdateAimingState(true);
             }
 
             // Gradually pull the bow to its maximum over maxPullTime duration
             float pullStartTime = Time.time;
-            while (Time.time - pullStartTime < settings.gameplay.maxPullTime)
+            while (Time.time - pullStartTime < maxPullTime)
             {
-                currentPullTime = Mathf.Lerp(0, settings.gameplay.maxPullTime, (Time.time - pullStartTime) / settings.gameplay.maxPullTime);
+                currentPullTime = Mathf.Lerp(0, maxPullTime, (Time.time - pullStartTime) / maxPullTime);
                 yield return null;
             }
-            currentPullTime = settings.gameplay.maxPullTime;
+            currentPullTime = maxPullTime;
             ReleaseBow();
             yield return new WaitForSeconds(autoFireInterval);
         }
+    }
+
+    //////////////////////////////////////////////////
+    // Settings
+    //////////////////////////////////////////////////
+
+    private float arrowSpeed;
+    private float arrowReadyTime;
+    private float maxPullTime;
+    private float autoFireInterval;
+
+    private void UpdateSettings()
+    {
+        GameSettings settings = GameManager.GetSettings();
+
+        arrowSpeed = settings.gameplay.arrowSpeed;
+        arrowReadyTime = settings.gameplay.arrowReadyTime;
+        maxPullTime = settings.gameplay.maxPullTime;
+
+        autoFireInterval = settings.developer.autoFireInterval;
+
+        if (settings.developer.autoFireEnabled)
+            StartCoroutine(StartAutoFire());
+        else
+            StopCoroutine(StartAutoFire());
     }
 }

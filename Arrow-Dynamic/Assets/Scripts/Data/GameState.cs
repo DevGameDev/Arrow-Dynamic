@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameState : ScriptableObject
 {
     public GameStates currentState = GameStates.Initial;
+    public GameStates lastState = GameStates.Initial;
 
     [Range(0, 1000)] public float timeScale = 1;
 }
@@ -16,7 +17,7 @@ public enum GameStates
     Initial,
     Loading,
     MainMenu,
-    Settings,
+    SettingsMenu,
     Gameplay,
     Paused,
 }

@@ -1,27 +1,103 @@
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+// TODO: Comments
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; } // Singleton
+    //////////////////////////////////////////////////
+    // Public Properties and Methods
+    //////////////////////////////////////////////////
 
+    public static GameManager Instance { get; private set; } // Singleton
     public GameSettings settings;
+    public GameState state;
+
     public static GameSettings GetSettings()
     {
         return Instance.settings;
     }
 
-    public GameState state;
     public static GameState GetState()
     {
         return Instance.state;
     }
 
+    public void SetGameState(GameStates newState)
+    {
+        switch (state.currentState)
+        {
+            case GameStates.Gameplay:
+                // Handle Gameplay
+                break;
+            case GameStates.MainMenu:
+                // Handle MainMenu
+                break;
+            case GameStates.Paused:
+                // Handle Paused
+                break;
+            default:
+                Debug.LogError($"SetGameState undefined state: {state.currentState}"); // $ makes formatted string
+                break;
+        }
+
+        state.currentState = newState;
+    }
+
+    public void HandlePause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (state.currentState is GameStates.Paused)
+            {
+                state.currentState = state.lastState;
+                state.lastState = GameStates.Paused;
+                // TODO: close pause menu
+            }
+            else
+            {
+                state.lastState = state.currentState;
+                state.currentState = GameStates.Paused;
+                // TODO: Open pause menu?
+            }
+        }
+    }
+
+    /// <summary>
+    /// Should be called in any instance of application closing. Provides logging and saving of game state. 
+    /// </summary>
+    /// <param name="save">True if game should be saved.</param>
+    /// <param name="message">An optional quit message.</param>
+    /// <param name="exception">An optional system exception to be thrown.</param>
+    public void HandleGameQuit(bool save, String message = "No quit message.", System.Exception exception = null)
+    {
+        if (save)
+        {
+            Debug.Log("Saving game...");
+            SaveSettings();
+            SaveState();
+            Debug.Log("Game Saved.");
+        }
+        else
+        {
+            Debug.Log("Game Not Saved.");
+        }
+
+        if (exception is not null) throw exception;
+
+        Debug.Log("Game Quit. " + message);
+        Application.Quit();
+    }
+
+    //////////////////////////////////////////////////
+    // Private Fields and Methods
+    //////////////////////////////////////////////////
+
     private string settingsFilePath;
     private string stateFilePath;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -64,50 +140,6 @@ public class GameManager : MonoBehaviour
                 Debug.LogError($"GameEngine reached undefined state: {state.currentState}"); // $ makes formatted string
                 break;
         }
-    }
-
-    public void SetGameState(GameStates newState)
-    {
-        switch (state.currentState)
-        {
-            case GameStates.Gameplay:
-                // Handle Gameplay
-                break;
-            case GameStates.MainMenu:
-                // Handle MainMenu
-                break;
-            default:
-                Debug.LogError($"SetGameState undefined state: {state.currentState}"); // $ makes formatted string
-                break;
-        }
-
-        state.currentState = newState;
-    }
-
-    /// <summary>
-    /// Should be called in any instance of application closing. Provides logging and saving of game state. 
-    /// </summary>
-    /// <param name="save">True if game should be saved.</param>
-    /// <param name="message">An optional quit message.</param>
-    /// <param name="exception">An optional system exception to be thrown.</param>
-    public void HandleGameQuit(bool save, String message = "No quit message.", System.Exception exception = null)
-    {
-        if (save)
-        {
-            Debug.Log("Saving game...");
-            SaveSettings();
-            SaveState();
-            Debug.Log("Game Saved.");
-        }
-        else
-        {
-            Debug.Log("Game Not Saved.");
-        }
-
-        if (exception is not null) throw exception;
-
-        Debug.Log("Game Quit. " + message);
-        Application.Quit();
     }
 
     private void LoadState()

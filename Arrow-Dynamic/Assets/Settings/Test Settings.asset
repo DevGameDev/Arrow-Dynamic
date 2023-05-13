@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44adde47251cc44438f99c00bd6d2427, type: 3}
+  m_Name: Test Settings
+  m_EditorClassIdentifier: 
+  developer:
+    debugEnabled: 1
+    autoFireEnabled: 0
+    autoFireInterval: 1
+  gameplay:
+    initialState: 4
+    speed: 35.22
+    moveSmoothing: 20
+    sidewaysSpeedMultiplier: 0.8
+    reverseSpeedMultiplier: 0.6
+    sprintSpeedMultiplier: 1.25
+    crouchSpeedMultiplier: 0.4
+    aimSpeedMultiplier: 0.8
+    airSpeedMultiplier: 0.2
+    jumpForce: 20
+    doubleJumpForce: 20
+    airControl: 1
+    groundCheckRadius: 0.2
+    groundMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    crouchHeight: 2.5
+    standingHeight: 3.5
+    arrowSpeed: 5
+    maxPullTime: 0.5
+    arrowReadyTime: 0.1
+    maxArrows: 0
+  input:
+    mouseSensitivity: 0.8
+  display:
+    viewSmoothing: 2
+    enableCameraBobbing: 0
+    bobbingSpeed: 0.18
+    bobbingAmount: 0.01

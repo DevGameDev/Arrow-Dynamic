@@ -7,10 +7,15 @@ using UnityEngine.UI;
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
+    //////////////////////////////////////////////////
+    // Public Properties and Methods
+    //////////////////////////////////////////////////
+
     public static AudioManager Instance { get; private set; } // Singleton
 
-    private GameState state;
-    private GameSettings settings;
+    //////////////////////////////////////////////////
+    // Private Fields and Methods
+    //////////////////////////////////////////////////
 
     void Awake()
     {
@@ -23,11 +28,5 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-    }
-
-    private void Start()
-    {
-        state = GameManager.GetState();
-        settings = GameManager.GetSettings();
     }
 }
