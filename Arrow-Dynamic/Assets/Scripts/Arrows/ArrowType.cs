@@ -5,5 +5,5 @@ public enum ArrowType
 {
     Basic,
     Ice,
-    // Add other arrow types here
+    Grapple,
 }
