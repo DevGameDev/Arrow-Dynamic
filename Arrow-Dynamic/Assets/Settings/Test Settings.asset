@@ -18,7 +18,7 @@ MonoBehaviour:
     autoFireInterval: 1
   gameplay:
     initialState: 4
-    speed: 35.22
+    speed: 15
     moveSmoothing: 20
     sidewaysSpeedMultiplier: 0.8
     reverseSpeedMultiplier: 0.6

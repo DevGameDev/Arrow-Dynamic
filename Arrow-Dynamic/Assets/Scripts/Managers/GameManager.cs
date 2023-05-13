@@ -3,7 +3,6 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO: Comments
 public class GameManager : MonoBehaviour
 {
     //////////////////////////////////////////////////

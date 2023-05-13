@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerStatistics : MonoBehaviour
 {
-    public PlayerStatistics Instance { get; set; }
+    public static PlayerStatistics Instance { get; set; }
 
     void Awake()
     {

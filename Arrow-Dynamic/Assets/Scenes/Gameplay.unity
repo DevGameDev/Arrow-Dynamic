@@ -1320,6 +1320,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116a415d25a55a443bd2213bf1ad2204, type: 3}
+--- !u!4 &336636061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6393824963616414886, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+  m_PrefabInstance: {fileID: 1430764687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &336636064 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6393824963616414887, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+  m_PrefabInstance: {fileID: 1430764687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &342817465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2297,8 +2307,8 @@ GameObject:
   m_Component:
   - component: {fileID: 466316679}
   - component: {fileID: 466316678}
-  - component: {fileID: 466316682}
   - component: {fileID: 466316681}
+  - component: {fileID: 466316682}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -2356,9 +2366,203 @@ MonoBehaviour:
   m_GameObject: {fileID: 466316676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4145f75d19c878d48806c75ad9e924d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 3b66f3f03c75c594ead4f739da2b6f45, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bc8aea44-f471-4d3f-92cd-7eba67099ae1
+    m_ActionName: Gameplay/Jump
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27c01890-7c8d-4760-ba56-2c56485a9e15
+    m_ActionName: Gameplay/Crouch
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleArrowWheel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 87767fb4-cb9d-4095-a03f-ced25756aa62
+    m_ActionName: Gameplay/ArrowWheel
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 995aa8aa-6c5a-49f8-b469-66965321577e
+    m_ActionName: Gameplay/Sprint
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 466316678}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandlePause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2790e95a-442e-4928-ba65-c0097b6d9dfc
+    m_ActionName: Gameplay/Pause
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 17e2bddc-a4ac-4375-9a9c-59547e72daed
+    m_ActionName: Gameplay/Move
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 939233543}
+        m_TargetAssemblyTypeName: Bow, Assembly-CSharp
+        m_MethodName: HandleCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4a69257e-8e5d-4c60-899f-360e3157d81d
+    m_ActionName: Gameplay/Cancel
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandlePull
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 939233543}
+        m_TargetAssemblyTypeName: Bow, Assembly-CSharp
+        m_MethodName: HandlePull
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e4d16695-6293-4cac-b5e7-ac24165b0dca
+    m_ActionName: Gameplay/Pull
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935540336}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 95ecb341-9827-479b-ba9a-affb1c5a2af4
+    m_ActionName: Gameplay/Look
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5a1b15b9-720d-43ee-93c7-a8b5934adac1
+    m_ActionName: Menus/Quit
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5efdf3be-b9b8-49f7-9f4d-70145901cac5
+    m_ActionName: Arrow Wheel/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 336636064}
 --- !u!4 &500575456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2274345060817768829, guid: d0037cbd794da2744ba30e87b3eaa652, type: 3}
@@ -4531,6 +4735,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934511315}
   m_CullTransparentMesh: 1
+--- !u!54 &935540332 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 383252212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+  m_PrefabInstance: {fileID: 1430764687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &935540333 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 5083397292898972836, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+  m_PrefabInstance: {fileID: 1430764687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &935540336 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8813675921109242782, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+  m_PrefabInstance: {fileID: 1430764687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024f447a2977fc943830cb5db8e3872f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &939233543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+  m_PrefabInstance: {fileID: 1430764687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16f4d2d8e10ad347a0b5d593b1e0f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977472047 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7631506047299143368, guid: 3712fbb4392816247af6fda323ace7a2, type: 3}
@@ -6572,6 +6808,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1332424133}
     - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 935540336}
+    - target: {fileID: 6828314503111457212, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
       propertyPath: bowPullPosition.x
       value: 0.05
       objectReference: {fileID: 0}
@@ -6679,7 +6919,20 @@ PrefabInstance:
       propertyPath: handMinPullPosition.z
       value: 0.98
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8813675921109242782, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 935540332}
+    - target: {fileID: 8813675921109242782, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 935540333}
+    - target: {fileID: 8813675921109242782, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
+      propertyPath: camTransform
+      value: 
+      objectReference: {fileID: 336636061}
+    m_RemovedComponents:
+    - {fileID: 8614486237053811458, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d97cdb86caea7ee488dd20c28ba925cd, type: 3}
 --- !u!4 &1448472757 stripped
 Transform:
@@ -8882,31 +9135,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116a415d25a55a443bd2213bf1ad2204, type: 3}
---- !u!1 &1746958161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1914131253495207822, guid: 82edc2c0c9cce7d43b7bea1f6b311f93, type: 3}
-  m_PrefabInstance: {fileID: 1295157953}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1746958162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1286776700067007796, guid: 82edc2c0c9cce7d43b7bea1f6b311f93, type: 3}
   m_PrefabInstance: {fileID: 1295157953}
   m_PrefabAsset: {fileID: 0}
---- !u!111 &1746958166
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746958161}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: e8eb36087db794e9994bccdf826ef0ff, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &1760993790
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1121,13 +1121,13 @@ MonoBehaviour:
     m_ActionName: Gameplay/Crouch[/Keyboard/ctrl]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1402571738}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleArrowWheel
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1197,6 +1197,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 678705097}
+        m_TargetAssemblyTypeName: Bow, Assembly-CSharp
+        m_MethodName: HandleCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4a69257e-8e5d-4c60-899f-360e3157d81d
     m_ActionName: Gameplay/Cancel[/Mouse/rightButton,/Keyboard/q]
   - m_PersistentCalls:
@@ -1228,6 +1240,14 @@ MonoBehaviour:
     m_ActionId: e4d16695-6293-4cac-b5e7-ac24165b0dca
     m_ActionName: Gameplay/Pull[/Mouse/leftButton]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5a1b15b9-720d-43ee-93c7-a8b5934adac1
+    m_ActionName: Menus/Quit[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5efdf3be-b9b8-49f7-9f4d-70145901cac5
+    m_ActionName: Arrow Wheel/New action
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1402571738}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -1241,16 +1261,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: d5cfc04e-fbf3-4f0a-a81a-baabcfca6bd7
-    m_ActionName: Gameplay/CameraMove[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5a1b15b9-720d-43ee-93c7-a8b5934adac1
-    m_ActionName: Menus/Quit[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5efdf3be-b9b8-49f7-9f4d-70145901cac5
-    m_ActionName: Arrow Wheel/New action
+    m_ActionId: 95ecb341-9827-479b-ba9a-affb1c5a2af4
+    m_ActionName: Gameplay/Look
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -3997,15 +4009,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 54.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 54.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 54.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4046,6 +4058,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4a0cc109bac35cc428401c4911ca0156, type: 3}
       propertyPath: m_Materials.Array.data[0]
