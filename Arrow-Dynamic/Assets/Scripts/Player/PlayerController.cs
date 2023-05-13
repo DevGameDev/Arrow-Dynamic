@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
 
     public void HandleMove(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);
-
         move = context.ReadValue<Vector2>();
     }
 
@@ -78,7 +76,6 @@ public class PlayerController : MonoBehaviour
 
     public void HandleArrowWheel(InputAction.CallbackContext context)
     {
-        Debug.Log("ArrowWheel.");
     }
 
     //////////////////////////////////////////////////
@@ -218,6 +215,19 @@ public class PlayerController : MonoBehaviour
         Vector3 groundCheckPosition = transform.position;
         groundCheckPosition.y -= col.bounds.extents.y;
         return Physics.CheckSphere(groundCheckPosition, groundCheckRadius, groundMask);
+    }
+
+    private float pushForce = 500f;
+    void OnCollision(Collision collision)
+    {
+        // Check if the collision is with a wall
+        if (collision.gameObject.tag == "environment")
+        {
+            // Calculate the direction to push the player
+            Vector3 pushDirection = collision.contacts[0].normal;
+            // Apply the push force
+            GetComponent<Rigidbody>().AddForce(pushDirection * pushForce, ForceMode.Impulse);
+        }
     }
 
     //////////////////////////////////////////////////

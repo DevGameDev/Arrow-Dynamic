@@ -34,26 +34,21 @@ public class Bow : MonoBehaviour
 
     public void HandlePull(InputAction.CallbackContext context)
     {
+        Debug.Log(context.phase);
+
         if (isCoolingDown)
         {
             if (currentPullTime == 0.0f) isCoolingDown = false;
             else return;
         }
-        if (context.performed)
+        if (context.canceled)
         {
             if (arrowReady) ReleaseBow();
         }
         else if (context.started)
         {
             if (!isBowPulled) InitializeBowPull();
-            if (currentPullTime > arrowReadyTime) arrowReady = true;
-
-            currentPullTime += Time.deltaTime;
         }
-
-        currentPullTime = Mathf.Clamp(currentPullTime, 0, maxPullTime);
-
-        UpdateBowPullAnimation(currentPullTime);
     }
 
     public void HandleCancel(InputAction.CallbackContext context)
@@ -84,7 +79,14 @@ public class Bow : MonoBehaviour
 
     private void Update()
     {
-        if (!isBowPulled) currentPullTime -= 2 * Time.deltaTime;
+        if (isBowPulled) currentPullTime += Time.deltaTime;
+        else currentPullTime -= 2 * Time.deltaTime;
+
+        currentPullTime = Mathf.Clamp(currentPullTime, 0, maxPullTime);
+
+        if (currentPullTime > arrowReadyTime) arrowReady = true;
+
+        UpdateBowPullAnimation(currentPullTime);
     }
 
     private void OnDestroy()
