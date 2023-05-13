@@ -10,4 +10,6 @@ Unity 3D game developed for CS 410 Spring 2023.
 
 "Crosshairs | 25+ Free Crosshairs Pack" (https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-25-free-crosshairs-pack-216732) by OccaSoftware in licensed under Standard Unity Asset Store EULA
 
-"Ancient Jungle Temple Demo" (https://assetstore.unity.com/packages/3d/environments/ancient-jungle-temple-demo-123179) by 3PupperStudios is licensed under Standard Unity Asset Store EULA
+"low poly torches" (https://sketchfab.com/3d-models/low-poly-torches-06fa08b3b2834d26b3deee112eda2919) by sam licensed under CC Attribution
+
+"POLY - Jungle" (https://assetstore.unity.com/packages/3d/environments/poly-jungle-200789) by BK licensed under Standard Unity Asset Store EULA
