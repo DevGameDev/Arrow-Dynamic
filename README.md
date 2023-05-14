@@ -13,3 +13,5 @@ Unity 3D game developed for CS 410 Spring 2023.
 "low poly torches" (https://sketchfab.com/3d-models/low-poly-torches-06fa08b3b2834d26b3deee112eda2919) by sam licensed under CC Attribution
 
 "POLY - Jungle" (https://assetstore.unity.com/packages/3d/environments/poly-jungle-200789) by BK licensed under Standard Unity Asset Store EULA
+
+"Low-Poly Skull"  (https://sketchfab.com/3d-models/low-poly-skull-7dc37b0f8edf4e89843b28db268fc973#download) by Vladimir E. licensed under CC Attribution
