@@ -74,3 +74,6 @@
 # *.asset
 *.code-workspace
 /Arrow-Dynamic/.vscode/settings.json
+
+#EditorBuildSettings
+/Arrow-Dynamic/ProjectSettings/EditorBuildSettings.asset
