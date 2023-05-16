@@ -4,7 +4,7 @@ using TMPro;
 
 public class WeaponWheelButtonController : MonoBehaviour
 {
-    public int ID;
+    public ArrowType type;
     public string itemName;
     public TextMeshProUGUI itemText;
     public Image selectedItem;
@@ -13,43 +13,17 @@ public class WeaponWheelButtonController : MonoBehaviour
     private Animator anim;
     private bool selected;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (selected)
-        {
-            selectedItem.sprite = icon;
-            itemText.text = itemName;
-        }
-    }
-
-
-    public void Selected()
-    {
-        selected = true;
-        WeaponWheelController.weaponID = ID;
-
-    }
-
-    public void Deselected()
-    {
-        selected = false;
-        WeaponWheelController.weaponID = 0;
-
     }
 
     public void HoverEnter()
     {
         anim.SetBool("Hover", true);
+        WeaponWheelController.Instance.selectedItem.sprite = icon;
         itemText.text = itemName;
+        WeaponWheelController.Instance.selectedType = type;
     }
 
     public void HoverExit()
@@ -57,5 +31,4 @@ public class WeaponWheelButtonController : MonoBehaviour
         anim.SetBool("Hover", false);
         itemText.text = "";
     }
-
 }
