@@ -7,7 +7,11 @@
         {
             "name": "Unity Editor",
             "type": "unity",
+<<<<<<< Updated upstream
             "path": "/c:/Users/aiden/OneDrive/Documents/GitHub/Arrow-Dynamic/Arrow-Dynamic/Library/EditorInstance.json",
+=======
+            "path": "/c:/Users/Devin/src/Unity/Arrow-Dynamic/Arrow-Dynamic/Library/EditorInstance.json",
+>>>>>>> Stashed changes
             "request": "launch"
         },
         {
