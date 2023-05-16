@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
             {
                 canDoubleJump = true;
                 isJumping = true;
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (canDoubleJump)
             {
@@ -42,32 +43,36 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = currentVelocity;
                 canDoubleJump = false;
                 isJumping = true;
+                rb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
             }
         }
     }
 
+
     public void HandleSprint(InputAction.CallbackContext context)
     {
-        isSprinting = context.started ? true : false;
+        if (context.performed) isSprinting = true;
+        else if (context.canceled) isSprinting = false;
     }
 
     public void HandleCrouch(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
-            col.height = crouchHeight;
+            camBaseHeight = crouchHeight;
             isCrouching = true;
         }
-        else if (context.performed)
+        else if (context.canceled)
         {
-            col.height = standingHeight;
+            camBaseHeight = standingHeight;
             isCrouching = false;
         }
     }
 
     public void HandlePull(InputAction.CallbackContext context)
     {
-        isAiming = context.started ? true : false;
+        if (context.performed) isAiming = true;
+        else if (context.canceled) isAiming = false;
     }
 
     public void HandleCancel(InputAction.CallbackContext context)
@@ -84,20 +89,21 @@ public class PlayerController : MonoBehaviour
     //////////////////////////////////////////////////
 
     // Components
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private Transform camTransform;
-    [SerializeField] private CapsuleCollider col;
+    public Rigidbody rb;
+    public Transform camTransform;
+    public CapsuleCollider col;
 
     // State
     private Vector2 move = Vector2.zero;
-    private Vector3 targetVelocity = Vector3.zero;
     private Vector2 mousePosition = Vector2.zero;
+    private float currentSpeed = 0f;
     private bool canDoubleJump = false;
     private bool isJumping = false;
     private bool isSprinting = false;
     private bool isCrouching = false;
     private bool isAiming = false;
-    private float bobTimer;
+    private float bobTimer = 0;
+    private float camBaseHeight;
 
     private void Awake()
     {
@@ -120,54 +126,22 @@ public class PlayerController : MonoBehaviour
         // Update settings and register for further updates
         UpdateSettings();
         GameSettings.OnSettingsChanged += UpdateSettings;
+
+        camBaseHeight = standingHeight;
     }
 
     private void Update()
     {
-        // Look
-        camTransform.localRotation = Quaternion.AngleAxis(-mousePosition.y, Vector3.right);
-        transform.localRotation = Quaternion.AngleAxis(mousePosition.x, Vector3.up);
-
-        // Apply camera bobbing if enabled and player is moving
-        float playerSpeed = targetVelocity.magnitude;
-        if (enableCameraBobbing && playerSpeed > 0)
-        {
-            float waveslice = Mathf.Sin(bobTimer);
-            float currentBobbingSpeed = bobbingSpeed * playerSpeed;
-            bobTimer = bobTimer + currentBobbingSpeed;
-
-            if (bobTimer > Mathf.PI * 2)
-            {
-                bobTimer = bobTimer - (Mathf.PI * 2);
-            }
-
-            Vector3 localPos = camTransform.localPosition;
-            localPos.y = Mathf.Lerp(localPos.y, Mathf.Abs(waveslice) * bobbingAmount, Time.deltaTime * viewSmoothing);
-            camTransform.localPosition = localPos;
-        }
-        else
-        {
-            bobTimer = 0;
-            Vector3 localPos = camTransform.localPosition;
-            localPos.y = Mathf.Lerp(localPos.y, 0, Time.deltaTime * viewSmoothing);
-            camTransform.localPosition = localPos;
-        }
+        if (WeaponWheelController.Instance.open)
+            return;
 
         if (isJumping)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumping = false;
         }
-
-        if (move.magnitude == 0)
-        {
-            targetVelocity = Vector3.zero;
-            return;
-        }
-
         float horizontal = move.x;
         float vertical = move.y;
-        float sidewaysRatio = Mathf.Abs(horizontal) / move.magnitude; // Get how non-straight movement is
+        float sidewaysRatio = Mathf.Abs(horizontal) / (Mathf.Abs(horizontal) + Mathf.Abs(vertical)); // Get how non-straight movement is
 
         Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
         Vector3 moveDirection = transform.TransformDirection(inputDirection);
@@ -192,18 +166,52 @@ public class PlayerController : MonoBehaviour
         if (isAiming) currentSpeed *= aimSpeedMultiplier;
         // END OF SPEED MODIFIERS //
 
-        targetVelocity = moveDirection * currentSpeed;
-
-        // Less control in the air
-        if (!IsGrounded())
+        if (rb.velocity.magnitude < maxSpeed)
         {
-            targetVelocity = (targetVelocity * airSpeedMultiplier) + (rb.velocity * (1 - airSpeedMultiplier));
-            targetVelocity.y = rb.velocity.y;
+            if (IsGrounded())
+            {
+                rb.AddForce(moveDirection * speed, ForceMode.VelocityChange);
+            }
+            else
+            {
+                // Less control in the air
+                rb.AddForce(moveDirection * speed * airSpeedMultiplier, ForceMode.VelocityChange);
+            }
         }
+    }
 
-        // Move
-        float lerpFactor = Time.deltaTime * moveSmoothing;
-        rb.velocity = new Vector3(Mathf.Lerp(rb.velocity.x, targetVelocity.x, lerpFactor), rb.velocity.y, Mathf.Lerp(rb.velocity.z, targetVelocity.z, lerpFactor));
+    private void LateUpdate()
+    {
+        // Look
+        camTransform.localRotation = Quaternion.Euler(-mousePosition.y, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, mousePosition.x, 0);
+        // camTransform.localRotation = Quaternion.Slerp(camTransform.localRotation, Quaternion.Euler(-mousePosition.y, 0, 0), Time.deltaTime * viewSmoothing);
+        // transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, mousePosition.x, 0), Time.deltaTime * viewSmoothing);
+
+        // Apply camera bobbing if enabled and player is moving
+        if (enableCameraBobbing && IsGrounded() && rb.velocity.magnitude > bobbingMinSpeed)
+        {
+            float currentBobbingSpeed = bobbingSpeed * speed * Time.deltaTime;
+            bobTimer = bobTimer + currentBobbingSpeed;
+            float waveslice = Mathf.Sin(bobTimer);
+
+            if (bobTimer > Mathf.PI * 2)
+            {
+                bobTimer = bobTimer - (Mathf.PI * 2);
+            }
+
+            Vector3 localPos = camTransform.localPosition;
+            localPos.y = Mathf.Lerp(localPos.y, camBaseHeight + waveslice * bobbingAmount, viewSmoothing);
+            camTransform.localPosition = localPos; // Set the new position
+            Bow.Instance.SetBobOffset(waveslice * bobbingAmount);
+        }
+        else if (!enableCameraBobbing)
+        {
+            bobTimer = 0;
+            Vector3 localPos = camTransform.localPosition;
+            localPos.y = Mathf.Lerp(localPos.y, camBaseHeight, viewSmoothing);
+            camTransform.localPosition = localPos;
+        }
     }
 
     private void OnDestroy()
@@ -236,19 +244,21 @@ public class PlayerController : MonoBehaviour
     //////////////////////////////////////////////////
 
     private float speed;
+    private float maxSpeed;
     private float reverseSpeedMultiplier;
     private float sidewaysSpeedMultiplier;
     private float sprintSpeedMultiplier;
     private float crouchSpeedMultiplier;
     private float airSpeedMultiplier;
     private float aimSpeedMultiplier;
-    private float moveSmoothing;
 
     private float standingHeight;
     private float crouchHeight;
 
     private float jumpForce;
     private float doubleJumpForce;
+    private float fallMultiplier;
+    private float lowJumpMultiplier;
     private float groundCheckRadius;
     private LayerMask groundMask;
 
@@ -256,6 +266,7 @@ public class PlayerController : MonoBehaviour
     private bool enableCameraBobbing;
     private float bobbingSpeed;
     private float bobbingAmount;
+    private float bobbingMinSpeed;
     private float mouseSensitivity;
 
     private void UpdateSettings()
@@ -263,19 +274,20 @@ public class PlayerController : MonoBehaviour
         GameSettings settings = GameManager.GetSettings();
 
         speed = settings.gameplay.speed;
+        maxSpeed = settings.gameplay.maxVelocity;
         reverseSpeedMultiplier = settings.gameplay.reverseSpeedMultiplier;
         sidewaysSpeedMultiplier = settings.gameplay.sidewaysSpeedMultiplier;
         sprintSpeedMultiplier = settings.gameplay.sprintSpeedMultiplier;
         crouchSpeedMultiplier = settings.gameplay.crouchSpeedMultiplier;
         airSpeedMultiplier = settings.gameplay.airSpeedMultiplier;
         aimSpeedMultiplier = settings.gameplay.aimSpeedMultiplier;
-        moveSmoothing = settings.gameplay.moveSmoothing;
-
         standingHeight = settings.gameplay.standingHeight;
         crouchHeight = settings.gameplay.crouchHeight;
 
         jumpForce = settings.gameplay.jumpForce;
         doubleJumpForce = settings.gameplay.doubleJumpForce;
+        fallMultiplier = settings.gameplay.fallMultiplier;
+        lowJumpMultiplier = settings.gameplay.lowJumpMultiplier;
         groundCheckRadius = settings.gameplay.groundCheckRadius;
         groundMask = settings.gameplay.groundMask;
 
@@ -283,6 +295,7 @@ public class PlayerController : MonoBehaviour
         enableCameraBobbing = settings.display.enableCameraBobbing;
         bobbingSpeed = settings.display.bobbingSpeed;
         bobbingAmount = settings.display.bobbingAmount;
+        bobbingMinSpeed = settings.display.bobbingMinSpeed;
         mouseSensitivity = settings.input.mouseSensitivity;
     }
 }
