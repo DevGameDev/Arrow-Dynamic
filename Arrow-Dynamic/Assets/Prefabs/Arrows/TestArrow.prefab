@@ -596,7 +596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba87afeefd4ea9b45a0c6cd90df13c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRb: {fileID: 318986104238400321}
   impactSpeedThreshold: 1
   arrowTipName: ArrowTip
 --- !u!1 &8868719887116556870

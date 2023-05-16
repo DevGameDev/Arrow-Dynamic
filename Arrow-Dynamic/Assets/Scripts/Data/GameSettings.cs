@@ -27,15 +27,6 @@ public class GameSettings : ScriptableObject
         OnSettingsChanged?.Invoke();
         Debug.Log("Settings Updated.");
     }
-
-    public static GameSettings Instance { get; set; }
-
-    private void Awake()
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(this);
-    }
-
 }
 
 [Serializable]
@@ -51,41 +42,28 @@ public class GameplaySettings
 {
     public GameStates initialState = GameStates.MainMenu;
 
-    [Header("Basic")]
-    public float baseTimeScale = 1f;
-
-    [Header("Movement")]
-    public float speed = 10f;
-    public float maxVelocity = 15f;
+    [Header("Player Movement")]
+    public float speed = 10.0f;
     public float moveSmoothing = 20f;
     public float sidewaysSpeedMultiplier = 0.9f;
     public float reverseSpeedMultiplier = 0.6f;
     public float sprintSpeedMultiplier = 1.5f;
+    public float crouchSpeedMultiplier = 0.7f;
     public float aimSpeedMultiplier = 0.8f;
-
-    [Header("Jump")]
+    public float airSpeedMultiplier = 0.25f;
     public float jumpForce = 5.0f;
     public float doubleJumpForce = 4.0f;
-    public float airSpeedMultiplier = 0.25f;
-    public float lowJumpMultiplier = 1f;
-    public float fallMultiplier = 1f;
     public bool airControl = false;
     public float groundCheckRadius = 0.5f;
     public LayerMask groundMask;
-
-    [Header("Crouch")]
-    public float crouchSpeedMultiplier = 0.7f;
     public float crouchHeight = 0.5f;
     public float standingHeight = 2.0f;
 
     [Header("Arrows")]
-    public float arrowSpeed = 2;
-    public float maxPullTime = 2;
-    public float arrowReadyTime = 0.25f;
+    [Range(0, 1000)] public float arrowSpeed = 2;
+    [Range(0, 1000)] public float maxPullTime = 2;
+    [Range(0, 1000)] public float arrowReadyTime = 0.25f;
     public int maxArrows = 10;
-
-    [Header("Arrow Wheel")]
-    public float arrowWheelTimeScale = 0.75f;
 }
 
 [Serializable]
@@ -102,7 +80,6 @@ public class DisplaySettings
     public bool enableCameraBobbing = true;
     public float bobbingSpeed = 0.18f;
     public float bobbingAmount = 0.2f;
-    public float bobbingMinSpeed = 0.1f;
 }
 
 [Serializable]

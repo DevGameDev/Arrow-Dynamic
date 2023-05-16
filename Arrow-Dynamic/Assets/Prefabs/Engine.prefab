@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5337170606564957237
+--- !u!1 &1783061616337264170
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5337170606564957238}
-  - component: {fileID: 5337170606564957239}
-  - component: {fileID: 5337170606564957240}
-  - component: {fileID: 5337170606564957243}
-  - component: {fileID: 4599570019574644632}
+  - component: {fileID: 1783061616337264169}
+  - component: {fileID: 1783061616337264168}
+  - component: {fileID: 1783061616337264167}
+  - component: {fileID: 1783061616337264164}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -20,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5337170606564957238
+--- !u!4 &1783061616337264169
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337170606564957237}
+  m_GameObject: {fileID: 1783061616337264170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.001747, y: 10.201345, z: -7.6110716}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5337170606564957239
+--- !u!114 &1783061616337264168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337170606564957237}
+  m_GameObject: {fileID: 1783061616337264170}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90d84e561e4a9b84996afa55f5c07d33, type: 3}
@@ -49,25 +48,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 0fdb0efb41963f44ebed164917e89558, type: 2}
   state: {fileID: 11400000, guid: ac8838ce43a38b24e8751e776931a397, type: 2}
---- !u!114 &5337170606564957240
+--- !u!114 &1783061616337264167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337170606564957237}
+  m_GameObject: {fileID: 1783061616337264170}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bf40e593dd203349b71a7a4adf1eefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5337170606564957243
+--- !u!114 &1783061616337264164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337170606564957237}
+  m_GameObject: {fileID: 1783061616337264170}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -152,7 +151,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Sprint[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5337170606564957239}
+      - m_Target: {fileID: 1783061616337264168}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: HandlePause
         m_Mode: 0
@@ -267,33 +266,3 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4599570019574644632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337170606564957237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dada4d32eb74d504192d3e9944f18dc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameplayMap:
-    m_Name: Gameplay Map
-    m_Id: a1a890d8-ee1d-4b53-9c2c-6feea6b1cfc2
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
-  arrowWheelMap:
-    m_Name: Arrow Wheel Map
-    m_Id: b153f3b2-9376-41fb-ab1f-f3d9823eb5a9
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
-  menuMap:
-    m_Name: Menu Map
-    m_Id: 9407ba96-df2b-42c2-bee0-c3e165e2340c
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []

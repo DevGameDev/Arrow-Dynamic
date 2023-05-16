@@ -18,37 +18,31 @@ MonoBehaviour:
     autoFireInterval: 1
   gameplay:
     initialState: 4
-    baseTimeScale: 1
-    speed: 1
-    maxVelocity: 20
-    moveSmoothing: 100
-    sidewaysSpeedMultiplier: 0.91
-    reverseSpeedMultiplier: 0.66
+    speed: 15
+    moveSmoothing: 20
+    sidewaysSpeedMultiplier: 0.8
+    reverseSpeedMultiplier: 0.6
     sprintSpeedMultiplier: 1.25
+    crouchSpeedMultiplier: 0.4
     aimSpeedMultiplier: 0.8
-    jumpForce: 50
-    doubleJumpForce: 35
-    airSpeedMultiplier: 0.1
-    lowJumpMultiplier: 6.8
-    fallMultiplier: 17.54
+    airSpeedMultiplier: 0.2
+    jumpForce: 20
+    doubleJumpForce: 20
     airControl: 1
     groundCheckRadius: 0.2
     groundMask:
       serializedVersion: 2
       m_Bits: 1024
-    crouchSpeedMultiplier: 0.01
-    crouchHeight: 0
-    standingHeight: 1
-    arrowSpeed: 0.1
+    crouchHeight: 2.5
+    standingHeight: 3.5
+    arrowSpeed: 5
     maxPullTime: 0.5
     arrowReadyTime: 0.1
-    maxArrows: 20
-    arrowWheelTimeScale: 0.75
+    maxArrows: 0
   input:
-    mouseSensitivity: 100
+    mouseSensitivity: 0.8
   display:
-    viewSmoothing: 718.64
-    enableCameraBobbing: 1
-    bobbingSpeed: 15
-    bobbingAmount: 0.25
-    bobbingMinSpeed: 0.5
+    viewSmoothing: 2
+    enableCameraBobbing: 0
+    bobbingSpeed: 0.18
+    bobbingAmount: 0.01
