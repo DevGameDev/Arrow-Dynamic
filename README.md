@@ -15,3 +15,5 @@ Unity 3D game developed for CS 410 Spring 2023.
 "POLY - Jungle" (https://assetstore.unity.com/packages/3d/environments/poly-jungle-200789) by BK licensed under Standard Unity Asset Store EULA
 
 "Low-Poly Skull"  (https://sketchfab.com/3d-models/low-poly-skull-7dc37b0f8edf4e89843b28db268fc973#download) by Vladimir E. licensed under CC Attribution
+
+"Fantasy Skybox" (https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353) by Render Knight Standard Unity Asset Store EULA
