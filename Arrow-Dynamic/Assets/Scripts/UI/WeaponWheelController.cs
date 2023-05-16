@@ -4,13 +4,11 @@ using UnityEngine.InputSystem;
 public class WeaponWheelController : MonoBehaviour
 {
     public static WeaponWheelController Instance { get; set; }
-
     public Animator anim;
     public Image selectedItem;
     public Sprite noImage;
     public ArrowType selectedType = ArrowType.Basic;
     public bool open = false;
-
     // Update is called once per frame
     public void input_action(InputAction.CallbackContext context)
     {
@@ -35,7 +33,6 @@ public class WeaponWheelController : MonoBehaviour
             Cursor.visible = false;
         }
     }
-
     void Awake()
     {
         if (Instance == null)
@@ -48,18 +45,15 @@ public class WeaponWheelController : MonoBehaviour
             return;
         }
     }
-
     private void Start()
     {
         selectedItem.sprite = noImage;
     }
-
     private float baseTimeScale = 1f;
     private float arrowWheelTimeScale = 1f;
     private void UpdateSettings()
     {
         GameSettings settings = GameManager.GetSettings();
-
         baseTimeScale = settings.gameplay.baseTimeScale;
         arrowWheelTimeScale = settings.gameplay.arrowWheelTimeScale;
     }
