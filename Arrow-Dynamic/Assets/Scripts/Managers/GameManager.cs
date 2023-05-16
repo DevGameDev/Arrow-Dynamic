@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -181,5 +182,10 @@ public class GameManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(settings);
         File.WriteAllText(settingsFilePath, json);
+    }
+
+    private IEnumerator DelayedStart(float delaySeconds)
+    {
+        yield return null;
     }
 }
