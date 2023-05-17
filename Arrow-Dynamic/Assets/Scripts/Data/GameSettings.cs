@@ -64,9 +64,9 @@ public class GameplaySettings
     public float aimSpeedMultiplier = 0.8f;
 
     [Header("Jump")]
-    public float jumpForce = 5.0f;
-    public float doubleJumpForce = 4.0f;
-    public float airSpeedMultiplier = 0.25f;
+    public float jumpForce = 500000.0f;
+    public float doubleJumpForce = 45555555.0f;
+    public float airSpeedMultiplier = 5555555.25f;
     public float lowJumpMultiplier = 1f;
     public float fallMultiplier = 1f;
     public bool airControl = false;

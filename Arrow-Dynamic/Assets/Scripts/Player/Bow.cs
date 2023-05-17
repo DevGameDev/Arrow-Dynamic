@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class Bow : MonoBehaviour
 {
     //////////////////////////////////////////////////
@@ -44,7 +46,7 @@ public class Bow : MonoBehaviour
 
         if (context.canceled)
         {
-            if (arrowReady) ReleaseBow();
+            if (arrowReady){ ReleaseBow();}
             else if (isBowPulled)
             {
                 isBowPulled = false;
@@ -210,15 +212,34 @@ public class Bow : MonoBehaviour
         if (currentArrow == null) return;
 
         // Shoot the arrow
+        
+
         Rigidbody arrowRigidbody = currentArrow.rb;
         arrowRigidbody.isKinematic = false;
         arrowRigidbody.useGravity = true;
         Vector3 shootDirection = cameraTransform.forward;
         arrowTransform.parent = null;
         arrowTransform = null;
-
+        
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
         currentArrow.OnRelease();
+
+        // Play the audio clip
+        string arrowSwishClipPath = "Assets/Audio/SFX/arrow_swish.wav";
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            AudioClip arrowSwishClip = Resources.Load<AudioClip>(arrowSwishClipPath);
+            if (arrowSwishClip != null)
+            {
+                audioSource.PlayOneShot(arrowSwishClip);
+            }
+            else
+            {
+                Debug.LogWarning("Arrow swish audio clip not found: " + arrowSwishClipPath);
+            }
+        }
+        
         shotArrows.Enqueue(currentArrow);
 
         currentArrowObj = null;
@@ -259,6 +280,21 @@ public class Bow : MonoBehaviour
             }
             currentPullTime = maxPullTime;
             ReleaseBow();
+            // Play the audio clip
+            string arrowSwishClipPath = "Audio/SFX/arrow_swish";
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                AudioClip arrowSwishClip = Resources.Load<AudioClip>(arrowSwishClipPath);
+                if (arrowSwishClip != null)
+                {
+                    audioSource.PlayOneShot(arrowSwishClip);
+                }
+                else
+                {
+                    Debug.LogWarning("Arrow swish audio clip not found: " + arrowSwishClipPath);
+                }
+            }
             yield return new WaitForSeconds(autoFireInterval);
         }
     }
