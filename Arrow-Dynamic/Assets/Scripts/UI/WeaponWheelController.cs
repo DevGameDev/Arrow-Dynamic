@@ -30,7 +30,7 @@ public class WeaponWheelController : MonoBehaviour
             WeaponWheel.alpha = 0;
             WeaponWheel.interactable = false;
             Time.timeScale = baseTimeScale;
-            Bow.Instance.SetArrowType(selectedType);
+           //Bow.Instance.SetArrowType(selectedType);
             //InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
