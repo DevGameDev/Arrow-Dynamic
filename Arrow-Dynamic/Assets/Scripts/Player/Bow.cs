@@ -84,6 +84,7 @@ public class Bow : MonoBehaviour
             currentArrowObj = null;
         }
         CancelPull();
+        currentArrowType = type;
     }
 
     public ArrowType GetArrowType()

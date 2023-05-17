@@ -9,26 +9,29 @@ public class WeaponWheelController : MonoBehaviour
     public Sprite noImage;
     public ArrowType selectedType = ArrowType.Basic;
     public bool open = false;
+    public CanvasGroup WeaponWheel;
     // Update is called once per frame
     public void input_action(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             open = true;
-            anim.SetBool("OpenWeaponWheel", true);
+            WeaponWheel.alpha = 1;
+            WeaponWheel.interactable = true;
             Time.timeScale = arrowWheelTimeScale;
             selectedType = Bow.Instance.GetArrowType();
-            InputManager.Instance.SetInputActionMap(InputManager.InputMapType.ArrowWheel);
+            //InputManager.Instance.SetInputActionMap(InputManager.InputMapType.ArrowWheel);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
         else if (context.canceled && open)
         {
             open = false;
-            anim.SetBool("OpenWeaponWheel", false);
+            WeaponWheel.alpha = 0;
+            WeaponWheel.interactable = false;
             Time.timeScale = baseTimeScale;
             Bow.Instance.SetArrowType(selectedType);
-            InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
+            //InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

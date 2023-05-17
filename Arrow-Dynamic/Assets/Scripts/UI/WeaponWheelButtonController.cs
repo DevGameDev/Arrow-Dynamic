@@ -31,4 +31,19 @@ public class WeaponWheelButtonController : MonoBehaviour
         anim.SetBool("Hover", false);
         itemText.text = "";
     }
+    public void ChangeIceArrow()
+    {
+        Bow.Instance.SetArrowType(ArrowType.Ice);
+        type = ArrowType.Ice;
+    }
+    public void ChangeGrappleArrow()
+    {
+        Bow.Instance.SetArrowType(ArrowType.Grapple);
+        type = ArrowType.Grapple;
+    }
+    public void ChangeBasicArrow()
+    {
+        Bow.Instance.SetArrowType(ArrowType.Basic);
+        type = ArrowType.Basic;
+    }
 }
