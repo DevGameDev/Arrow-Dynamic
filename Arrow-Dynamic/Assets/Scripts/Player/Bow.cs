@@ -223,27 +223,17 @@ public class Bow : MonoBehaviour
         
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
         currentArrow.OnRelease();
-
-        // Play the audio clip
-        string arrowSwishClipPath = "Assets/Audio/SFX/arrow_swish.wav";
-        AudioSource audioSource = GetComponent<AudioSource>();
-        if (audioSource != null)
-        {
-            AudioClip arrowSwishClip = Resources.Load<AudioClip>(arrowSwishClipPath);
-            if (arrowSwishClip != null)
-            {
-                audioSource.PlayOneShot(arrowSwishClip);
-            }
-            else
-            {
-                Debug.LogWarning("Arrow swish audio clip not found: " + arrowSwishClipPath);
-            }
-        }
         
         shotArrows.Enqueue(currentArrow);
 
         currentArrowObj = null;
         currentArrow = null;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     private void UpdateBowPullAnimation(float pullTime)
