@@ -14,7 +14,6 @@ public class IceArrow : BasicArrow
         base.OnHit(collision);
 
         // Spawn ice block
-        gameObject.SetActive(false);
         GameObject iceBlock = Instantiate(iceBlockPrefab, transform.position, Quaternion.identity);
         StartCoroutine(ShrinkIceBlock(iceBlock));
     }

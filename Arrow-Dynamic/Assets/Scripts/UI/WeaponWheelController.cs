@@ -7,9 +7,10 @@ public class WeaponWheelController : MonoBehaviour
     public Animator anim;
     public Image selectedItem;
     public Sprite noImage;
-    public ArrowType selectedType = ArrowType.Basic;
     public bool open = false;
     public CanvasGroup WeaponWheel;
+    public GameObject crosshair;
+
     // Update is called once per frame
     public void input_action(InputAction.CallbackContext context)
     {
@@ -19,8 +20,7 @@ public class WeaponWheelController : MonoBehaviour
             WeaponWheel.alpha = 1;
             WeaponWheel.interactable = true;
             Time.timeScale = arrowWheelTimeScale;
-            selectedType = Bow.Instance.GetArrowType();
-            //InputManager.Instance.SetInputActionMap(InputManager.InputMapType.ArrowWheel);
+            crosshair.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
@@ -30,8 +30,7 @@ public class WeaponWheelController : MonoBehaviour
             WeaponWheel.alpha = 0;
             WeaponWheel.interactable = false;
             Time.timeScale = baseTimeScale;
-           //Bow.Instance.SetArrowType(selectedType);
-            //InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
+            crosshair.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -51,7 +50,17 @@ public class WeaponWheelController : MonoBehaviour
     private void Start()
     {
         selectedItem.sprite = noImage;
+        WeaponWheel.alpha = 0;
+
+        UpdateSettings();
+        GameSettings.OnSettingsChanged += UpdateSettings;
     }
+
+    private void OnDestroy()
+    {
+        GameSettings.OnSettingsChanged -= UpdateSettings;
+    }
+
     private float baseTimeScale = 1f;
     private float arrowWheelTimeScale = 1f;
     private void UpdateSettings()

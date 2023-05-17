@@ -19,12 +19,12 @@ MonoBehaviour:
   gameplay:
     initialState: 4
     baseTimeScale: 1
-    speed: 1
-    maxVelocity: 20
+    speed: 2
+    maxVelocity: 10
     moveSmoothing: 100
-    sidewaysSpeedMultiplier: 0.91
-    reverseSpeedMultiplier: 0.66
-    sprintSpeedMultiplier: 1.25
+    sidewaysSpeedMultiplier: 0.8
+    reverseSpeedMultiplier: 0.5
+    sprintSpeedMultiplier: 1.5
     aimSpeedMultiplier: 0.8
     jumpForce: 50
     doubleJumpForce: 35
@@ -36,19 +36,19 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 1024
-    crouchSpeedMultiplier: 0.01
+    crouchSpeedMultiplier: 0.1
     crouchHeight: 0
     standingHeight: 1
     arrowSpeed: 0.1
     maxPullTime: 0.5
     arrowReadyTime: 0.1
     maxArrows: 20
-    arrowWheelTimeScale: 0.75
+    arrowWheelTimeScale: 0.5
   input:
     mouseSensitivity: 100
   display:
-    viewSmoothing: 718.64
+    viewSmoothing: 500
     enableCameraBobbing: 1
-    bobbingSpeed: 15
-    bobbingAmount: 0.25
+    bobbingSpeed: 5
+    bobbingAmount: 0.15
     bobbingMinSpeed: 0.5

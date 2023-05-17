@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     public void HandleLook(InputAction.CallbackContext context)
     {
+        if (disabled)
+            return;
+
         Vector2 mouseDelta = context.ReadValue<Vector2>() * mouseSensitivity;
 
         mousePosition = Vector2.Lerp(mousePosition, mousePosition + mouseDelta, 1.0f / viewSmoothing);
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     public void HandleJump(InputAction.CallbackContext context)
     {
+        if (disabled) return;
+
         if (context.performed)
         {
             if (IsGrounded())
@@ -51,12 +56,16 @@ public class PlayerController : MonoBehaviour
 
     public void HandleSprint(InputAction.CallbackContext context)
     {
+        if (disabled) return;
+
         if (context.performed) isSprinting = true;
         else if (context.canceled) isSprinting = false;
     }
 
     public void HandleCrouch(InputAction.CallbackContext context)
     {
+        if (disabled) return;
+
         if (context.performed)
         {
             camBaseHeight = crouchHeight;
@@ -71,12 +80,16 @@ public class PlayerController : MonoBehaviour
 
     public void HandlePull(InputAction.CallbackContext context)
     {
+        if (disabled) return;
+
         if (context.performed) isAiming = true;
         else if (context.canceled) isAiming = false;
     }
 
     public void HandleCancel(InputAction.CallbackContext context)
     {
+        if (disabled) return;
+
         if (context.performed) isAiming = false;
     }
 
@@ -96,7 +109,7 @@ public class PlayerController : MonoBehaviour
     // State
     private Vector2 move = Vector2.zero;
     private Vector2 mousePosition = Vector2.zero;
-    private float currentSpeed = 0f;
+    // private float currentSpeed = 0f;
     private bool canDoubleJump = false;
     private bool isJumping = false;
     private bool isSprinting = false;
@@ -104,6 +117,7 @@ public class PlayerController : MonoBehaviour
     private bool isAiming = false;
     private float bobTimer = 0;
     private float camBaseHeight;
+    public static bool disabled = false;
 
     private void Awake()
     {
@@ -130,10 +144,17 @@ public class PlayerController : MonoBehaviour
         camBaseHeight = standingHeight;
     }
 
+    float currMaxSpeed;
     private void Update()
     {
         if (WeaponWheelController.Instance.open)
+        {
+            disabled = true;
             return;
+        }
+        else disabled = false;
+
+        currMaxSpeed = maxSpeed;
 
         if (isJumping)
         {
@@ -151,22 +172,22 @@ public class PlayerController : MonoBehaviour
 
         // START OF SPEED MODIFIERS //
         if (vertical < 0)
-            currentSpeed *= reverseSpeedMultiplier;
+            currMaxSpeed *= reverseSpeedMultiplier;
         else if (isSprinting)
-            currentSpeed *= sprintSpeedMultiplier;
+            currMaxSpeed *= sprintSpeedMultiplier;
 
         if (sidewaysRatio > 0)
         {
             // Apply a slow to player movement depending on how sideways they are moving
             float currSidewaysSpeedMultiplier = Mathf.Lerp(1f, sidewaysSpeedMultiplier, sidewaysRatio);
-            currentSpeed *= currSidewaysSpeedMultiplier;
+            currMaxSpeed *= currSidewaysSpeedMultiplier;
         }
 
-        if (isCrouching) currentSpeed *= crouchSpeedMultiplier;
-        if (isAiming) currentSpeed *= aimSpeedMultiplier;
+        if (isCrouching) currMaxSpeed *= crouchSpeedMultiplier;
+        if (isAiming) currMaxSpeed *= aimSpeedMultiplier;
         // END OF SPEED MODIFIERS //
 
-        if (rb.velocity.magnitude < maxSpeed)
+        if (rb.velocity.magnitude < currMaxSpeed)
         {
             if (IsGrounded())
             {

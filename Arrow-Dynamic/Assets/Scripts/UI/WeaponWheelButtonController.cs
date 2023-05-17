@@ -23,7 +23,6 @@ public class WeaponWheelButtonController : MonoBehaviour
         anim.SetBool("Hover", true);
         WeaponWheelController.Instance.selectedItem.sprite = icon;
         itemText.text = itemName;
-        WeaponWheelController.Instance.selectedType = type;
     }
 
     public void HoverExit()

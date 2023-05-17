@@ -514,8 +514,8 @@ Rigidbody:
   m_GameObject: {fileID: 4382902291757207984}
   serializedVersion: 2
   m_Mass: 0.0001
-  m_Drag: 0.5
-  m_AngularDrag: 0.5
+  m_Drag: 5
+  m_AngularDrag: 100
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -548,12 +548,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRb: {fileID: 2988880825149015064}
+  myColliders: []
   impactSpeedThreshold: 5
   arrowTipName: ArrowTip
   iceBlockPrefab: {fileID: 3517604402196500521, guid: 1d4d886b88c412f4bb0a9848a4c8b461, type: 3}
   shrinkTime: 10
-  initialSize: {x: 1, y: 1, z: 1}
-  finalSize: {x: 0.5, y: 0.5, z: 0.5}
+  initialSize: {x: 6, y: 2, z: 4}
+  finalSize: {x: 4, y: 0.25, z: 3}
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0

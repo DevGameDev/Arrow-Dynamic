@@ -42,11 +42,11 @@ public class Bow : MonoBehaviour
 
     public void HandlePull(InputAction.CallbackContext context)
     {
-        if (!bowReady) return;
+        if (!bowReady || PlayerController.disabled) return;
 
         if (context.canceled)
         {
-            if (arrowReady){ ReleaseBow();}
+            if (arrowReady) { ReleaseBow(); }
             else if (isBowPulled)
             {
                 isBowPulled = false;
@@ -213,7 +213,7 @@ public class Bow : MonoBehaviour
         if (currentArrow == null) return;
 
         // Shoot the arrow
-        
+
 
         Rigidbody arrowRigidbody = currentArrow.rb;
         arrowRigidbody.isKinematic = false;
@@ -221,10 +221,10 @@ public class Bow : MonoBehaviour
         Vector3 shootDirection = cameraTransform.forward;
         arrowTransform.parent = null;
         arrowTransform = null;
-        
+
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
         currentArrow.OnRelease();
-        
+
         shotArrows.Enqueue(currentArrow);
 
         currentArrowObj = null;

@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
         gameplayMap = inputAsset.FindActionMap("Gameplay");
         allMaps.Add(gameplayMap);
 
-        arrowWheelMap = inputAsset.FindActionMap("Arrow Wheel");
+        arrowWheelMap = inputAsset.FindActionMap("ArrowWheel");
         allMaps.Add(arrowWheelMap);
 
         menusMap = inputAsset.FindActionMap("Menus");
