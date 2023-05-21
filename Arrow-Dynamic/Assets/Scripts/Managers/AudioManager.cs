@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
     //////////////////////////////////////////////////
     // Private Fields and Methods
     //////////////////////////////////////////////////
-
     [SerializeField] private Slider audioSlider;
     private float audioVolume = 1f; // The current audio volume
 
@@ -24,7 +23,6 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -32,8 +30,23 @@ public class AudioManager : MonoBehaviour
             return;
         }
     }
-    public void ChangeMasterVolume(float value){
-        AudioListener.volume = value;
+    void Start()
+    {
+        // Set the initial volume to the value of the audio slider
+        audioVolume = audioSlider.value;
+        UpdateAudioVolume();
     }
+    public void OnAudioSliderChanged()
+    {
+        // Called when the audio slider value changes
+        audioVolume = audioSlider.value;
+        UpdateAudioVolume();
+    }
+    private void UpdateAudioVolume()
+    {
+        // Update the audio volume for all relevant audio sources in the game
+        // Replace this code with your actual audio source management logic
+        AudioListener.volume = audioVolume;
+    }
+
 }
-    
