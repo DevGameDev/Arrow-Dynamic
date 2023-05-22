@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(1 / Time.deltaTime);
         switch (state.currentState)
         {
             case GameStates.Gameplay:
