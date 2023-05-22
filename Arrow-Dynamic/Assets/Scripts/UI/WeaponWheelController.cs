@@ -11,7 +11,6 @@ public class WeaponWheelController : MonoBehaviour
     public CanvasGroup WeaponWheel;
     public GameObject crosshair;
 
-    // Update is called once per frame
     public void input_action(InputAction.CallbackContext context)
     {
         if (context.performed)

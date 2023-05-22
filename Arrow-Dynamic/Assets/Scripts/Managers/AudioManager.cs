@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     // Private Fields and Methods
     //////////////////////////////////////////////////
 
-    [SerializeField] private Slider audioSlider;
+    //[SerializeField] private Slider audioSlider;
     private float audioVolume = 1f; // The current audio volume
 
     void Awake()
