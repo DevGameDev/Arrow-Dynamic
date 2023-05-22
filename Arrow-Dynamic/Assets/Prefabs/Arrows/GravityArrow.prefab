@@ -549,10 +549,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRb: {fileID: 2988880825149015064}
   myColliders: []
-  impactSpeedThreshold: 5
+  impactSpeedThreshold: 1
   arrowTipName: ArrowTip
-  effectDuration: 5
-  effectGravity: -3
+  effectDuration: 2
+  effectGravity: 25
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0

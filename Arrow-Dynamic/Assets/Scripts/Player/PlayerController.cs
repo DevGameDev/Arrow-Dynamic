@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
 
     public void HandleMove(InputAction.CallbackContext context)
     {
+        Debug.Log("moving");
         move = context.ReadValue<Vector2>();
     }
 
     public void HandleLook(InputAction.CallbackContext context)
     {
+        Debug.Log("looking");
         if (disabled)
             return;
 
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleJump(InputAction.CallbackContext context)
     {
+        Debug.Log("jumping");
         if (disabled) return;
 
         if (context.performed)

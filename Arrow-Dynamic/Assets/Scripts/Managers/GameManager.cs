@@ -32,6 +32,23 @@ public class GameManager : MonoBehaviour
         switch (state.lastState)
         {
             case GameStates.Gameplay:
+                playerObj.SetActive(false);
+                break;
+            case GameStates.MainMenu:
+                break;
+            case GameStates.PauseMenu:
+                break;
+            case GameStates.SettingsMenu:
+                break;
+            default:
+                Debug.LogError($"SetGameState undefined last state: {state.lastState}"); // $ makes formatted string
+                break;
+        }
+
+        // Setup new state
+        switch (state.currentState)
+        {
+            case GameStates.Gameplay:
                 playerObj.SetActive(true);
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 break;
@@ -41,23 +58,11 @@ public class GameManager : MonoBehaviour
             case GameStates.PauseMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 break;
-            default:
-                Debug.LogError($"SetGameState undefined state: {state.currentState}"); // $ makes formatted string
-                break;
-        }
-
-        // Setup new state
-        switch (state.currentState)
-        {
-            case GameStates.Gameplay:
-                playerObj.SetActive(false);
-                break;
-            case GameStates.MainMenu:
-                break;
-            case GameStates.PauseMenu:
+            case GameStates.SettingsMenu:
+                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 break;
             default:
-                Debug.LogError($"SetGameState undefined state: {state.lastState}"); // $ makes formatted string
+                Debug.LogError($"SetGameState undefined current state: {state.currentState}"); // $ makes formatted string
                 break;
         }
     }
@@ -66,18 +71,8 @@ public class GameManager : MonoBehaviour
     {
         if (context.performed)
         {
-            if (state.currentState is GameStates.PauseMenu)
-            {
-                state.currentState = state.lastState;
-                state.lastState = GameStates.PauseMenu;
-                // TODO: close pause menu
-            }
-            else
-            {
-                state.lastState = state.currentState;
-                state.currentState = GameStates.PauseMenu;
-                // TODO: Open pause menu?
-            }
+            UIManager.Instance.ControlPausePanel(true); // Will call UpdateGameForNewState
+            UIManager.Instance.ControlGameplayPanel(false);
         }
     }
 
@@ -146,16 +141,19 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // Debug.Log(1 / Time.deltaTime); // FPS
+        // Setup new state
         switch (state.currentState)
         {
             case GameStates.Gameplay:
-                // Handle Gameplay
                 break;
             case GameStates.MainMenu:
-                // Handle MainMenu
+                break;
+            case GameStates.PauseMenu:
+                break;
+            case GameStates.SettingsMenu:
                 break;
             default:
-                Debug.LogError($"GameEngine reached undefined state: {state.currentState}"); // $ makes formatted string
+                Debug.LogError($"GameManager.Update() undefined current state: {state.currentState}"); // $ makes formatted string
                 break;
         }
     }

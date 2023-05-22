@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; set; }
+
     [Header("Panel Prefabs")]
     [SerializeField] private GameObject MainMenuPanel;
     [SerializeField] private GameObject SettingsPanel;
@@ -27,8 +29,7 @@ public class UIManager : MonoBehaviour
     {
         if (enabled)
         {
-            StartCoroutine(ChangeCameraAndStartGame());
-            GameManager.Instance.UpdateGameForNewState();
+            StartCoroutine(HandleGameStart());
         }
         else
         {
@@ -40,6 +41,10 @@ public class UIManager : MonoBehaviour
     {
         if (enabled)
         {
+            CanvasGroup group = MainMenuPanel.GetComponent<CanvasGroup>();
+
+            group.interactable = true;
+            group.alpha = 1;
             MainMenuPanel.SetActive(true);
             state.currentState = GameStates.MainMenu;
             GameManager.Instance.UpdateGameForNewState();
@@ -114,17 +119,18 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.UpdateGameForNewState();
     }
 
-    private IEnumerator ChangeCameraAndStartGame()
+    private IEnumerator HandleGameStart()
     {
+        StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
+        StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>()));
         yield return StartCoroutine(FadeToBlack());
-        yield return StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
 
+        MainMenuPanel.SetActive(false);
         GameplayPanel.SetActive(true);
         state.currentState = GameStates.Gameplay;
 
-        // TODO: Start game logic
+        GameManager.Instance.UpdateGameForNewState();
 
-        PlayerCamera.SetActive(true);
         OtherCamera.SetActive(false);
         yield return StartCoroutine(FadeToClear());
     }
@@ -151,6 +157,8 @@ public class UIManager : MonoBehaviour
     private IEnumerator FadeToBlack()
     {
         float elapsedTime = 0f;
+
+        FadeImage.raycastTarget = false;
 
         while (elapsedTime < Duration)
         {
@@ -179,5 +187,52 @@ public class UIManager : MonoBehaviour
         }
 
         FadeImage.color = new Color(0f, 0f, 0f, 0f);
+        FadeImage.raycastTarget = false;
+    }
+
+    IEnumerator FadeCanvasGroupToVisible(CanvasGroup canvasGroup)
+    {
+
+        float startTime = Time.time;
+
+        while (Time.time < startTime + Duration)
+        {
+            float elapsed = Time.time - startTime;
+            canvasGroup.alpha = (elapsed / Duration);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1;
+
+        canvasGroup.interactable = true;
+    }
+
+    IEnumerator FadeCanvasGroupToClear(CanvasGroup canvasGroup)
+    {
+        canvasGroup.interactable = false;
+
+        float startTime = Time.time;
+
+        while (Time.time < startTime + Duration)
+        {
+            float elapsed = Time.time - startTime;
+            canvasGroup.alpha = 1f - (elapsed / Duration);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0;
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 }
