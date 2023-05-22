@@ -6,4 +6,7 @@ public enum ArrowType
     Basic,
     Ice,
     Grapple,
+    Bomb,
+    Teleport,
+    Gravity,
 }

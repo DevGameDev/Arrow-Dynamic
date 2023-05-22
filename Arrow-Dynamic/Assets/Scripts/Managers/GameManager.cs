@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameSettings settings;
     public GameState state;
 
+    public GameObject playerObj;
+
     public static GameSettings GetSettings()
     {
         return Instance.settings;
@@ -24,41 +26,56 @@ public class GameManager : MonoBehaviour
         return Instance.state;
     }
 
-    public void SetGameState(GameStates newState)
+    public void UpdateGameForNewState()
     {
-        switch (state.currentState)
+        // Handle end of last state
+        switch (state.lastState)
         {
             case GameStates.Gameplay:
-                // Handle Gameplay
+                playerObj.SetActive(true);
+                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 break;
             case GameStates.MainMenu:
-                // Handle MainMenu
+                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 break;
-            case GameStates.Paused:
-                // Handle Paused
+            case GameStates.PauseMenu:
+                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 break;
             default:
                 Debug.LogError($"SetGameState undefined state: {state.currentState}"); // $ makes formatted string
                 break;
         }
 
-        state.currentState = newState;
+        // Setup new state
+        switch (state.currentState)
+        {
+            case GameStates.Gameplay:
+                playerObj.SetActive(false);
+                break;
+            case GameStates.MainMenu:
+                break;
+            case GameStates.PauseMenu:
+                break;
+            default:
+                Debug.LogError($"SetGameState undefined state: {state.lastState}"); // $ makes formatted string
+                break;
+        }
     }
 
     public void HandlePause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (state.currentState is GameStates.Paused)
+            if (state.currentState is GameStates.PauseMenu)
             {
                 state.currentState = state.lastState;
-                state.lastState = GameStates.Paused;
+                state.lastState = GameStates.PauseMenu;
                 // TODO: close pause menu
             }
             else
             {
                 state.lastState = state.currentState;
-                state.currentState = GameStates.Paused;
+                state.currentState = GameStates.PauseMenu;
                 // TODO: Open pause menu?
             }
         }
@@ -128,6 +145,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Debug.Log(1 / Time.deltaTime); // FPS
         switch (state.currentState)
         {
             case GameStates.Gameplay:

@@ -17,7 +17,7 @@ MonoBehaviour:
     autoFireEnabled: 0
     autoFireInterval: 1
   gameplay:
-    initialState: 4
+    initialState: 2
     baseTimeScale: 1
     speed: 2
     maxVelocity: 10
@@ -26,8 +26,8 @@ MonoBehaviour:
     reverseSpeedMultiplier: 0.5
     sprintSpeedMultiplier: 1.5
     aimSpeedMultiplier: 0.8
-    jumpForce: 50
-    doubleJumpForce: 35
+    jumpForce: 75
+    doubleJumpForce: 75
     airSpeedMultiplier: 0.1
     lowJumpMultiplier: 6.8
     fallMultiplier: 17.54
