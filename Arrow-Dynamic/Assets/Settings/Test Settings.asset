@@ -28,7 +28,7 @@ MonoBehaviour:
     aimSpeedMultiplier: 0.8
     jumpForce: 75
     doubleJumpForce: 75
-    airSpeedMultiplier: 0.1
+    airSpeedMultiplier: 0.8
     lowJumpMultiplier: 6.8
     fallMultiplier: 17.54
     airControl: 1
