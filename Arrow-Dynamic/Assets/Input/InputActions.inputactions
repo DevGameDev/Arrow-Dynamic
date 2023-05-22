@@ -311,6 +311,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OptionsMenu",
+                    "type": "Button",
+                    "id": "083e4dc9-09b6-4991-ab2a-e02c73900f57",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -322,6 +331,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "009caed3-b939-4e30-bedd-1a00cafc9170",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OptionsMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
