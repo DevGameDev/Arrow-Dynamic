@@ -17,7 +17,7 @@ MonoBehaviour:
     autoFireEnabled: 0
     autoFireInterval: 1
   gameplay:
-    initialState: 4
+    initialState: 2
     baseTimeScale: 1
     speed: 2
     maxVelocity: 10
