@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // Debug.Log(1 / Time.deltaTime); // FPS
+        Debug.Log(1 / Time.deltaTime); // FPS
         // Setup new state
         switch (state.currentState)
         {

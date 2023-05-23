@@ -13,12 +13,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private GameObject GameplayPanel;
     [SerializeField] private GameObject PausePanel;
+    [SerializeField] private GameObject creditsPanel;
 
     [Header("Settings")]
     [SerializeField] private GameStates initialMenuType = GameStates.MainMenu;
     [SerializeField] private GameObject OtherCamera;
     [SerializeField] private GameObject PlayerCamera;
     [SerializeField] private Image FadeImage;
+
     public AnimationCurve Curve;
     public float openFadeDuration = 1f;
     public Color openFadeColor = Color.white;
@@ -80,7 +82,7 @@ public class UIManager : MonoBehaviour
         {
             if (state.lastState == GameStates.MainMenu)
                 ControlMainPanel(true);
-            else if (state.lastState == GameStates.MainMenu)
+            else if (state.lastState == GameStates.PauseMenu)
                 ControlPausePanel(true);
             SettingsPanel.SetActive(false);
 
@@ -99,7 +101,7 @@ public class UIManager : MonoBehaviour
     private IEnumerator HandleGameStart()
     {
         StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
-        StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>()));
+        StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>(), gameStartFadeDuration / 2));
         SetFadeColor(gameStartFadeColor);
         yield return StartCoroutine(ControlFade(true, gameStartFadeDuration));
 
@@ -144,14 +146,11 @@ public class UIManager : MonoBehaviour
         if (on)
         {
             finalAlpha = 1;
-
             FadeImage.raycastTarget = true;
         }
         else
         {
             finalAlpha = 0;
-
-            FadeImage.raycastTarget = false;
         }
 
         while (elapsedTime < openFadeDuration)
@@ -161,16 +160,18 @@ public class UIManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        if (!on) FadeImage.raycastTarget = false;
     }
 
-    IEnumerator FadeCanvasGroupToVisible(CanvasGroup canvasGroup)
+    IEnumerator FadeCanvasGroupToVisible(CanvasGroup canvasGroup, float duration)
     {
         float startTime = Time.time;
 
-        while (Time.time < startTime + openFadeDuration)
+        while (Time.time < startTime + duration)
         {
             float elapsed = Time.time - startTime;
-            canvasGroup.alpha = (elapsed / openFadeDuration);
+            canvasGroup.alpha = (elapsed / duration);
             yield return null;
         }
 
@@ -179,16 +180,16 @@ public class UIManager : MonoBehaviour
         canvasGroup.interactable = true;
     }
 
-    IEnumerator FadeCanvasGroupToClear(CanvasGroup canvasGroup)
+    IEnumerator FadeCanvasGroupToClear(CanvasGroup canvasGroup, float duration)
     {
         canvasGroup.interactable = false;
 
         float startTime = Time.time;
 
-        while (Time.time < startTime + openFadeDuration)
+        while (Time.time < startTime + duration)
         {
             float elapsed = Time.time - startTime;
-            canvasGroup.alpha = 1f - (elapsed / openFadeDuration);
+            canvasGroup.alpha = 1f - (elapsed / duration);
             yield return null;
         }
 
@@ -226,8 +227,33 @@ public class UIManager : MonoBehaviour
         state = GameManager.GetState();
 
         SetFadeColor(openFadeColor);
-        StartCoroutine(ControlFade(false, openFadeDuration));
-        GameManager.Instance.UpdateGameState(initialMenuType);
+
+        StartCoroutine(StartSequence(false)); // true to skip
     }
 
+    private IEnumerator StartSequence(bool skip = false)
+    {
+        if (skip)
+        {
+            creditsPanel.SetActive(false);
+            yield return StartCoroutine(FadeCanvasGroupToVisible(MainMenuPanel.GetComponent<CanvasGroup>(), 0.01f));
+            yield return StartCoroutine(ControlFade(false, 0.01f));
+        }
+        else
+        {
+            yield return new WaitForSeconds(1);
+            yield return StartCoroutine(FadeCanvasGroupToVisible(creditsPanel.GetComponent<CanvasGroup>(), 2));
+            yield return new WaitForSeconds(1.5f);
+            yield return StartCoroutine(FadeCanvasGroupToClear(creditsPanel.GetComponent<CanvasGroup>(), 1.5f));
+            creditsPanel.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+            yield return StartCoroutine(ControlFade(false, openFadeDuration));
+
+            StartCoroutine(FadeCanvasGroupToVisible(MainMenuPanel.GetComponent<CanvasGroup>(), 1.5f));
+        }
+
+        GameManager.Instance.UpdateGameState(initialMenuType);
+
+        yield return null;
+    }
 }

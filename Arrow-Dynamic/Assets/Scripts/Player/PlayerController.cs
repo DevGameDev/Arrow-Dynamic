@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +10,11 @@ public class PlayerController : MonoBehaviour
     //////////////////////////////////////////////////
 
     public static PlayerController Instance { get; set; }
+
+    public void RespawnPlayer()
+    {
+        transform.position = initialRespawnPoint.transform.position;
+    }
 
     public void HandleMove(InputAction.CallbackContext context)
     {
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public Transform camTransform;
     public CapsuleCollider col;
+    public RespawnPoint initialRespawnPoint;
 
     // State
     private Vector2 move = Vector2.zero;
@@ -319,4 +324,5 @@ public class PlayerController : MonoBehaviour
         bobbingMinSpeed = settings.display.bobbingMinSpeed;
         mouseSensitivity = settings.input.mouseSensitivity;
     }
+
 }

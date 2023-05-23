@@ -555,8 +555,8 @@ MonoBehaviour:
   arrowTipName: ArrowTip
   iceBlockPrefab: {fileID: 3517604402196500521, guid: 1d4d886b88c412f4bb0a9848a4c8b461, type: 3}
   shrinkTime: 10
-  initialSize: {x: 12, y: 3, z: 6}
-  finalSize: {x: 6, y: 1, z: 4}
+  initialSize: {x: 16, y: 3, z: 8}
+  finalSize: {x: 8, y: 1, z: 4}
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0

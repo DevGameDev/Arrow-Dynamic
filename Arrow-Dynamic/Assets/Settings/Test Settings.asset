@@ -52,3 +52,8 @@ MonoBehaviour:
     bobbingSpeed: 5
     bobbingAmount: 0.15
     bobbingMinSpeed: 0.5
+    primaryDark: {r: 0.1882353, g: 0.15686275, b: 0.15686275, a: 1}
+    primaryMid: {r: 0.7529412, g: 0.54901963, b: 0.28235295, a: 1}
+    primaryLight: {r: 1, g: 0.76862746, b: 0.47058824, a: 1}
+    SecondaryDark: {r: 0.078431375, g: 0.31764707, b: 0.4509804, a: 1}
+    SecondaryLight: {r: 0.2784314, g: 0.5803922, b: 0.7490196, a: 1}

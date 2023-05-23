@@ -103,6 +103,12 @@ public class DisplaySettings
     public float bobbingSpeed = 0.18f;
     public float bobbingAmount = 0.2f;
     public float bobbingMinSpeed = 0.1f;
+
+    public Color primaryDark;
+    public Color primaryMid;
+    public Color primaryLight;
+    public Color SecondaryDark;
+    public Color SecondaryLight;
 }
 
 [Serializable]
