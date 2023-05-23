@@ -20,7 +20,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerCamera;
     [SerializeField] private Image FadeImage;
     public AnimationCurve Curve;
-    public float Duration = 1f;
+    public float openFadeDuration = 1f;
+    public Color openFadeColor = Color.white;
+    public float gameStartFadeDuration = 1f;
+    public Color gameStartFadeColor = Color.black;
 
     private Dictionary<GameStates, GameObject> prefabDictionary = new Dictionary<GameStates, GameObject>();
     private GameState state;
@@ -34,7 +37,6 @@ public class UIManager : MonoBehaviour
         else
         {
             GameplayPanel.SetActive(false);
-            state.lastState = GameStates.Gameplay;
         }
     }
     public void ControlMainPanel(bool enabled)
@@ -46,13 +48,11 @@ public class UIManager : MonoBehaviour
             group.interactable = true;
             group.alpha = 1;
             MainMenuPanel.SetActive(true);
-            state.currentState = GameStates.MainMenu;
-            GameManager.Instance.UpdateGameForNewState();
+            GameManager.Instance.UpdateGameState(GameStates.MainMenu);
         }
         else
         {
             MainMenuPanel.SetActive(false);
-            state.lastState = GameStates.MainMenu;
         }
     }
 
@@ -61,13 +61,11 @@ public class UIManager : MonoBehaviour
         if (enabled)
         {
             PausePanel.SetActive(true);
-            state.currentState = GameStates.PauseMenu;
-            GameManager.Instance.UpdateGameForNewState();
+            GameManager.Instance.UpdateGameState(GameStates.PauseMenu);
         }
         else
         {
             PausePanel.SetActive(false);
-            state.lastState = GameStates.PauseMenu;
         }
     }
 
@@ -76,16 +74,17 @@ public class UIManager : MonoBehaviour
         if (enabled)
         {
             SettingsPanel.SetActive(true);
-            state.currentState = GameStates.SettingsMenu;
-            GameManager.Instance.UpdateGameForNewState();
+            GameManager.Instance.UpdateGameState(GameStates.SettingsMenu);
         }
         else
         {
-            prefabDictionary[state.lastState].SetActive(true); // Reopen last panel
-            state.currentState = state.lastState;
-            state.lastState = GameStates.SettingsMenu;
-            GameManager.Instance.UpdateGameForNewState();
+            if (state.lastState == GameStates.MainMenu)
+                ControlMainPanel(true);
+            else if (state.lastState == GameStates.MainMenu)
+                ControlPausePanel(true);
             SettingsPanel.SetActive(false);
+
+            GameManager.Instance.UpdateGameState(state.lastState);
         }
     }
 
@@ -97,42 +96,19 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void Start()
-    {
-        // Cache UI panels
-        prefabDictionary[GameStates.MainMenu] = MainMenuPanel;
-        prefabDictionary[GameStates.SettingsMenu] = SettingsPanel;
-        prefabDictionary[GameStates.Gameplay] = GameplayPanel;
-        prefabDictionary[GameStates.PauseMenu] = PausePanel;
-
-        // Make sure only initial panel is active
-        foreach (var panel in prefabDictionary)
-        {
-            if (panel.Key == initialMenuType) panel.Value.SetActive(true);
-            else panel.Value.SetActive(false);
-        }
-
-        state = GameManager.GetState();
-        state.currentState = initialMenuType; // Set current state
-
-        StartCoroutine(FadeToClear());
-        GameManager.Instance.UpdateGameForNewState();
-    }
-
     private IEnumerator HandleGameStart()
     {
         StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
         StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>()));
-        yield return StartCoroutine(FadeToBlack());
+        SetFadeColor(gameStartFadeColor);
+        yield return StartCoroutine(ControlFade(true, gameStartFadeDuration));
 
         MainMenuPanel.SetActive(false);
         GameplayPanel.SetActive(true);
-        state.currentState = GameStates.Gameplay;
-
-        GameManager.Instance.UpdateGameForNewState();
 
         OtherCamera.SetActive(false);
-        yield return StartCoroutine(FadeToClear());
+        GameManager.Instance.UpdateGameState(GameStates.Gameplay);
+        yield return StartCoroutine(ControlFade(false, gameStartFadeDuration));
     }
 
     private IEnumerator MoveCameraToPosition(Transform cameraTransform, Vector3 newPosition, Quaternion newRotation)
@@ -141,9 +117,9 @@ public class UIManager : MonoBehaviour
         Vector3 startingPos = cameraTransform.position;
         Quaternion startingRot = cameraTransform.rotation;
 
-        while (elapsedTime < Duration)
+        while (elapsedTime < openFadeDuration * 2) // x2 for fade in and out
         {
-            float t = Curve.Evaluate(elapsedTime / Duration);
+            float t = Curve.Evaluate(elapsedTime / openFadeDuration);
             cameraTransform.position = Vector3.Lerp(startingPos, newPosition, t);
             cameraTransform.rotation = Quaternion.Slerp(startingRot, newRotation, t);
             elapsedTime += Time.deltaTime;
@@ -154,51 +130,47 @@ public class UIManager : MonoBehaviour
         cameraTransform.rotation = newRotation;
     }
 
-    private IEnumerator FadeToBlack()
+    private void SetFadeColor(Color color)
     {
-        float elapsedTime = 0f;
-
-        FadeImage.raycastTarget = false;
-
-        while (elapsedTime < Duration)
-        {
-            float t = Curve.Evaluate(elapsedTime / Duration);
-            FadeImage.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 1f, t));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // FadeImage.color = new Color(0f, 0f, 0f, 1f);
-        FadeImage.gameObject.SetActive(false);
+        FadeImage.color = new Color(color.r, color.g, color.b, FadeImage.color.a); // Preserve alpha
     }
 
-    private IEnumerator FadeToClear()
+    private IEnumerator ControlFade(bool on, float duration)
     {
-        FadeImage.gameObject.SetActive(true);
-
         float elapsedTime = 0f;
+        float startAlpha = FadeImage.color.a;
+        float finalAlpha;
 
-        while (elapsedTime < Duration)
+        if (on)
         {
-            float t = Curve.Evaluate(elapsedTime / Duration);
-            FadeImage.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, t));
+            finalAlpha = 1;
+
+            FadeImage.raycastTarget = true;
+        }
+        else
+        {
+            finalAlpha = 0;
+
+            FadeImage.raycastTarget = false;
+        }
+
+        while (elapsedTime < openFadeDuration)
+        {
+            float t = Curve.Evaluate(elapsedTime / openFadeDuration);
+            FadeImage.color = new Color(FadeImage.color.r, FadeImage.color.g, FadeImage.color.b, Mathf.Lerp(startAlpha, finalAlpha, t));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        FadeImage.color = new Color(0f, 0f, 0f, 0f);
-        FadeImage.raycastTarget = false;
     }
 
     IEnumerator FadeCanvasGroupToVisible(CanvasGroup canvasGroup)
     {
-
         float startTime = Time.time;
 
-        while (Time.time < startTime + Duration)
+        while (Time.time < startTime + openFadeDuration)
         {
             float elapsed = Time.time - startTime;
-            canvasGroup.alpha = (elapsed / Duration);
+            canvasGroup.alpha = (elapsed / openFadeDuration);
             yield return null;
         }
 
@@ -213,10 +185,10 @@ public class UIManager : MonoBehaviour
 
         float startTime = Time.time;
 
-        while (Time.time < startTime + Duration)
+        while (Time.time < startTime + openFadeDuration)
         {
             float elapsed = Time.time - startTime;
-            canvasGroup.alpha = 1f - (elapsed / Duration);
+            canvasGroup.alpha = 1f - (elapsed / openFadeDuration);
             yield return null;
         }
 
@@ -235,4 +207,27 @@ public class UIManager : MonoBehaviour
             return;
         }
     }
+
+    private void Start()
+    {
+        // Cache UI panels
+        prefabDictionary[GameStates.MainMenu] = MainMenuPanel;
+        prefabDictionary[GameStates.SettingsMenu] = SettingsPanel;
+        prefabDictionary[GameStates.Gameplay] = GameplayPanel;
+        prefabDictionary[GameStates.PauseMenu] = PausePanel;
+
+        // Make sure only initial panel is active
+        foreach (var panel in prefabDictionary)
+        {
+            if (panel.Key == initialMenuType) panel.Value.SetActive(true);
+            else panel.Value.SetActive(false);
+        }
+
+        state = GameManager.GetState();
+
+        SetFadeColor(openFadeColor);
+        StartCoroutine(ControlFade(false, openFadeDuration));
+        GameManager.Instance.UpdateGameState(initialMenuType);
+    }
+
 }

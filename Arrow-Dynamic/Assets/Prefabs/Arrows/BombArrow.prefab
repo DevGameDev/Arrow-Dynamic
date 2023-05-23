@@ -548,7 +548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRb: {fileID: 2988880825149015064}
-  myColliders: []
+  myColliders:
+  - {fileID: 4262778335109395216}
+  - {fileID: 6896036208621100933}
   impactSpeedThreshold: 5
   arrowTipName: ArrowTip
   explosionPrefab: {fileID: 3780796391383043111, guid: 9303331503773f942b4d2e38e8fc59ef, type: 3}

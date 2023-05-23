@@ -24,6 +24,8 @@ public class Bow : MonoBehaviour
     public GameObject bombArrowPrefab;
     public GameObject gravityArrowPrefab;
     public GameObject teleportArrowPrefab;
+    public GameObject timeArrowPrefab;
+    public GameObject windArrowPrefab;
 
     [Header("Animation Positions")]
     public Vector3 handRestPosition;
@@ -139,7 +141,9 @@ public class Bow : MonoBehaviour
             { ArrowType.Grapple, grappleArrowPrefab },
             { ArrowType.Bomb, bombArrowPrefab },
             { ArrowType.Gravity, gravityArrowPrefab },
-            { ArrowType.Teleport, teleportArrowPrefab }
+            { ArrowType.Teleport, teleportArrowPrefab },
+            { ArrowType.Time, timeArrowPrefab },
+            { ArrowType.Wind, windArrowPrefab }
         };
 
         currentArrowType = ArrowType.Basic;

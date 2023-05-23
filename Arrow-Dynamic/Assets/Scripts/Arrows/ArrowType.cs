@@ -9,4 +9,6 @@ public enum ArrowType
     Bomb,
     Teleport,
     Gravity,
+    Time,
+    Wind
 }

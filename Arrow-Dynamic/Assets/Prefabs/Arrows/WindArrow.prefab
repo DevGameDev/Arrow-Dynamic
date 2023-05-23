@@ -342,7 +342,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14760b95174b1bc4c98aff7fdcd33b73, type: 2}
+  - {fileID: 2100000, guid: 8e0e61eb8071706488cb31a2614e6b5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,9 +428,9 @@ GameObject:
   - component: {fileID: 8920170896936416982}
   - component: {fileID: 2988880825149015064}
   - component: {fileID: 4262778335109395216}
-  - component: {fileID: -9124830177958682372}
+  - component: {fileID: 6209201888212679801}
   m_Layer: 9
-  m_Name: TeleportArrow
+  m_Name: WindArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,7 +535,7 @@ CapsuleCollider:
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
---- !u!114 &-9124830177958682372
+--- !u!114 &6209201888212679801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4382902291757207984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df91fd5b462b374885678eb47daae68, type: 3}
+  m_Script: {fileID: 11500000, guid: 94332626509f2814d943da768c18b564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myRb: {fileID: 2988880825149015064}

@@ -451,7 +451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRb: {fileID: 2988880825149015064}
-  myColliders: []
+  myColliders:
+  - {fileID: 4262778335109395216}
+  - {fileID: 6140080378133217577}
   impactSpeedThreshold: 5
   arrowTipName: ArrowTip
   pullSpeed: 10

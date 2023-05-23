@@ -26,8 +26,11 @@ public class GameManager : MonoBehaviour
         return Instance.state;
     }
 
-    public void UpdateGameForNewState()
+    public void UpdateGameState(GameStates newState)
     {
+        state.lastState = state.currentState;
+        state.currentState = newState;
+
         // Handle end of last state
         switch (state.lastState)
         {
