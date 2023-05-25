@@ -917,6 +917,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pause Menu '
       objectReference: {fileID: 0}
+    - target: {fileID: 9211727287068361028, guid: e07c13ad5459045ca8da3a425217e6bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e07c13ad5459045ca8da3a425217e6bd, type: 3}
 --- !u!1001 &8163542768284958080
@@ -1008,7 +1012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8163542767648665911, guid: d7d3fcd46d5e741098853959d7ec9a6f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8163542767648665916, guid: d7d3fcd46d5e741098853959d7ec9a6f, type: 3}
       propertyPath: m_Pivot.x

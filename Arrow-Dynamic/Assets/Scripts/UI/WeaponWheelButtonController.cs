@@ -43,6 +43,7 @@ public class WeaponWheelButtonController : MonoBehaviour
     public void ChangeGrappleArrow()
     {
         Bow.Instance.SetArrowType(ArrowType.Grapple);
+        
     }
 
     public void ChangeBombArrow()

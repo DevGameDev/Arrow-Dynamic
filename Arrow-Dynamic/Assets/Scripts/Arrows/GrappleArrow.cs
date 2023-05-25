@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrappleArrow : BasicArrow
 {
-    public float pullSpeed = 10.0f;
+    public float pullSpeed = 10000.0f;
 
     public override void OnHit(Collision collision)
     {
@@ -16,8 +16,9 @@ public class GrappleArrow : BasicArrow
 
     private IEnumerator PullPlayerToArrow()
     {
+
         PlayerController playerController = PlayerController.Instance;
-        while ((playerController.transform.position - transform.position).magnitude > 0.1f)
+        while ((playerController.transform.position - transform.position).magnitude > 5f)
         {
             Vector3 pullDirection = (transform.position - playerController.transform.position).normalized;
             playerController.rb.velocity = pullDirection * pullSpeed;
@@ -27,3 +28,5 @@ public class GrappleArrow : BasicArrow
         playerController.rb.velocity = Vector3.zero;
     }
 }
+
+

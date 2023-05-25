@@ -13,6 +13,7 @@ public class IceArrow : BasicArrow
     public override void OnHit(Collision collision)
     {
         base.OnHit(collision);
+        Debug.Log("Hit!");
 
         // Spawn ice block
         iceBlock = Instantiate(iceBlockPrefab, transform.position, Quaternion.identity);

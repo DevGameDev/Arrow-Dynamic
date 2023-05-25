@@ -455,8 +455,8 @@ MonoBehaviour:
   - {fileID: 4262778335109395216}
   - {fileID: 6140080378133217577}
   impactSpeedThreshold: 5
-  arrowTipName: ArrowTip
-  pullSpeed: 10
+  arrowTipName: ArrowTip (1)
+  pullSpeed: 20
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0
