@@ -1228,6 +1228,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1020139478}
     - target: {fileID: 1043491180455871808, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
+      propertyPath: SettingsPanel
+      value: 
+      objectReference: {fileID: 2097409517}
+    - target: {fileID: 1043491180455871808, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: openFadeColor.b
       value: 0.80784315
       objectReference: {fileID: 0}
@@ -1914,7 +1918,7 @@ PrefabInstance:
     - target: {fileID: 5823554135314019452, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_TargetGraphic
       value: 
-      objectReference: {fileID: 1862366285}
+      objectReference: {fileID: 0}
     - target: {fileID: 5823554135314019452, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6491,17 +6495,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7692302531817258288, guid: 48f769ab087070d4aa7adde14f309080, type: 3}
---- !u!114 &1862366285 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7762824193231924050, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
-  m_PrefabInstance: {fileID: 715713012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1865659654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7094,6 +7087,11 @@ Transform:
   m_Father: {fileID: 377611884}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2097409517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9223041038339411863, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
+  m_PrefabInstance: {fileID: 715713012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2116091561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 897107114116851802, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
