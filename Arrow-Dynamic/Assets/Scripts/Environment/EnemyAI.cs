@@ -24,18 +24,17 @@ public class EnemyAI : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange=true, playerInAttackRange;
 
     private void Awake()
     {
-        Debug.Log("HERE!");
         player = GameObject.Find("Player").transform; //Todo Change to player name
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
     }
 
     private void Update(){
-        Debug.Log("HERE!Update");
+    
         
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -52,7 +51,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
-        Debug.Log("HERE! Patrolling");
         if(!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -81,12 +79,14 @@ public class EnemyAI : MonoBehaviour
     }
     private void ChasePlayer()
     {
+        Debug.Log("HERE! Chase");
         agent.SetDestination(player.position);
 
     }
 
     private void AttackPlayer()
     {
+        Debug.Log("HERE! ATTACK");
         //Make sure the enemy stops moving
         agent.SetDestination(transform.position);
 
