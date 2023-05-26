@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class TargetTrigger : MonoBehaviour
 {
-    public Material[] materials;
-    public int count = 0;
-    public Material red;
     public bool isColliding = false;
     public AudioSource source1;
-    public AudioClip source2;
 
     void Update()
     {
@@ -22,15 +18,6 @@ public class TargetTrigger : MonoBehaviour
         isColliding = true;
         //need to give arrows tag 
         //if (col.gameObject.tag == "Arrow") {
-        if (count == 2)
-        {
-            AudioSource.PlayClipAtPoint(source2, this.gameObject.transform.position);
-            Destroy(gameObject);
-        }
-        else
-        {
-            source1.Play();
-            transform.GetComponent<Renderer>().material = materials[count++];
-        }
+        source1.Play();
     }
 }

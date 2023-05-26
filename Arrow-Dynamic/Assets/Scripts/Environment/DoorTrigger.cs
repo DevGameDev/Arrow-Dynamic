@@ -10,8 +10,8 @@ public class DoorTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider col) {
         if (isOpen == false) {
-            isOpen = true;
             door.transform.position += new Vector3(0,5,0);
+            isOpen = true;
         }
     }
 }
