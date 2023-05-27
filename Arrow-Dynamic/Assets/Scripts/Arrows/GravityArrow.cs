@@ -24,3 +24,4 @@ public class GravityArrow : BasicArrow
         Physics.gravity = new Vector3(0, originalGravity, 0);
     }
 }
+

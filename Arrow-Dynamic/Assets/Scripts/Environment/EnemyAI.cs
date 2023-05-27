@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
 
     //States
     public float sightRange, attackRange;
-    public bool playerInSightRange=true, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange;
 
     private void Awake()
     {
@@ -47,6 +47,15 @@ public class EnemyAI : MonoBehaviour
 
 
 
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "BasicArrow(Clone)")
+        {
+            Debug.Log("works");
+            TakeDamage(5);
+
+        }
     }
 
     private void Patroling()
@@ -123,5 +132,9 @@ public class EnemyAI : MonoBehaviour
         //todo add hit color
 
     }
+    
+
+
+
 
 }
