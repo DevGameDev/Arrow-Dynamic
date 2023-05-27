@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WindArrow : BasicArrow
 {
-    Wind windPrefab;
+    public GameObject windPrefab;
 
     public override void OnHit(Collision collision)
     {
@@ -17,7 +17,7 @@ public class WindArrow : BasicArrow
     {
         Instantiate(windPrefab, transform.position, Quaternion.identity);
 
-        windPrefab.ActivateWind(transform.forward);
+        windPrefab.GetComponent<Wind>().ActivateWind(transform.forward);
 
         Destroy(gameObject);
 

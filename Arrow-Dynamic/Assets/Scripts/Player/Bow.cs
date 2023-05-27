@@ -23,7 +23,7 @@ public class Bow : MonoBehaviour
     public GameObject grappleArrowPrefab;
     public GameObject bombArrowPrefab;
     public GameObject gravityArrowPrefab;
-    public GameObject teleportArrowPrefab;
+    public GameObject bubbleArrowPrefab;
     public GameObject timeArrowPrefab;
     public GameObject windArrowPrefab;
 
@@ -141,7 +141,7 @@ public class Bow : MonoBehaviour
             { ArrowType.Grapple, grappleArrowPrefab },
             { ArrowType.Bomb, bombArrowPrefab },
             { ArrowType.Gravity, gravityArrowPrefab },
-            { ArrowType.Teleport, teleportArrowPrefab },
+            { ArrowType.Bubble, bubbleArrowPrefab },
             { ArrowType.Time, timeArrowPrefab },
             { ArrowType.Wind, windArrowPrefab }
         };

@@ -73,11 +73,13 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             camBaseHeight = crouchHeight;
+            camTransform.localPosition = new Vector3(camTransform.localPosition.x, camTransform.localPosition.y - (standingHeight - crouchHeight), camTransform.localPosition.z);
             isCrouching = true;
         }
         else if (context.canceled)
         {
             camBaseHeight = standingHeight;
+            camTransform.localPosition = new Vector3(camTransform.localPosition.x, camTransform.localPosition.y + (standingHeight - crouchHeight), camTransform.localPosition.z);
             isCrouching = false;
         }
     }
@@ -159,51 +161,31 @@ public class PlayerController : MonoBehaviour
         }
         else disabled = false;
 
-        currMaxSpeed = maxSpeed;
+        float sideways = move.x;
+        float forward = move.y;
 
-        if (isJumping)
-        {
-            isJumping = false;
-        }
-        float horizontal = move.x;
-        float vertical = move.y;
-        float sidewaysRatio = Mathf.Abs(horizontal) / (Mathf.Abs(horizontal) + Mathf.Abs(vertical)); // Get how non-straight movement is
+        if (move.magnitude == 0) return;
 
-        Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
-        Vector3 moveDirection = transform.TransformDirection(inputDirection);
+        var inputDir = new Vector3(sideways, 0, forward).normalized;
+        var velocity = ((transform.forward * inputDir.z) + (transform.right * inputDir.x)) * speed;
 
-        // Start with base speed
-        float currentSpeed = speed;
+        if (isSprinting && forward > 0) // Only sprint when moving forward
+            velocity *= sprintSpeedMultiplier;
 
-        // START OF SPEED MODIFIERS //
-        if (vertical < 0)
-            currMaxSpeed *= reverseSpeedMultiplier;
-        else if (isSprinting)
-            currMaxSpeed *= sprintSpeedMultiplier;
+        if (forward < 0) velocity *= reverseSpeedMultiplier;
+        else if (Mathf.Abs(sideways) > Mathf.Abs(forward)) velocity *= sidewaysSpeedMultiplier;
 
-        if (sidewaysRatio > 0)
-        {
-            // Apply a slow to player movement depending on how sideways they are moving
-            float currSidewaysSpeedMultiplier = Mathf.Lerp(1f, sidewaysSpeedMultiplier, sidewaysRatio);
-            currMaxSpeed *= currSidewaysSpeedMultiplier;
-        }
+        if (isCrouching) velocity *= crouchSpeedMultiplier;
 
-        if (isCrouching) currMaxSpeed *= crouchSpeedMultiplier;
-        if (isAiming) currMaxSpeed *= aimSpeedMultiplier;
-        // END OF SPEED MODIFIERS //
+        if (isAiming) velocity *= aimSpeedMultiplier;
 
-        if (rb.velocity.magnitude < currMaxSpeed)
-        {
-            if (IsGrounded())
-            {
-                rb.AddForce(moveDirection * speed, ForceMode.VelocityChange);
-            }
-            else
-            {
-                // Less control in the air
-                rb.AddForce(moveDirection * speed * airSpeedMultiplier, ForceMode.VelocityChange);
-            }
-        }
+        if (!IsGrounded())
+            velocity = ((1 - airSpeedMultiplier) * rb.velocity) + (airSpeedMultiplier * velocity); // Preserve momentum
+
+        // Preserve vertical velocity (gravity)
+        velocity.y = rb.velocity.y;
+        rb.velocity = velocity;
+
     }
 
     private void LateUpdate()
@@ -217,7 +199,7 @@ public class PlayerController : MonoBehaviour
         // Apply camera bobbing if enabled and player is moving
         if (enableCameraBobbing && IsGrounded() && rb.velocity.magnitude > bobbingMinSpeed)
         {
-            float currentBobbingSpeed = bobbingSpeed * speed * Time.deltaTime;
+            float currentBobbingSpeed = bobbingSpeed * (rb.velocity.x + rb.velocity.z) * Time.deltaTime;
             bobTimer = bobTimer + currentBobbingSpeed;
             float waveslice = Mathf.Sin(bobTimer);
 
