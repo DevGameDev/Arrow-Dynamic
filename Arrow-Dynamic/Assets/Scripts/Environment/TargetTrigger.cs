@@ -6,6 +6,7 @@ public class TargetTrigger : MonoBehaviour
 {
     public bool isColliding = false;
     public AudioSource source1;
+    public bool isOpen = false;
 
     void Update()
     {
@@ -19,5 +20,10 @@ public class TargetTrigger : MonoBehaviour
         //need to give arrows tag 
         //if (col.gameObject.tag == "Arrow") {
         source1.Play();
+        if (isOpen == false) {
+            //door1.transform.position += new Vector3(0,5,0);
+            //door2.transform.position += new Vector3(0,5,0);
+            isOpen = true;
+        }
     }
 }
