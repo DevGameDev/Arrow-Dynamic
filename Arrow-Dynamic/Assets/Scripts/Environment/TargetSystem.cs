@@ -36,6 +36,6 @@ public class TargetSystem : MonoBehaviour
     private void openDoors()
     {
         door1.transform.position += new Vector3(xComp, yComp, zComp);
-        door2.transform.position += new Vector3(xComp, yComp, -zComp);
+        door2.transform.position += new Vector3(-xComp, -yComp, -zComp);
     }
 }
