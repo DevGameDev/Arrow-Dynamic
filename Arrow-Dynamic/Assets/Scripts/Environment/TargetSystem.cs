@@ -15,6 +15,9 @@ public class TargetSystem : MonoBehaviour
     [SerializeField] float xComp;
     [SerializeField] float yComp;
     [SerializeField] float zComp;
+    [SerializeField] private float Speed = 0.5f;
+    [SerializeField] private float SlideAmount = 0.05f;
+    private Coroutine AnimationCoroutine;
 
     private bool doorsOpen = true;
 
@@ -28,14 +31,38 @@ public class TargetSystem : MonoBehaviour
     private void Update()
     {
         if (target1bool.isOpen && target2bool.isOpen && target3bool.isOpen && doorsOpen) {
-            openDoors();
+            AnimationCoroutine = StartCoroutine(openDoors());
             doorsOpen = false;
         }
     }
 
-    private void openDoors()
+    private IEnumerator openDoors()
     {
-        door1.transform.position += new Vector3(xComp, yComp, zComp);
-        door2.transform.position += new Vector3(-xComp, -yComp, -zComp);
+        float time = 0;
+        while(time < 1)
+        {
+            //new open code
+            Vector3 startPositionDoor1 = door1.transform.position;
+            Vector3 endPositionDoor1 = door1.transform.position + (SlideAmount * new Vector3(xComp, yComp, zComp));
+            Vector3 startPositionDoor2 = door2.transform.position;
+            Vector3 endPositionDoor2 = door2.transform.position + (SlideAmount * new Vector3(-xComp, -yComp, -zComp));
+            door1.transform.position = Vector3.Lerp(startPositionDoor1, endPositionDoor1, time);
+            door2.transform.position = Vector3.Lerp(startPositionDoor2, endPositionDoor2, time);
+
+            yield return null;
+
+            time += Time.deltaTime * Speed;
+
+        }
+        //original open code 
+        //door1.transform.position += new Vector3(xComp, yComp, zComp);
+        //door2.transform.position += new Vector3(-xComp, -yComp, -zComp);
     }
+    
+    ////original open code 
+    //private void openDoors()
+    //{
+    //    door1.transform.position += new Vector3(xComp, yComp, zComp);
+    //    door2.transform.position += new Vector3(-xComp, -yComp, -zComp);
+    //}
 }
