@@ -12,6 +12,9 @@ public class TargetSystem : MonoBehaviour
     private TargetTrigger target1bool;
     private TargetTrigger target2bool;
     private TargetTrigger target3bool;
+    [SerializeField] float xComp;
+    [SerializeField] float yComp;
+    [SerializeField] float zComp;
 
     private bool doorsOpen = true;
 
@@ -32,7 +35,7 @@ public class TargetSystem : MonoBehaviour
 
     private void openDoors()
     {
-        door1.transform.position += new Vector3(0,5,0);
-        door2.transform.position += new Vector3(0,5,0);
+        door1.transform.position += new Vector3(xComp, yComp, zComp);
+        door2.transform.position += new Vector3(xComp, yComp, -zComp);
     }
 }

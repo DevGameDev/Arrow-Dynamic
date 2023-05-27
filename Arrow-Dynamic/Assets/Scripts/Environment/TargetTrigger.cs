@@ -10,7 +10,7 @@ public class TargetTrigger : MonoBehaviour
 
     void Update()
     {
-        isColliding = false;
+        //isColliding = false;
     }
 
     void OnTriggerEnter(Collider col)
