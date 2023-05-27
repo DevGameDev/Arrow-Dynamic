@@ -56,9 +56,9 @@ public class WeaponWheelButtonController : MonoBehaviour
         Bow.Instance.SetArrowType(ArrowType.Gravity);
     }
 
-    public void ChangeTeleportArrow()
+    public void ChangeBubbleArrow()
     {
-        Bow.Instance.SetArrowType(ArrowType.Teleport);
+        Bow.Instance.SetArrowType(ArrowType.Bubble);
     }
 
     public void ChangeTimeArrow()

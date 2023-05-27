@@ -428,9 +428,9 @@ GameObject:
   - component: {fileID: 8920170896936416982}
   - component: {fileID: 2988880825149015064}
   - component: {fileID: 4262778335109395216}
-  - component: {fileID: -9124830177958682372}
+  - component: {fileID: 6879617472177132683}
   m_Layer: 9
-  m_Name: TeleportArrow
+  m_Name: BubbleArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,7 +535,7 @@ CapsuleCollider:
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
---- !u!114 &-9124830177958682372
+--- !u!114 &6879617472177132683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4382902291757207984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df91fd5b462b374885678eb47daae68, type: 3}
+  m_Script: {fileID: 11500000, guid: 29315b59f7d93ab47b7233ecda6fa33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myRb: {fileID: 2988880825149015064}
@@ -553,6 +553,8 @@ MonoBehaviour:
   - {fileID: 6896036208621100933}
   impactSpeedThreshold: 5
   arrowTipName: ArrowTip
+  bubblePrefab: {fileID: 9149159475798725743, guid: 9ec38efe6a5376f43aa1508593844bdf, type: 3}
+  despawnTime: 15
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0

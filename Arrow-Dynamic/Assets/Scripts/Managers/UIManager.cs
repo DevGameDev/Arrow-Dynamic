@@ -243,7 +243,7 @@ public class UIManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             yield return StartCoroutine(FadeCanvasGroupToVisible(creditsPanel.GetComponent<CanvasGroup>(), 2));
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             yield return StartCoroutine(FadeCanvasGroupToClear(creditsPanel.GetComponent<CanvasGroup>(), 1.5f));
             creditsPanel.SetActive(false);
             yield return new WaitForSeconds(1.5f);

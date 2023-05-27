@@ -7,7 +7,7 @@ public enum ArrowType
     Ice,
     Grapple,
     Bomb,
-    Teleport,
+    Bubble,
     Gravity,
     Time,
     Wind

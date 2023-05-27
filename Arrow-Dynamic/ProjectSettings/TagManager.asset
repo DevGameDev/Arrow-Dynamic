@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ArrowTip
   - Water
   - UI
   - 
@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Arrow
   - environment
-  - 
+  - Level
   - 
   - 
   - 

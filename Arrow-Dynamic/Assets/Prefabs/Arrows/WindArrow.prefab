@@ -553,6 +553,7 @@ MonoBehaviour:
   - {fileID: 6896036208621100933}
   impactSpeedThreshold: 5
   arrowTipName: ArrowTip
+  windPrefab: {fileID: 5859002782172665276, guid: 631ae9a6acc26a841805845755de7e44, type: 3}
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0
