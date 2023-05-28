@@ -60,7 +60,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -134,11 +134,11 @@ GameObject:
   - component: {fileID: 6581264090428364796}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8587173433976069667
 Transform:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 7603179513514234051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2923.94, y: 417.45, z: 65.18}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1.5000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 283222373915835822}
@@ -170,6 +170,7 @@ MonoBehaviour:
   rb: {fileID: 6581264090428364796}
   camTransform: {fileID: 283222373915835822}
   col: {fileID: 2152300838402348460}
+  initialRespawnPoint: {fileID: 0}
 --- !u!33 &4403055387080659386
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7603179513514234051}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -249,7 +250,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &7645042058598160065
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,17 +290,49 @@ PrefabInstance:
     m_TransformParent: {fileID: 283222373915835822}
     m_Modifications:
     - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: iceArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: fd7aa690cc0a32747a1533dc328ffe63, type: 3}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
       propertyPath: arrowSpawnPoint
       value: 
       objectReference: {fileID: 3618379351626648847}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: bombArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: f8811bc2e3244fb4abf095f267faf93b, type: 3}
     - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 283222373915835822}
     - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: timeArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: ef82516178468a848b222818d1ff004d, type: 3}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: windArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 06db60e4f168458408752a77c984514e, type: 3}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: basicArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: f9569786e5e0fd14bb2b40b08878ca52, type: 3}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 2379360065467642518}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: bubbleArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: e8b29aea3c350a14a9ae096bbb654116, type: 3}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: grappleArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 767a101758058834c81b2b27f69e8bdc, type: 3}
+    - target: {fileID: 2670029569625262332, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
+      propertyPath: gravityArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 1f3053469677be94cb4498fc4ecee69b, type: 3}
     - target: {fileID: 5986043487004234039, guid: a61b3e5154bc6664da9b967284ca190c, type: 3}
       propertyPath: m_Name
       value: Bow
@@ -367,7 +400,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a7667b11a187eef479dd3614a5d31a06, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.072
   m_Pitch: 1
   Loop: 0
   Mute: 0
