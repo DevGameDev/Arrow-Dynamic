@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator HandleGameStart()
     {
-        StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
+        // StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
         StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>(), gameStartFadeDuration / 2));
         SetFadeColor(gameStartFadeColor);
         yield return StartCoroutine(ControlFade(true, gameStartFadeDuration));
