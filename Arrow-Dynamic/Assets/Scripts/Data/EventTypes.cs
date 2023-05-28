@@ -1,5 +1,5 @@
 /// <summary>
-/// An enumeration of possible game state.
+/// An enumeration of possible event types.
 /// </summary>
 public enum EventTypes
 {
@@ -7,6 +7,7 @@ public enum EventTypes
     LoadLevelTutorial,
     LoadLevelOne,
     LoadLevelTwo,
-    LoadLevelThree,
-    LoadLevelFinal
+    LoadLevelJungle,
+    LoadLevelVoid,
+    Nothing
 }

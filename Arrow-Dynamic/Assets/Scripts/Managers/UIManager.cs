@@ -17,8 +17,10 @@ public class UIManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private GameStates initialMenuType = GameStates.MainMenu;
-    [SerializeField] private GameObject OtherCamera;
-    [SerializeField] private GameObject PlayerCamera;
+    [SerializeField] private GameObject mainMenuCamera;
+    [SerializeField] private GameObject cameraTrack;
+    [SerializeField] private GameObject mainMenuCamFollow;
+    [SerializeField] private GameObject virtualCamera;
     [SerializeField] private Image FadeImage;
 
     public AnimationCurve Curve;
@@ -100,7 +102,6 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator HandleGameStart()
     {
-        // StartCoroutine(MoveCameraToPosition(OtherCamera.transform, PlayerCamera.transform.position, PlayerCamera.transform.rotation));
         StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>(), gameStartFadeDuration / 2));
         SetFadeColor(gameStartFadeColor);
         yield return StartCoroutine(ControlFade(true, gameStartFadeDuration));
@@ -108,7 +109,11 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(false);
         GameplayPanel.SetActive(true);
 
-        OtherCamera.SetActive(false);
+        mainMenuCamera.SetActive(false);
+        mainMenuCamFollow.SetActive(false);
+        virtualCamera.SetActive(false);
+        cameraTrack.SetActive(false);
+
         GameManager.Instance.UpdateGameState(GameStates.Gameplay);
         yield return StartCoroutine(ControlFade(false, gameStartFadeDuration));
     }
@@ -132,12 +137,12 @@ public class UIManager : MonoBehaviour
         cameraTransform.rotation = newRotation;
     }
 
-    private void SetFadeColor(Color color)
+    public void SetFadeColor(Color color)
     {
         FadeImage.color = new Color(color.r, color.g, color.b, FadeImage.color.a); // Preserve alpha
     }
 
-    private IEnumerator ControlFade(bool on, float duration)
+    public IEnumerator ControlFade(bool on, float duration)
     {
         float elapsedTime = 0f;
         float startAlpha = FadeImage.color.a;

@@ -14,6 +14,14 @@ public class GameManager : MonoBehaviour
     public GameSettings settings;
     public GameState state;
 
+    public GameObject tutorialChamber;
+    public GameObject tutorialToOnePass;
+    public GameObject levelOneChamber;
+    public GameObject OneToTwoPass;
+    public GameObject levelTwoChamber;
+    public GameObject jungleLevel;
+    public GameObject voidLevel;
+
     public GameObject playerObj;
 
     public static GameSettings GetSettings()
@@ -35,7 +43,7 @@ public class GameManager : MonoBehaviour
         switch (state.lastState)
         {
             case GameStates.Gameplay:
-                playerObj.SetActive(false);
+                StartCoroutine(LoadTutorialChamber());
                 break;
             case GameStates.MainMenu:
                 break;
@@ -103,6 +111,28 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Game Quit. " + message);
         Application.Quit();
+    }
+
+    public void HandleGameEvent(EventTypes type)
+    {
+        switch (type)
+        {
+            case EventTypes.LoadLevelTutorial:
+                StartCoroutine(LoadTutorialChamber());
+                break;
+            case EventTypes.LoadLevelOne:
+                StartCoroutine(LoadLevelOneChamber());
+                break;
+            case EventTypes.LoadLevelTwo:
+                StartCoroutine(LoadLevelTwoChamber());
+                break;
+            case EventTypes.LoadLevelJungle:
+                StartCoroutine(LoadJungle());
+                break;
+            case EventTypes.LoadLevelVoid:
+                StartCoroutine(LoadVoid());
+                break;
+        }
     }
 
     //////////////////////////////////////////////////
@@ -203,8 +233,90 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(settingsFilePath, json);
     }
 
-    private IEnumerator DelayedStart(float delaySeconds)
+    private IEnumerator LoadTutorialChamber()
     {
+        levelOneChamber.SetActive(false);
+        OneToTwoPass.SetActive(false);
+        levelTwoChamber.SetActive(false);
+        jungleLevel.SetActive(false);
+        voidLevel.SetActive(false);
+        tutorialChamber.SetActive(true);
+        tutorialToOnePass.SetActive(true);
+
+        playerObj.SetActive(true);
+
         yield return null;
+    }
+
+    private IEnumerator LoadLevelOneChamber()
+    {
+        GameplaySetInputEnabled(false);
+        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 2));
+
+        tutorialChamber.SetActive(false);
+        levelOneChamber.SetActive(true);
+        OneToTwoPass.SetActive(true);
+
+        GameplaySetInputEnabled(true);
+
+        yield return null;
+    }
+
+    private IEnumerator LoadLevelTwoChamber()
+    {
+        GameplaySetInputEnabled(false);
+        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 2));
+
+        tutorialToOnePass.SetActive(false);
+        levelOneChamber.SetActive(false);
+        levelTwoChamber.SetActive(true);
+        OneToTwoPass.SetActive(true);
+
+        GameplaySetInputEnabled(true);
+
+        yield return null;
+    }
+
+    private IEnumerator LoadJungle()
+    {
+        GameplaySetInputEnabled(false);
+        UIManager.Instance.ControlFade(true, 2);
+
+        jungleLevel.SetActive(true);
+        PlayerController.Instance.SpawnPlayer(SpawnPoints.JungleStart);
+        levelTwoChamber.SetActive(false);
+        OneToTwoPass.SetActive(false);
+
+        UIManager.Instance.ControlFade(false, 2);
+        GameplaySetInputEnabled(false);
+
+        yield return null;
+    }
+
+    private IEnumerator LoadVoid()
+    {
+        GameplaySetInputEnabled(false);
+        yield return StartCoroutine(UIManager.Instance.ControlFade(true, 2));
+
+        voidLevel.SetActive(true);
+        PlayerController.Instance.SpawnPlayer(SpawnPoints.VoidStart);
+        jungleLevel.SetActive(false);
+
+        StartCoroutine(UIManager.Instance.ControlFade(false, 2));
+        GameplaySetInputEnabled(true);
+
+        yield return null;
+    }
+
+    private void GameplaySetInputEnabled(bool on)
+    {
+        if (on)
+        {
+            InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
+        }
+        else
+        {
+            InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Disabled);
+        }
     }
 }

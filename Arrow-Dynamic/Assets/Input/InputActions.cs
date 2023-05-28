@@ -416,6 +416,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Loading"",
+            ""id"": ""21db682a-db49-43f8-a278-8e1cfa0294b8"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -439,6 +445,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_ArrowWheel = asset.FindActionMap("ArrowWheel", throwIfNotFound: true);
         m_ArrowWheel_Open = m_ArrowWheel.FindAction("Open", throwIfNotFound: true);
         m_ArrowWheel_Select = m_ArrowWheel.FindAction("Select", throwIfNotFound: true);
+        // Loading
+        m_Loading = asset.FindActionMap("Loading", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -714,6 +722,44 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public ArrowWheelActions @ArrowWheel => new ArrowWheelActions(this);
+
+    // Loading
+    private readonly InputActionMap m_Loading;
+    private List<ILoadingActions> m_LoadingActionsCallbackInterfaces = new List<ILoadingActions>();
+    public struct LoadingActions
+    {
+        private @InputActions m_Wrapper;
+        public LoadingActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_Loading; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LoadingActions set) { return set.Get(); }
+        public void AddCallbacks(ILoadingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_LoadingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_LoadingActionsCallbackInterfaces.Add(instance);
+        }
+
+        private void UnregisterCallbacks(ILoadingActions instance)
+        {
+        }
+
+        public void RemoveCallbacks(ILoadingActions instance)
+        {
+            if (m_Wrapper.m_LoadingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ILoadingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_LoadingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_LoadingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public LoadingActions @Loading => new LoadingActions(this);
     public interface IGameplayActions
     {
         void OnJump(InputAction.CallbackContext context);
@@ -735,5 +781,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnOpen(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+    }
+    public interface ILoadingActions
+    {
     }
 }

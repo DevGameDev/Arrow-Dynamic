@@ -394,6 +394,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Loading",
+            "id": "21db682a-db49-43f8-a278-8e1cfa0294b8",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []
