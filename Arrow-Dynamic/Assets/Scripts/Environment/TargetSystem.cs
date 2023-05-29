@@ -18,6 +18,7 @@ public class TargetSystem : MonoBehaviour
     [SerializeField] private float Speed = 0.5f;
     [SerializeField] private float SlideAmount = 0.05f;
     private Coroutine AnimationCoroutine;
+    public AudioSource doorOpenSound;
 
     private bool doorsOpen = true;
 
@@ -32,6 +33,7 @@ public class TargetSystem : MonoBehaviour
     {
         if (target1bool.isOpen && target2bool.isOpen && target3bool.isOpen && doorsOpen) {
             AnimationCoroutine = StartCoroutine(openDoors());
+            doorOpenSound.Play();
             doorsOpen = false;
         }
     }
