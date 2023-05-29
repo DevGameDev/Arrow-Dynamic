@@ -2992,8 +2992,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 377611884}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &338885834 stripped
 Transform:
@@ -3509,6 +3509,7 @@ Transform:
   - {fileID: 377099210}
   - {fileID: 877962794}
   - {fileID: 1186795627}
+  - {fileID: 337908252}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11897,8 +11898,9 @@ MonoBehaviour:
   xComp: 0
   yComp: 0
   zComp: -4
-  Speed: 0.5
+  Speed: 0.25
   SlideAmount: 0.05
+  doorOpenSound: {fileID: 1186795629}
 --- !u!82 &1186795629
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11909,8 +11911,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 138ba2b7606793b4abc4b5dafee7e463, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -22522,6 +22524,7 @@ MonoBehaviour:
   zComp: 0
   Speed: 0.5
   SlideAmount: 0.05
+  doorOpenSound: {fileID: 0}
 --- !u!1001 &2106078762
 PrefabInstance:
   m_ObjectHideFlags: 0
