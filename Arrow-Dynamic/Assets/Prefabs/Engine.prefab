@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5337170606564957238}
   - component: {fileID: 5337170606564957239}
-  - component: {fileID: 5337170606564957243}
   - component: {fileID: 4599570019574644632}
-  - component: {fileID: 56836866516660973}
+  - component: {fileID: 5337170606564957243}
   - component: {fileID: 8396675124021703382}
+  - component: {fileID: 56836866516660973}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.001747, y: 10.201345, z: -7.6110716}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,6 +50,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 0fdb0efb41963f44ebed164917e89558, type: 2}
   state: {fileID: 11400000, guid: ac8838ce43a38b24e8751e776931a397, type: 2}
+  playerObj: {fileID: 0}
+--- !u!114 &4599570019574644632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337170606564957237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dada4d32eb74d504192d3e9944f18dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAsset: {fileID: -944628639613478452, guid: 3b66f3f03c75c594ead4f739da2b6f45, type: 3}
 --- !u!114 &5337170606564957243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,12 +293,16 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 009bf13a-951e-4a85-ae8b-9c471e68f686
     m_ActionName: Arrow Wheel/Select[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 083e4dc9-09b6-4991-ab2a-e02c73900f57
+    m_ActionName: Menus/OptionsMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4599570019574644632
+--- !u!114 &8396675124021703382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,10 +311,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5337170606564957237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dada4d32eb74d504192d3e9944f18dc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bf40e593dd203349b71a7a4adf1eefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAsset: {fileID: -944628639613478452, guid: 3b66f3f03c75c594ead4f739da2b6f45, type: 3}
 --- !u!82 &56836866516660973
 AudioSource:
   m_ObjectHideFlags: 0
@@ -304,12 +321,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5337170606564957237}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 101527de595e9344ea9bdf486f5b8fea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 08972d1f1e219f443a8c996468ad712b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.033
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -393,16 +410,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8396675124021703382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5337170606564957237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf40e593dd203349b71a7a4adf1eefc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSlider: {fileID: 0}

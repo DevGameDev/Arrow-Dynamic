@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
 
     public enum InputMapType
     {
+        Disabled,
         Gameplay,
         ArrowWheel,
         Menu

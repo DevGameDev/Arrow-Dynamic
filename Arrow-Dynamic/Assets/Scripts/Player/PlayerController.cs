@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +11,37 @@ public class PlayerController : MonoBehaviour
     // Public Properties and Methods
     //////////////////////////////////////////////////
 
+    // Components
+    public Rigidbody rb;
+    public Transform camTransform;
+    public CapsuleCollider col;
+
+    public SpawnPoints initialRespawnPoint;
+    public RespawnPoint tutorialStartPoint;
+    public RespawnPoint levelOneStartPoint;
+    public RespawnPoint levelTwoStartPoint;
+    public RespawnPoint jungleStartPoint;
+    public RespawnPoint voidStartPoint;
+
+    public SpawnPoints lastSpawnPoint = SpawnPoints.TutorialStart;
+
     public static PlayerController Instance { get; set; }
 
-    public void RespawnPlayer()
+    public void SetSpawnPoint(SpawnPoints pointType)
     {
-        transform.position = initialRespawnPoint.transform.position;
+        lastSpawnPoint = pointType;
+    }
+
+    public void RespawnPoint()
+    {
+        transform.position = points[lastSpawnPoint].transform.position;
+    }
+
+    public void SpawnPlayer(SpawnPoints pointType)
+    {
+        RespawnPoint point = points[pointType];
+
+        transform.position = point.transform.position;
     }
 
     public void HandleMove(InputAction.CallbackContext context)
@@ -103,15 +131,30 @@ public class PlayerController : MonoBehaviour
     {
     }
 
+    public IEnumerator ShakeCamera(float duration, float magnitude)
+    {
+        Vector3 originalPosition = transform.localPosition;
+        float elapsed = 0.0f;
+        float randomStart = UnityEngine.Random.Range(-1000f, 1000f);
+
+        while (elapsed < duration)
+        {
+            float x = Mathf.PerlinNoise(randomStart, elapsed) * magnitude * 2 - magnitude;
+            float y = Mathf.PerlinNoise(randomStart + 100, elapsed) * magnitude * 2 - magnitude;
+
+            transform.localPosition = new Vector3(x, y, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localPosition = originalPosition;
+    }
+
     //////////////////////////////////////////////////
     // Private Fields and Methods
     //////////////////////////////////////////////////
-
-    // Components
-    public Rigidbody rb;
-    public Transform camTransform;
-    public CapsuleCollider col;
-    public RespawnPoint initialRespawnPoint;
 
     // State
     private Vector2 move = Vector2.zero;
@@ -125,6 +168,8 @@ public class PlayerController : MonoBehaviour
     private float bobTimer = 0;
     private float camBaseHeight;
     public static bool disabled = false;
+
+    private Dictionary<SpawnPoints, RespawnPoint> points = new Dictionary<SpawnPoints, RespawnPoint>();
 
     private void Awake()
     {
@@ -149,6 +194,12 @@ public class PlayerController : MonoBehaviour
         GameSettings.OnSettingsChanged += UpdateSettings;
 
         camBaseHeight = standingHeight;
+
+        points[SpawnPoints.TutorialStart] = tutorialStartPoint;
+        points[SpawnPoints.LevelOneStart] = levelOneStartPoint;
+        points[SpawnPoints.LevelTwoStart] = levelTwoStartPoint;
+        points[SpawnPoints.JungleStart] = jungleStartPoint;
+        points[SpawnPoints.VoidStart] = voidStartPoint;
     }
 
     float currMaxSpeed;
@@ -306,5 +357,4 @@ public class PlayerController : MonoBehaviour
         bobbingMinSpeed = settings.display.bobbingMinSpeed;
         mouseSensitivity = settings.input.mouseSensitivity;
     }
-
 }
