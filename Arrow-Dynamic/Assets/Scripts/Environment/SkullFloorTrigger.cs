@@ -64,7 +64,7 @@ public class SkullFloorTrigger : MonoBehaviour
 
         }
     }
-    
+
     ////original open code 
     //private void openDoors()
     //{
