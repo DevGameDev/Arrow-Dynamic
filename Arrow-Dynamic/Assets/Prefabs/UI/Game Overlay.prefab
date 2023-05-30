@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118524797}
-  m_LocalRotation: {x: -0.14086555, y: -0.6759408, z: -0.13394624, w: 0.7108582}
+  m_LocalRotation: {x: -0.14086556, y: -0.6759408, z: -0.13394623, w: 0.7108582}
   m_LocalPosition: {x: 10126.753, y: 92.32401, z: -236.7462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -97,13 +97,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479494431}
-  m_LocalRotation: {x: -0.14086555, y: -0.6759408, z: -0.13394624, w: 0.7108582}
+  m_LocalRotation: {x: -0.14086556, y: -0.6759408, z: -0.13394623, w: 0.7108582}
   m_LocalPosition: {x: 10126.753, y: 92.32401, z: -236.7462}
   m_LocalScale: {x: 0.1, y: 0.10000001, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5823554135904907878}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -46.467, y: 20.97, z: 0}
 --- !u!20 &479494435
 Camera:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418e42c7d0405cc48a7b83f63ea53bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Path: {fileID: 1593783316}
+  m_Path: {fileID: 0}
   m_PathPosition: 3.13147
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
@@ -321,7 +321,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5823554135904907878}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1438303626
 MonoBehaviour:
@@ -367,7 +367,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5823554135904907878}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1593783316
 MonoBehaviour:
@@ -396,15 +396,15 @@ MonoBehaviour:
     roll: 0
   - position: {x: -75.91992, y: 37.545742, z: -8.37355}
     roll: 0
-  - position: {x: -10.228516, y: 98.75545, z: 209.55196}
+  - position: {x: -15.515625, y: 98.75545, z: 209.55196}
     roll: 0
-  - position: {x: -16.574219, y: 124.138306, z: 297.62286}
+  - position: {x: -14.458008, y: 102.002045, z: 321.57202}
     roll: 0
-  - position: {x: -95.700195, y: 120.313644, z: 302.30176}
+  - position: {x: -13.561523, y: 99.53427, z: 369.48492}
     roll: 0
-  - position: {x: -101.81641, y: 116.48898, z: 376.20685}
+  - position: {x: -101.81641, y: 115.39079, z: 367.6751}
     roll: 0
-  - position: {x: -203.14062, y: 112.66432, z: 371.3543}
+  - position: {x: -203.14062, y: 156.3713, z: 371.3543}
     roll: 0
   - position: {x: -272.3828, y: 143.75601, z: 420.00592}
     roll: 0
@@ -416,11 +416,11 @@ MonoBehaviour:
     roll: 0
   - position: {x: -589.78906, y: 163.87965, z: 612.8764}
     roll: 0
-  - position: {x: -540.84863, y: 158.69058, z: 677.3112}
+  - position: {x: -614.6279, y: 174.74182, z: 700.06525}
     roll: 0
-  - position: {x: -608.1553, y: 163.1944, z: 735.3357}
+  - position: {x: -586.68945, y: 187.06546, z: 755.65906}
     roll: 0
-  - position: {x: -494.94238, y: 209.99583, z: 834.09845}
+  - position: {x: -537.97656, y: 210.18748, z: 834.05554}
     roll: 0
   - position: {x: -551.0654, y: 163.1944, z: 921.9363}
     roll: 0
@@ -432,11 +432,11 @@ MonoBehaviour:
     roll: 0
   - position: {x: -502.82227, y: 204.03894, z: 820.49036}
     roll: 0
-  - position: {x: -557.73926, y: 180.89645, z: 777.38116}
+  - position: {x: -557.73926, y: 206.97192, z: 798.0237}
     roll: 0
-  - position: {x: -609.583, y: 163.1944, z: 726.1928}
+  - position: {x: -609.583, y: 177.60837, z: 726.1928}
     roll: 0
-  - position: {x: -542.8467, y: 163.1944, z: 665.957}
+  - position: {x: -602.86816, y: 168.20204, z: 665.957}
     roll: 0
   - position: {x: -598.4287, y: 163.19441, z: 617.1619}
     roll: 0
@@ -448,15 +448,15 @@ MonoBehaviour:
     roll: 0
   - position: {x: -297.67383, y: 58.802425, z: 341.30652}
     roll: 0
-  - position: {x: -166.05957, y: 115.2007, z: 375.12338}
+  - position: {x: -166.05957, y: 124.76413, z: 368.72955}
     roll: 0
   - position: {x: -103.822266, y: 115.2007, z: 368.90076}
     roll: 0
-  - position: {x: -92.25, y: 115.200745, z: 300.32422}
+  - position: {x: -2.5107422, y: 112.4769, z: 349.8307}
     roll: 0
-  - position: {x: -5.9941406, y: 117.55733, z: 274.92105}
+  - position: {x: -19.13086, y: 97.418015, z: 274.92105}
     roll: 0
-  - position: {x: 5.0908203, y: 58.105846, z: 96.578415}
+  - position: {x: 5.0908203, y: 76.51997, z: 96.578415}
     roll: 0
 --- !u!1 &557788633287810878
 GameObject:
@@ -3733,9 +3733,9 @@ Transform:
   - {fileID: 5823554135038037123}
   - {fileID: 5823554136643689797}
   - {fileID: 118524798}
-  - {fileID: 1593783315}
   - {fileID: 1438303625}
   - {fileID: 479494432}
+  - {fileID: 1593783315}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3757,10 +3757,10 @@ MonoBehaviour:
   PausePanel: {fileID: 5823554135865374977}
   creditsPanel: {fileID: 718909517259759448}
   initialMenuType: 2
-  mainMenuCamera: {fileID: 479494431}
+  mainMenuCamera: {fileID: 0}
   cameraTrack: {fileID: 1593783314}
-  mainMenuCamFollow: {fileID: 1438303624}
-  virtualCamera: {fileID: 118524797}
+  mainMenuCamFollow: {fileID: 0}
+  virtualCamera: {fileID: 0}
   FadeImage: {fileID: 7589760154119504937}
   Curve:
     serializedVersion: 2
