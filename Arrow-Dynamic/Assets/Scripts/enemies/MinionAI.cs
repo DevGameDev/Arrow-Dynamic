@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class MinionAI : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer; 
+    public EnemyType enemyType;
+    public GameObject explosionEffect;
+    public float blastRadius;
+    public float explosionForce;
+
     
 
 
@@ -43,13 +48,11 @@ public class EnemyAI : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
-
-
-
-
     }
+
     void OnCollisionEnter(Collision collision)
     {
+
         if(collision.gameObject.name == "BasicArrow(Clone)")
         {
             Debug.Log("works");
@@ -93,23 +96,20 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    private void AttackPlayer()
+    public void AttackPlayer()
     {
-        Debug.Log("HERE! ATTACK");
-        //Make sure the enemy stops moving
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
+        //Instantiate(explosionEffect, transform.position, transform.rotation);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
+        foreach(Collider collider in colliders)
         {
-            //Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                Debug.Log(rb);
+                rb.AddExplosionForce(explosionForce, transform.position, blastRadius);
+            }
         }
+        DestroyEnemy();
     }
 
     private void ResetAttack()
@@ -132,9 +132,4 @@ public class EnemyAI : MonoBehaviour
         //todo add hit color
 
     }
-    
-
-
-
-
 }
