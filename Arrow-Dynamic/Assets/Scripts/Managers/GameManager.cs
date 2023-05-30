@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     public GameState state;
 
     public GameObject tutorialChamber;
+    public GameObject tutorialBlocker;
     public GameObject tutorialToOnePass;
     public GameObject levelOneChamber;
+    public GameObject levelOneBlocker;
     public GameObject OneToTwoPass;
     public GameObject levelTwoChamber;
     public GameObject jungleLevel;
@@ -234,7 +236,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadTutorialChamber()
     {
+        tutorialBlocker.SetActive(false);
         levelOneChamber.SetActive(false);
+        levelOneBlocker.SetActive(false);
         OneToTwoPass.SetActive(false);
         levelTwoChamber.SetActive(false);
         jungleLevel.SetActive(false);
@@ -250,13 +254,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevelOneChamber()
     {
         GameplaySetInputEnabled(false);
-        StartCoroutine(PlayerController.Instance.ShakeCamera(5, 20f));
+        StartCoroutine(PlayerController.Instance.ShakeCamera(4, 20f, 2));
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockImpact);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockFall);
 
         tutorialChamber.SetActive(false);
+        tutorialBlocker.SetActive(true);
         levelOneChamber.SetActive(true);
         OneToTwoPass.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3.5f);
 
         GameplaySetInputEnabled(true);
 
@@ -266,12 +274,14 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevelTwoChamber()
     {
         GameplaySetInputEnabled(false);
-        StartCoroutine(PlayerController.Instance.ShakeCamera(5, 20f));
+        StartCoroutine(PlayerController.Instance.ShakeCamera(5, 20f, 2));
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockFall);
 
+        tutorialBlocker.SetActive(false);
         tutorialToOnePass.SetActive(false);
+        levelOneBlocker.SetActive(true);
         levelOneChamber.SetActive(false);
         levelTwoChamber.SetActive(true);
-        OneToTwoPass.SetActive(true);
 
         yield return new WaitForSeconds(5);
 
@@ -287,9 +297,11 @@ public class GameManager : MonoBehaviour
 
         jungleLevel.SetActive(true);
         PlayerController.Instance.SpawnPlayer(SpawnPoints.JungleStart);
+        levelOneBlocker.SetActive(false);
         levelTwoChamber.SetActive(false);
         OneToTwoPass.SetActive(false);
 
+        StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.JungleTheme, 2));
         yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
 
         GameplaySetInputEnabled(true);
@@ -306,6 +318,7 @@ public class GameManager : MonoBehaviour
         PlayerController.Instance.SpawnPlayer(SpawnPoints.VoidStart);
         jungleLevel.SetActive(false);
 
+        StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.VoidTheme, 2));
         yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
         GameplaySetInputEnabled(true);
 

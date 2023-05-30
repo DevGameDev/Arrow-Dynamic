@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     {
     }
 
-    public IEnumerator ShakeCamera(float duration, float magnitude)
+    public IEnumerator ShakeCamera(float duration, float magnitude, float speed)
     {
         Vector3 originalPosition = transform.localPosition;
         float elapsed = 0.0f;
@@ -139,8 +139,8 @@ public class PlayerController : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = originalPosition.x + (Mathf.PerlinNoise(randomStart, elapsed) * magnitude * 2 - magnitude);
-            float y = originalPosition.y + (Mathf.PerlinNoise(randomStart + 100, elapsed) * magnitude * 2 - magnitude);
+            float x = originalPosition.x + (Mathf.PerlinNoise(randomStart, elapsed * speed) * magnitude * 2 - magnitude);
+            float y = originalPosition.y + (Mathf.PerlinNoise(randomStart + 100, elapsed * speed) * magnitude * 2 - magnitude);
 
             transform.localPosition = new Vector3(x, y, originalPosition.z);
 
@@ -168,6 +168,10 @@ public class PlayerController : MonoBehaviour
     private float bobTimer = 0;
     private float camBaseHeight;
     public static bool disabled = false;
+    public bool gravityArrowActive = false;
+    public bool timeArrowActive = false;
+    public bool arrowWheelActive = false;
+    public bool timeSlowed = false;
 
     private Dictionary<SpawnPoints, RespawnPoint> points = new Dictionary<SpawnPoints, RespawnPoint>();
 
@@ -205,6 +209,10 @@ public class PlayerController : MonoBehaviour
     float currMaxSpeed;
     private void Update()
     {
+        if (arrowWheelActive || timeArrowActive)
+            Time.timeScale = 0.5f;
+        else Time.timeScale = 1f;
+
         if (WeaponWheelController.Instance.open)
         {
             disabled = true;

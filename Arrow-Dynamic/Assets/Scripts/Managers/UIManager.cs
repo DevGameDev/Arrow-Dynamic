@@ -104,6 +104,8 @@ public class UIManager : MonoBehaviour
     {
         StartCoroutine(FadeCanvasGroupToClear(MainMenuPanel.GetComponent<CanvasGroup>(), gameStartFadeDuration / 2));
         SetFadeColor(gameStartFadeColor);
+
+        StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.CaveTheme, gameStartFadeDuration * 2));
         yield return StartCoroutine(ControlFade(true, gameStartFadeDuration));
 
         MainMenuPanel.SetActive(false);
@@ -156,6 +158,7 @@ public class UIManager : MonoBehaviour
         else
         {
             finalAlpha = 0;
+            FadeImage.raycastTarget = false;
         }
 
         while (elapsedTime < openFadeDuration)
@@ -165,8 +168,6 @@ public class UIManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        if (!on) FadeImage.raycastTarget = false;
     }
 
     IEnumerator FadeCanvasGroupToVisible(CanvasGroup canvasGroup, float duration)
