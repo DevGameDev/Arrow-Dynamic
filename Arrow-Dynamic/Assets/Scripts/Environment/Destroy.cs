@@ -15,17 +15,19 @@ public class Destroy : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.name == "Sphere")
+        if (collision.gameObject.name == "BasicArrow(Clone)"){
+             Debug.Log("Hit!");
             sphere = GameObject.Find("Sphere");
             Destroy(sphere);
             BreakTheThing();
+        }
     }
     
     public void BreakTheThing()
     {
         Debug.Log(transform.position);
 
-        Instantiate(fractured, position, rotation);
+        Instantiate(fractured, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     // Start is called before the first frame update

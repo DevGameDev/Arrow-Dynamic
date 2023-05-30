@@ -292,8 +292,6 @@ GameObject:
   - component: {fileID: 832779740688439874}
   - component: {fileID: 4976889816183967501}
   - component: {fileID: 6896036208621100933}
-  - component: {fileID: 6095637218234755923}
-  - component: {fileID: 6678276387918644226}
   m_Layer: 9
   m_Name: ArrowTip
   m_TagString: Untagged
@@ -379,37 +377,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.01
   m_Center: {x: -0.02, y: 0, z: 0}
---- !u!54 &6095637218234755923
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2325386591052307885}
-  serializedVersion: 2
-  m_Mass: 0.00015
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &6678276387918644226
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2325386591052307885}
-  m_ConnectedBody: {fileID: 2988880825149015064}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &4103283938600810046
 GameObject:
   m_ObjectHideFlags: 0
