@@ -15,20 +15,20 @@ public class WeaponWheelController : MonoBehaviour
     {
         if (context.performed)
         {
+            PlayerController.Instance.arrowWheelActive = true;
             open = true;
             WeaponWheel.alpha = 1;
             WeaponWheel.interactable = true;
-            Time.timeScale = arrowWheelTimeScale;
             crosshair.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
         else if (context.canceled && open)
         {
+            PlayerController.Instance.arrowWheelActive = false;
             open = false;
             WeaponWheel.alpha = 0;
             WeaponWheel.interactable = false;
-            Time.timeScale = baseTimeScale;
             crosshair.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

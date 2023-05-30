@@ -11,7 +11,11 @@ public class GravityArrow : BasicArrow
     {
         base.OnHit(collision);
 
-        StartCoroutine(ChangeGravity());
+        if (!PlayerController.Instance.gravityArrowActive)
+        {
+            PlayerController.Instance.gravityArrowActive = true;
+            StartCoroutine(ChangeGravity());
+        }
     }
 
     IEnumerator ChangeGravity()
@@ -22,6 +26,8 @@ public class GravityArrow : BasicArrow
         yield return new WaitForSeconds(effectDuration);
 
         Physics.gravity = new Vector3(0, originalGravity, 0);
+
+        PlayerController.Instance.gravityArrowActive = false;
     }
 }
 
