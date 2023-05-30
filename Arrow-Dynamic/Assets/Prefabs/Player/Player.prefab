@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 7603179513514234051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2923.94, y: 417.45, z: 65.18}
-  m_LocalScale: {x: 1, y: 1.5000001, z: 1}
+  m_LocalScale: {x: 10, y: 15, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 283222373915835822}
@@ -170,7 +170,13 @@ MonoBehaviour:
   rb: {fileID: 6581264090428364796}
   camTransform: {fileID: 283222373915835822}
   col: {fileID: 2152300838402348460}
-  initialRespawnPoint: {fileID: 0}
+  initialRespawnPoint: 0
+  tutorialStartPoint: {fileID: 0}
+  levelOneStartPoint: {fileID: 0}
+  levelTwoStartPoint: {fileID: 0}
+  jungleStartPoint: {fileID: 0}
+  voidStartPoint: {fileID: 0}
+  lastSpawnPoint: 0
 --- !u!33 &4403055387080659386
 MeshFilter:
   m_ObjectHideFlags: 0

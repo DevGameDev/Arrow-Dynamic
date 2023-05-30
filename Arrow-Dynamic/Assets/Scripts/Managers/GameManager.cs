@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         switch (state.lastState)
         {
             case GameStates.Gameplay:
-                StartCoroutine(LoadTutorialChamber());
                 break;
             case GameStates.MainMenu:
                 break;
@@ -60,7 +59,7 @@ public class GameManager : MonoBehaviour
         switch (state.currentState)
         {
             case GameStates.Gameplay:
-                playerObj.SetActive(true);
+                StartCoroutine(LoadTutorialChamber());
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 break;
             case GameStates.MainMenu:
@@ -251,7 +250,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevelOneChamber()
     {
         GameplaySetInputEnabled(false);
-        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 2));
+        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 0.1f));
 
         tutorialChamber.SetActive(false);
         levelOneChamber.SetActive(true);
@@ -265,7 +264,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevelTwoChamber()
     {
         GameplaySetInputEnabled(false);
-        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 2));
+        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 0.1f));
 
         tutorialToOnePass.SetActive(false);
         levelOneChamber.SetActive(false);
