@@ -139,8 +139,8 @@ public class PlayerController : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = Mathf.PerlinNoise(randomStart, elapsed) * magnitude * 2 - magnitude;
-            float y = Mathf.PerlinNoise(randomStart + 100, elapsed) * magnitude * 2 - magnitude;
+            float x = originalPosition.x + (Mathf.PerlinNoise(randomStart, elapsed) * magnitude * 2 - magnitude);
+            float y = originalPosition.y + (Mathf.PerlinNoise(randomStart + 100, elapsed) * magnitude * 2 - magnitude);
 
             transform.localPosition = new Vector3(x, y, originalPosition.z);
 

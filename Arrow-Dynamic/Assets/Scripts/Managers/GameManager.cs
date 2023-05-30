@@ -250,11 +250,13 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevelOneChamber()
     {
         GameplaySetInputEnabled(false);
-        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 0.1f));
+        StartCoroutine(PlayerController.Instance.ShakeCamera(5, 20f));
 
         tutorialChamber.SetActive(false);
         levelOneChamber.SetActive(true);
         OneToTwoPass.SetActive(true);
+
+        yield return new WaitForSeconds(5);
 
         GameplaySetInputEnabled(true);
 
@@ -264,12 +266,14 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevelTwoChamber()
     {
         GameplaySetInputEnabled(false);
-        StartCoroutine(PlayerController.Instance.ShakeCamera(2, 0.1f));
+        StartCoroutine(PlayerController.Instance.ShakeCamera(5, 20f));
 
         tutorialToOnePass.SetActive(false);
         levelOneChamber.SetActive(false);
         levelTwoChamber.SetActive(true);
         OneToTwoPass.SetActive(true);
+
+        yield return new WaitForSeconds(5);
 
         GameplaySetInputEnabled(true);
 
@@ -279,15 +283,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadJungle()
     {
         GameplaySetInputEnabled(false);
-        UIManager.Instance.ControlFade(true, 2);
+        yield return StartCoroutine(UIManager.Instance.ControlFade(true, 2));
 
         jungleLevel.SetActive(true);
         PlayerController.Instance.SpawnPlayer(SpawnPoints.JungleStart);
         levelTwoChamber.SetActive(false);
         OneToTwoPass.SetActive(false);
 
-        UIManager.Instance.ControlFade(false, 2);
-        GameplaySetInputEnabled(false);
+        yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
+
+        GameplaySetInputEnabled(true);
 
         yield return null;
     }
@@ -301,7 +306,7 @@ public class GameManager : MonoBehaviour
         PlayerController.Instance.SpawnPlayer(SpawnPoints.VoidStart);
         jungleLevel.SetActive(false);
 
-        StartCoroutine(UIManager.Instance.ControlFade(false, 2));
+        yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
         GameplaySetInputEnabled(true);
 
         yield return null;
