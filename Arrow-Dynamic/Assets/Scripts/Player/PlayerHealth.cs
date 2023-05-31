@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 10f;
     public float currentHealth;
+    public static PlayerHealth Instance { get; set; }
+
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.name);
@@ -20,9 +22,22 @@ public class PlayerHealth : MonoBehaviour
 
         }
     }
+    public void doDamege(float damege)
+    {
+        currentHealth -= damege;
+    }
     void awake()
     {
-        currentHealth = maxHealth;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -30,14 +45,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if(currentHealth <=  0f)
         {
+            Debug.Log("Dead");
             PlayerController.Instance.RespawnPoint();
         }
         if ((currentHealth < maxHealth) && (currentHealth > 0))
         {
-            Debug.Log(currentHealth);
-            currentHealth += Time.deltaTime;     
-                   
+            currentHealth += Time.deltaTime;                
         }
         
     }   
+    
 }
