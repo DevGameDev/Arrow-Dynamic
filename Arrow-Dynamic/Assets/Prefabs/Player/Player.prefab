@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 9192847927370313333}
   - component: {fileID: 2152300838402348460}
   - component: {fileID: 6581264090428364796}
+  - component: {fileID: 1769382996083880065}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -177,6 +178,13 @@ MonoBehaviour:
   jungleStartPoint: {fileID: 0}
   voidStartPoint: {fileID: 0}
   lastSpawnPoint: 0
+  player_health: 5
+  health_cur: 0
+  health: 0
+  gravityArrowActive: 0
+  timeArrowActive: 0
+  arrowWheelActive: 0
+  timeSlowed: 0
 --- !u!33 &4403055387080659386
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -257,6 +265,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &1769382996083880065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603179513514234051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057f449d39a54136b499fa218ba58b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10
 --- !u!1 &7645042058598160065
 GameObject:
   m_ObjectHideFlags: 0
