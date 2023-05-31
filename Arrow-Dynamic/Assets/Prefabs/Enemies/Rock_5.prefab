@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6742758065513453359}
   - component: {fileID: 3222025903303896504}
   - component: {fileID: 5080828295206434728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock_5
   m_TagString: damege
   m_Icon: {fileID: 0}
