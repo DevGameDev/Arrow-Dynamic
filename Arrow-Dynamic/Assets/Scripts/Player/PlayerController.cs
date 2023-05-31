@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
         mousePosition = Vector2.Lerp(mousePosition, mousePosition + mouseDelta, 1.0f / viewSmoothing);
 
-        mousePosition.y = Mathf.Clamp(mousePosition.y, -60.0f, 45.0f); // Don't allow 360 y-axis
+        mousePosition.y = Mathf.Clamp(mousePosition.y, -60.0f, 90.0f); // Don't allow 360 y-axis
     }
 
     public void HandleJump(InputAction.CallbackContext context)
@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = velocity;
 
 
-    
+
 
 
     }
