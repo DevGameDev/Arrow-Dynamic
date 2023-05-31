@@ -5,16 +5,18 @@ using UnityEngine;
 public class VoidInteractable : MonoBehaviour
 {
     public Vector3 rotationSpeed; // The speed of rotation around each axis
-
+    public static int Door1Trig = 0;
     void Update()
     {
         // Rotate the object continuously based on the rotation speed
         transform.Rotate(rotationSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider arrow)
     {
         // Disable the object or remove it from the scene
-        gameObject.SetActive(false); // or Destroy(gameObject) to completely remove it
+        gameObject.SetActive(false);
+        Door1Trig++;
     }
+
 }
