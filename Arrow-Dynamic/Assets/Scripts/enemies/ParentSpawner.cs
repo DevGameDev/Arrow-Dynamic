@@ -48,11 +48,14 @@ public class ParentSpawner : MonoBehaviour
 
 
         timer += Time.deltaTime;
-        // Check if the desired interval has passed
-        if (timer >= timeBetweenAttacks)
-        {
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            timer = 0f;
+        if (playerInSightRange && playerInAttackRange){
+
+            // Check if the desired interval has passed
+            if (timer >= timeBetweenAttacks)
+            {
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                timer = 0f;
+            }
         }
         
     }
