@@ -243,6 +243,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6447998273042781904, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 1654513947}
     - target: {fileID: 6447998273042781906, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
       propertyPath: m_Name
       value: GorrilaThrow (3)
@@ -293,6 +297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+--- !u!195 &105640048 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 6447998273042781911, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+  m_PrefabInstance: {fileID: 866728404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &268506414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,6 +811,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6447998273042781904, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 105640048}
+    - target: {fileID: 6447998273042781904, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
       propertyPath: sightRange
       value: 10
       objectReference: {fileID: 0}
@@ -862,6 +875,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6447998273042781904, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 1217329663}
     - target: {fileID: 6447998273042781906, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
       propertyPath: m_Name
       value: GorrilaThrow (2)
@@ -912,6 +929,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+--- !u!195 &961464050 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 6447998273042781911, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+  m_PrefabInstance: {fileID: 1833681120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1217329663 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 6447998273042781911, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+  m_PrefabInstance: {fileID: 866868316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1220214808 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2379360065467642518, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
@@ -927,6 +954,11 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 819367105617356416, guid: be2f56c2a91e56a4b893ebd10099aabd, type: 3}
   m_PrefabInstance: {fileID: 715257402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1654513947 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 6447998273042781911, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+  m_PrefabInstance: {fileID: 90405239}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1677489327
 GameObject:
@@ -966,6 +998,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6447998273042781904, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 961464050}
     - target: {fileID: 6447998273042781906, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
       propertyPath: m_Name
       value: GorrilaThrow (1)
