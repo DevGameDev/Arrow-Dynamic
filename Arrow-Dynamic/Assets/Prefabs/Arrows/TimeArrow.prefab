@@ -553,8 +553,7 @@ MonoBehaviour:
   - {fileID: 6896036208621100933}
   impactSpeedThreshold: 5
   arrowTipName: ArrowTip
-  effectDuration: 8
-  effectTimeScale: 0.6
+  effectDuration: 4
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0
