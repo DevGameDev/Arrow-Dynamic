@@ -8,21 +8,23 @@ Arrows
 Geometry
     -Increase first chamber prefab size
     -Scale up caverns (~x10)
+    -Move jungle islands closer together
 
 Bug Fixes
     -Fix Skull doors
-    -
 
 Additional Features
     -Add working enemies
 
 
 Class Feedback
-
-Arrows
-
-Geometry
-
-Bug Fixes
-
-Additional Features
+    -change weapon wheel to slow down
+    -slowdown effect to wheel
+    -maybe checkpoints
+    -maybe limit grapple arrow
+    -fix colliders at jungle level
+    -make grapple change if you shoot a new grapple
+    -pace too slow
+    -make cave more open
+    -more lights in cave
+    -fix ice arrow collision
