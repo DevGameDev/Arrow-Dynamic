@@ -32,11 +32,16 @@ public class UIManager : MonoBehaviour
     private Dictionary<GameStates, GameObject> prefabDictionary = new Dictionary<GameStates, GameObject>();
     private GameState state;
 
+    private bool gameplayStarted = false;
     public void ControlGameplayPanel(bool enabled)
     {
         if (enabled)
         {
-            StartCoroutine(HandleGameStart());
+            if (!gameplayStarted)
+            {
+                StartCoroutine(HandleGameStart());
+                gameplayStarted = true;
+            }
         }
         else
         {
@@ -83,12 +88,17 @@ public class UIManager : MonoBehaviour
         else
         {
             if (state.lastState == GameStates.MainMenu)
+            {
                 ControlMainPanel(true);
+                GameManager.Instance.UpdateGameState(GameStates.MainMenu);
+            }
             else if (state.lastState == GameStates.PauseMenu)
+            {
                 ControlPausePanel(true);
+                GameManager.Instance.UpdateGameState(GameStates.PauseMenu);
+            }
             SettingsPanel.SetActive(false);
 
-            GameManager.Instance.UpdateGameState(state.lastState);
         }
     }
 
