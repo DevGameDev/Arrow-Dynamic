@@ -55,8 +55,8 @@ public class MinionAI : MonoBehaviour
 
         if(collision.gameObject.name == "BasicArrow(Clone)")
         {
-            Debug.Log("works");
             TakeDamage(5);
+
 
         }
     }
@@ -91,7 +91,6 @@ public class MinionAI : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        Debug.Log("HERE! Chase");
         agent.SetDestination(player.position);
 
     }
@@ -102,10 +101,10 @@ public class MinionAI : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
         foreach(Collider collider in colliders)
         {
+            Debug.Log(collider);
             Rigidbody rb = collider.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                Debug.Log(rb);
                 rb.AddExplosionForce(explosionForce, transform.position, blastRadius);
             }
         }

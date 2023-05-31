@@ -48,11 +48,14 @@ public class ParentSpawner : MonoBehaviour
 
 
         timer += Time.deltaTime;
-        // Check if the desired interval has passed
-        if (timer >= timeBetweenAttacks)
-        {
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            timer = 0f;
+        if (playerInSightRange && playerInAttackRange){
+
+            // Check if the desired interval has passed
+            if (timer >= timeBetweenAttacks)
+            {
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                timer = 0f;
+            }
         }
         
     }
@@ -60,7 +63,6 @@ public class ParentSpawner : MonoBehaviour
     {
         if(collision.gameObject.name == "BasicArrow(Clone)")
         {
-            Debug.Log("works");
             TakeDamage(5);
 
         }
@@ -96,7 +98,6 @@ public class ParentSpawner : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        Debug.Log("HERE! Chase");
         agent.SetDestination(player.position);
 
     }
@@ -113,7 +114,6 @@ public class ParentSpawner : MonoBehaviour
             //Attack code here
             Instantiate(projectile, transform.position, Quaternion.identity);
             alreadyAttacked = true;
-            Debug.Log("Spawned");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         return Instance.state;
     }
 
+    private bool gameStarted = false;
     public void UpdateGameState(GameStates newState)
     {
         state.lastState = state.currentState;
@@ -61,7 +62,13 @@ public class GameManager : MonoBehaviour
         switch (state.currentState)
         {
             case GameStates.Gameplay:
-                StartCoroutine(LoadTutorialChamber());
+                if (!gameStarted)
+                {
+                    StartCoroutine(LoadTutorialChamber());
+                    gameStarted = true;
+                }
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 break;
             case GameStates.MainMenu:
@@ -69,6 +76,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.PauseMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
                 break;
             case GameStates.SettingsMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);

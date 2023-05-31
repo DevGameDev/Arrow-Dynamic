@@ -25,6 +25,14 @@ public class PlayerController : MonoBehaviour
 
     public SpawnPoints lastSpawnPoint = SpawnPoints.TutorialStart;
 
+
+    //for player damege
+    public float player_health = 5f;
+    public float health_cur;
+    public float health;
+
+
+
     public static PlayerController Instance { get; set; }
 
     public void SetSpawnPoint(SpawnPoints pointType)
@@ -244,6 +252,10 @@ public class PlayerController : MonoBehaviour
         // Preserve vertical velocity (gravity)
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
+
+
+    
+
 
     }
 

@@ -50,7 +50,6 @@ public class EnemyAI : MonoBehaviour
     {
         if(collision.gameObject.name == "BasicArrow(Clone)")
         {
-            Debug.Log("works");
             TakeDamage(5);
 
         }
@@ -86,14 +85,12 @@ public class EnemyAI : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        Debug.Log("HERE! Chase");
         agent.SetDestination(player.position);
 
     }
 
     private void AttackPlayer()
     {
-        Debug.Log("HERE! ATTACK");
         //Make sure the enemy stops moving
         agent.SetDestination(transform.position);
 
@@ -104,10 +101,9 @@ public class EnemyAI : MonoBehaviour
 
             //Attack code here
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 64f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             alreadyAttacked = true;
-            Debug.Log("Spawned");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
