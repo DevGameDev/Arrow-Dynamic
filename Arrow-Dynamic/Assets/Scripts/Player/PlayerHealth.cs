@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(currentHealth <=  0f)
         {
-            RespawnPoint();
+            //RespawnPoint();
         }
         if ((currentHealth < maxHealth) && (currentHealth > 0))
         {
