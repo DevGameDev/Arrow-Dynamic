@@ -60,7 +60,6 @@ public class ParentSpawner : MonoBehaviour
     {
         if(collision.gameObject.name == "BasicArrow(Clone)")
         {
-            Debug.Log("works");
             TakeDamage(5);
 
         }
@@ -96,7 +95,6 @@ public class ParentSpawner : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        Debug.Log("HERE! Chase");
         agent.SetDestination(player.position);
 
     }
@@ -113,7 +111,6 @@ public class ParentSpawner : MonoBehaviour
             //Attack code here
             Instantiate(projectile, transform.position, Quaternion.identity);
             alreadyAttacked = true;
-            Debug.Log("Spawned");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
