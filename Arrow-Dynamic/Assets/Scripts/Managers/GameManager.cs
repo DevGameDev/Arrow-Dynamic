@@ -311,9 +311,11 @@ public class GameManager : MonoBehaviour
         OneToTwoPass.SetActive(false);
 
         StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.JungleTheme, 2));
-        yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
 
         GameplaySetInputEnabled(true);
+
+        yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
+
 
         yield return null;
     }
@@ -328,8 +330,10 @@ public class GameManager : MonoBehaviour
         jungleLevel.SetActive(false);
 
         StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.VoidTheme, 2));
-        yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
+
         GameplaySetInputEnabled(true);
+
+        yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
 
         yield return null;
     }
