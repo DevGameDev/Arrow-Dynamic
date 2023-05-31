@@ -57,7 +57,7 @@ public class BasicArrow : MonoBehaviour, IArrow
         foreach (Collider col in colliders)
             col.enabled = false;
 
-        gameObject.layer = LayerMask.NameToLayer("environment");
+        // gameObject.layer = LayerMask.NameToLayer("environment");
 
         transform.SetParent(collision.transform);
     }

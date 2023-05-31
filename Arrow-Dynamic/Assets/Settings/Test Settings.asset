@@ -39,10 +39,10 @@ MonoBehaviour:
     crouchSpeedMultiplier: 0.6
     crouchHeight: 0
     standingHeight: 1
-    arrowSpeed: 0.1
+    arrowSpeed: 0.15
     maxPullTime: 0.5
     arrowReadyTime: 0.1
-    maxArrows: 20
+    maxArrows: 1000
     arrowWheelTimeScale: 0.5
   input:
     mouseSensitivity: 100
