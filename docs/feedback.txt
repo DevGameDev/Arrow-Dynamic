@@ -1,0 +1,28 @@
+Team Feedback:
+
+Arrows
+    -Grapple Arrow to specific geometry.
+    -Turn Down Time arrow duration
+    -Increase bubble arrow bounce height
+
+Geometry
+    -Increase first chamber prefab size
+    -Scale up caverns (~x10)
+
+Bug Fixes
+    -Fix Skull doors
+    -
+
+Additional Features
+    -Add working enemies
+
+
+Class Feedback
+
+Arrows
+
+Geometry
+
+Bug Fixes
+
+Additional Features
