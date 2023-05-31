@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6949371718405304978}
   - component: {fileID: 7525905855602399977}
   - component: {fileID: 2870992161626112374}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mesh.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4990918303713728212}
   - component: {fileID: 4990918303713728213}
   - component: {fileID: 6883969449849110671}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MinionGorrila
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0b80ce246a34bcd8e1cb5e568551db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 4990918303713728212}
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 7460906777876855855}
   - component: {fileID: 3907034314112931704}
   - component: {fileID: 2704175453168727928}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 1055394634533174804}
   - component: {fileID: 1042262244701956407}
   - component: {fileID: 4172649666329517054}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

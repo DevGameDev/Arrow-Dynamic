@@ -364,7 +364,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 30
   timeBetweenAttacks: 3
-  projectile: {fileID: 0}
+  projectile: {fileID: 6734137471275587527, guid: 4de22ebe009744576bcc9e6d829b8ecd, type: 3}
   health: 10
   sightRange: 1000
   attackRange: 10
@@ -381,5 +381,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2266693, y: 3.8441615, z: 1.321393}
-  m_Center: {x: -0.040857315, y: 1.422081, z: -0.16237211}
+  m_Size: {x: 2.2266693, y: 3.8441615, z: 0.37672806}
+  m_Center: {x: -0.040857315, y: 1.422081, z: -0.6347046}
