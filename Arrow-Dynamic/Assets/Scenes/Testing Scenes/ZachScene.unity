@@ -4192,9 +4192,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1117031228621515677, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182215104450577577, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117818214337093232, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478699345970634478, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447998273042781905, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Size.z
+      value: 2.1120586
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447998273042781905, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Center.z
+      value: 0.2329607
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447998273042781905, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6447998273042781906, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
       propertyPath: m_Name
       value: GorrilaThrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447998273042781906, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6447998273042781910, guid: 63d03d076d4b948499cbe802e9410b2c, type: 3}
       propertyPath: m_RootOrder
