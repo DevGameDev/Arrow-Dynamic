@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8485141540907480616}
   - component: {fileID: 8435839614387904779}
   - component: {fileID: 4795487331018183618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2084801302690788371}
   - component: {fileID: 5574426715946884932}
   - component: {fileID: 6837569987502374724}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 1951717046994680494}
   - component: {fileID: 1375188957380612821}
   - component: {fileID: 6679705463785212234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3849550737254827092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GORILLA (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 6447998273042781911}
   - component: {fileID: 6447998273042781904}
   - component: {fileID: 6447998273042781905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GorrilaThrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b9aaa5690f14539a855f72a0d03b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 6447998273042781911}
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -366,7 +366,7 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   projectile: {fileID: 6734137471275587527, guid: 4de22ebe009744576bcc9e6d829b8ecd, type: 3}
   health: 10
-  sightRange: 1000
+  sightRange: 100
   attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0
@@ -378,8 +378,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6447998273042781906}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2266693, y: 3.8441615, z: 0.37672806}
-  m_Center: {x: -0.040857315, y: 1.422081, z: -0.6347046}
+  m_Size: {x: 2.2266693, y: 3.8441615, z: 2.1120586}
+  m_Center: {x: -0.040857315, y: 1.422081, z: 0.2329607}
