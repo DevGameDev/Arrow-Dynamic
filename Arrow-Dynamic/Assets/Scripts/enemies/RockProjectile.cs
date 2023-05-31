@@ -10,7 +10,7 @@ public class RockProjectile : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("dmaege done");
-            PlayerHealth.Instance.doDamege(100);
+            PlayerHealth.Instance.doDamege(3);
             
         }
     }
