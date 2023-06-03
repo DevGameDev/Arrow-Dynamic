@@ -6,9 +6,9 @@ public class TimeArrow : BasicArrow
 {
     public float effectDuration = 5.0f;
 
-    public override void OnHit(Collision collision)
+    public override void OnHit(Collider other)
     {
-        base.OnHit(collision);
+        base.OnHit(other);
 
         if (!PlayerController.Instance.timeArrowActive)
         {

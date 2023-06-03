@@ -6,6 +6,13 @@ using UnityEngine;
 /// </summary>
 public class BasicArrow : MonoBehaviour, IArrow
 {
+    public bool isEnabled
+    {
+        get { return myEnabled; }
+        set { myEnabled = value; }
+    }
+    public bool myEnabled = false;
+
     [SerializeField] private Rigidbody myRb;
     public Rigidbody rb
     {
@@ -19,26 +26,7 @@ public class BasicArrow : MonoBehaviour, IArrow
         get { return myColliders; }
         set { myColliders = value; }
     }
-
     public float impactSpeedThreshold = 5.0f;
-    public string arrowTipName = "ArrowTip";
-    private bool hit;
-
-    // Detect arrow collision and stick it if the impact is strong enough
-    void OnCollisionEnter(Collision collision)
-    {
-        if (rb.velocity.magnitude > impactSpeedThreshold)
-        {
-            foreach (ContactPoint contact in collision.contacts)
-            {
-                if (contact.thisCollider.name == arrowTipName)
-                {
-                    OnHit(collision);
-                    break;
-                }
-            }
-        }
-    }
 
     virtual public void OnLoad()
     {
@@ -47,23 +35,34 @@ public class BasicArrow : MonoBehaviour, IArrow
 
     virtual public void OnRelease()
     {
-
+        myEnabled = true;
     }
 
-    virtual public void OnHit(Collision collision)
+    void FixedUpdate()
     {
-        rb.isKinematic = true;
+        if (myEnabled && !rb.isKinematic && rb.velocity.magnitude > impactSpeedThreshold)
+        {
+            Ray ray = new Ray(transform.position, rb.velocity.normalized);
+            RaycastHit hit;
 
-        foreach (Collider col in colliders)
-            col.enabled = false;
+            if (Physics.Raycast(ray, out hit, rb.velocity.magnitude * Time.fixedDeltaTime, LayerMask.GetMask("environment")))
+            {
+                rb.isKinematic = true;
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
 
-        // gameObject.layer = LayerMask.NameToLayer("environment");
+                foreach (Collider col in colliders)
+                    col.enabled = false;
 
-        transform.SetParent(collision.transform);
+                transform.position = hit.point;
+
+                OnHit(hit.collider);
+            }
+        }
     }
 
-    virtual public void OnUnload()
+    virtual public void OnHit(Collider other)
     {
-        Destroy(gameObject);
     }
 }

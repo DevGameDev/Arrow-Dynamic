@@ -31,8 +31,6 @@ public class PlayerController : MonoBehaviour
     public float health_cur;
     public float health;
 
-
-
     public static PlayerController Instance { get; set; }
 
     public void SetSpawnPoint(SpawnPoints pointType)
@@ -184,6 +182,12 @@ public class PlayerController : MonoBehaviour
     public bool arrowWheelActive = false;
     public bool timeSlowed = false;
 
+    public Vector3 grappleVelocity = Vector3.zero;
+    public float grappleDamping = 1f;
+
+    public Vector3 explosionVelocity = Vector3.zero;
+    public float explosionDamping = 1f;
+
     private Dictionary<SpawnPoints, RespawnPoint> points = new Dictionary<SpawnPoints, RespawnPoint>();
 
     private void Awake()
@@ -234,7 +238,7 @@ public class PlayerController : MonoBehaviour
         float sideways = move.x;
         float forward = move.y;
 
-        if (move.magnitude == 0) return;
+        // if (move.magnitude == 0) return;
 
         var inputDir = new Vector3(sideways, 0, forward).normalized;
         var velocity = ((transform.forward * inputDir.z) + (transform.right * inputDir.x)) * speed;
@@ -252,14 +256,15 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded())
             velocity = ((1 - airSpeedMultiplier) * rb.velocity) + (airSpeedMultiplier * velocity); // Preserve momentum
 
+        velocity += grappleVelocity;
+        grappleVelocity *= Mathf.Exp(-grappleDamping * Time.deltaTime);
+
+        velocity += explosionVelocity;
+        explosionVelocity *= Mathf.Exp(-explosionDamping * Time.deltaTime);
+
         // Preserve vertical velocity (gravity)
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
-
-
-
-
-
     }
 
     private void LateUpdate()

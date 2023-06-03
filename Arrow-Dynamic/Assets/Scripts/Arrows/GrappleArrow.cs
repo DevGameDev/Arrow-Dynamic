@@ -4,29 +4,43 @@ using UnityEngine;
 
 public class GrappleArrow : BasicArrow
 {
-    public float pullSpeed = 10000.0f;
+    public float pullForce = 10000.0f;
+    private LineRenderer grappleLine;
+    private Vector3 grapplePoint;
+    private bool grappleActive;
 
-    public override void OnHit(Collision collision)
+    private void Start()
     {
-        base.OnHit(collision);
-
-        // Start pulling player
-        StartCoroutine(PullPlayerToArrow());
+        grappleLine = GetComponent<LineRenderer>();
+        grappleLine.enabled = false;
     }
 
-    private IEnumerator PullPlayerToArrow()
+    public override void OnRelease()
     {
+        base.OnRelease();
+        grappleLine.SetPosition(0, transform.position);
+        grappleActive = true;
+        grappleLine.enabled = true;
+    }
 
+    public override void OnHit(Collider other)
+    {
+        base.OnHit(other);
+        grapplePoint = transform.position;
+        // Give player an impulse towards the grapple point
         PlayerController playerController = PlayerController.Instance;
-        while ((playerController.transform.position - transform.position).magnitude > 5f)
-        {
-            Vector3 pullDirection = (transform.position - playerController.transform.position).normalized;
-            playerController.rb.velocity = pullDirection * pullSpeed;
-            yield return null;
-        }
+        Vector3 pullDirection = (grapplePoint - playerController.transform.position).normalized;
+        playerController.grappleVelocity += (pullDirection * pullForce) / playerController.rb.mass;
+        grappleActive = false;
+        grappleLine.enabled = false;
+    }
 
-        playerController.rb.velocity = Vector3.zero;
+    private void Update()
+    {
+        if (grappleActive)
+        {
+            grappleLine.SetPosition(0, transform.position);
+            grappleLine.SetPosition(1, PlayerController.Instance.transform.position);
+        }
     }
 }
-
-

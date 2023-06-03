@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
     public float power = 10.0f;
+    public float despawnTime = 10.0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,4 +17,17 @@ public class Bubble : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public IEnumerator StartDespawnTimer()
+    {
+        float startTime = Time.time;
+
+        while (Time.time - startTime < despawnTime)
+        {
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
 }

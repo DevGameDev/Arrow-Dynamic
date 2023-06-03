@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7904d7ed2da46ae4e8a967f4442ec652, type: 2}
+  - {fileID: 2100000, guid: 5ff356e2eb6c53047b267319c88598e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e72436a38577cf44a21f96dd029dede, type: 2}
+  - {fileID: 2100000, guid: 5ff356e2eb6c53047b267319c88598e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -291,7 +291,6 @@ GameObject:
   - component: {fileID: 7207143538832097669}
   - component: {fileID: 832779740688439874}
   - component: {fileID: 4976889816183967501}
-  - component: {fileID: 6896036208621100933}
   m_Layer: 9
   m_Name: ArrowTip
   m_TagString: Untagged
@@ -364,19 +363,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6896036208621100933
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2325386591052307885}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.012
-  m_Center: {x: -0.02, y: 0, z: 0}
 --- !u!1 &4103283938600810046
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +414,7 @@ GameObject:
   - component: {fileID: 8920170896936416982}
   - component: {fileID: 2988880825149015064}
   - component: {fileID: 4262778335109395216}
-  - component: {fileID: 9008699596848447444}
+  - component: {fileID: 490605316443336755}
   m_Layer: 9
   m_Name: TimeArrow
   m_TagString: Untagged
@@ -445,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 4382902291757207984}
   m_LocalRotation: {x: -0.5002567, y: -0.49974322, z: 0.49974322, w: 0.5002567}
   m_LocalPosition: {x: -0.00083440135, y: 0.0008353435, z: 0}
-  m_LocalScale: {x: 2.77, y: 446.9, z: 2.77}
+  m_LocalScale: {x: 2.2, y: 354.93863, z: 2.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4742046142518134615}
@@ -514,8 +500,8 @@ Rigidbody:
   m_GameObject: {fileID: 4382902291757207984}
   serializedVersion: 2
   m_Mass: 0.0001
-  m_Drag: 5
-  m_AngularDrag: 100
+  m_Drag: 1
+  m_AngularDrag: 150
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -535,7 +521,7 @@ CapsuleCollider:
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
---- !u!114 &9008699596848447444
+--- !u!114 &490605316443336755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -547,13 +533,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96ebd705ecfcaf44b5ad6cf8d2e8d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myEnabled: 0
   myRb: {fileID: 2988880825149015064}
   myColliders:
   - {fileID: 4262778335109395216}
-  - {fileID: 6896036208621100933}
-  impactSpeedThreshold: 5
-  arrowTipName: ArrowTip
-  effectDuration: 4
+  impactSpeedThreshold: 0.5
+  effectDuration: 3
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +766,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e72436a38577cf44a21f96dd029dede, type: 2}
+  - {fileID: 2100000, guid: 5ff356e2eb6c53047b267319c88598e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -864,7 +849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e72436a38577cf44a21f96dd029dede, type: 2}
+  - {fileID: 2100000, guid: 5ff356e2eb6c53047b267319c88598e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -947,7 +932,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e72436a38577cf44a21f96dd029dede, type: 2}
+  - {fileID: 2100000, guid: 5ff356e2eb6c53047b267319c88598e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

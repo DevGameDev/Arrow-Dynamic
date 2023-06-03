@@ -6,9 +6,9 @@ public class WindArrow : BasicArrow
 {
     public GameObject windPrefab;
 
-    public override void OnHit(Collision collision)
+    public override void OnHit(Collider other)
     {
-        base.OnHit(collision);
+        base.OnHit(other);
 
         StartCoroutine(ApplyWindEffect());
     }

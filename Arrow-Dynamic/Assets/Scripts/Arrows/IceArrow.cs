@@ -5,37 +5,21 @@ using UnityEngine;
 public class IceArrow : BasicArrow
 {
     public GameObject iceBlockPrefab;
-    public float shrinkTime = 15.0f;
-    public Vector3 initialSize = Vector3.one;
-    public Vector3 finalSize = Vector3.one * 0.5f;
-    private GameObject iceBlock;
+    private GameObject iceBlockObj;
 
-    public override void OnHit(Collision collision)
+    public override void OnHit(Collider other)
     {
-        base.OnHit(collision);
-        Debug.Log("Hit!");
+        base.OnHit(other);
 
         // Spawn ice block
-        iceBlock = Instantiate(iceBlockPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(ShrinkIceBlock(iceBlock));
-    }
-
-    private IEnumerator ShrinkIceBlock(GameObject iceBlock)
-    {
-        float startTime = Time.time;
-
-        while (Time.time - startTime < shrinkTime)
+        if (!other.gameObject.GetComponent<IceBlock>()) // can't stack
         {
-            float ratio = (Time.time - startTime) / shrinkTime;
-            iceBlock.transform.localScale = Vector3.Lerp(initialSize, finalSize, ratio);
-            yield return null;
+            iceBlockObj = Instantiate(iceBlockPrefab, transform.position, Quaternion.identity);
+            IceBlock iceBlock = iceBlockObj.GetComponent<IceBlock>();
+
+            iceBlock.StartCoroutine(iceBlock.Shrink());
         }
 
-        Destroy(iceBlock);
-    }
-
-    private void OnDestroy()
-    {
-        if (iceBlock) Destroy(iceBlock);
+        Destroy(gameObject);
     }
 }

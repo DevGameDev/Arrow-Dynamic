@@ -6,10 +6,10 @@ public class BombArrow : BasicArrow
 {
     public Explosion explosionPrefab;
 
-    public override void OnHit(Collision collision)
+    public override void OnHit(Collider other)
     {
-        base.OnHit(collision);
-        
+        base.OnHit(other);
+
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -26,8 +26,8 @@ MonoBehaviour:
     reverseSpeedMultiplier: 0.5
     sprintSpeedMultiplier: 1.5
     aimSpeedMultiplier: 0.8
-    jumpForce: 75
-    doubleJumpForce: 75
+    jumpForce: 70
+    doubleJumpForce: 70
     airSpeedMultiplier: 0.5
     lowJumpMultiplier: 1
     fallMultiplier: 1
@@ -39,10 +39,10 @@ MonoBehaviour:
     crouchSpeedMultiplier: 0.6
     crouchHeight: 0
     standingHeight: 1
-    arrowSpeed: 0.15
+    arrowSpeed: 0.1
     maxPullTime: 0.5
     arrowReadyTime: 0.1
-    maxArrows: 1000
+    maxArrows: 20
     arrowWheelTimeScale: 0.5
   input:
     mouseSensitivity: 100

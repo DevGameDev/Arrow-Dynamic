@@ -103,7 +103,7 @@ public class Bow : MonoBehaviour
 
     private bool bowReady = false;
     private Dictionary<ArrowType, GameObject> arrowPrefabs;
-    private Queue<IArrow> shotArrows = new Queue<IArrow>();
+    private Queue<GameObject> shotArrows = new Queue<GameObject>();
     private ArrowType currentArrowType;
     private GameObject currentArrowObj = null;
     private IArrow currentArrow = null;
@@ -183,13 +183,13 @@ public class Bow : MonoBehaviour
 
         if (shotArrows.Count > maxArrows)
         {
-            IArrow oldArrow = shotArrows.Dequeue();
-            oldArrow.OnUnload();
+            GameObject oldArrow = shotArrows.Dequeue();
+            if (oldArrow != null) Destroy(oldArrow);
         }
 
         if (currentArrow != null)
         {
-            currentArrow.OnUnload();
+            Destroy(currentArrowObj);
             currentArrow = null;
             currentArrowObj = null;
         }
@@ -236,7 +236,7 @@ public class Bow : MonoBehaviour
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
         currentArrow.OnRelease();
 
-        shotArrows.Enqueue(currentArrow);
+        shotArrows.Enqueue(currentArrowObj);
 
         currentArrowObj = null;
         currentArrow = null;
