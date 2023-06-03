@@ -73,12 +73,17 @@ public class PlayerController : MonoBehaviour
     {
         if (disabled) return;
 
+        bool isGrounded = IsGrounded();
+
+        if (isGrounded)
+        {
+            canDoubleJump = true;
+        }
+
         if (context.performed)
         {
-            if (IsGrounded())
+            if (isGrounded)
             {
-                canDoubleJump = true;
-                isJumping = true;
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
             else if (canDoubleJump)
@@ -87,7 +92,6 @@ public class PlayerController : MonoBehaviour
                 currentVelocity.y = 0; // reset y velocity before so jump always feels the same
                 rb.velocity = currentVelocity;
                 canDoubleJump = false;
-                isJumping = true;
                 rb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
             }
         }
@@ -169,7 +173,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePosition = Vector2.zero;
     // private float currentSpeed = 0f;
     private bool canDoubleJump = false;
-    private bool isJumping = false;
     private bool isSprinting = false;
     private bool isCrouching = false;
     private bool isAiming = false;
