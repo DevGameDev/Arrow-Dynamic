@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class GrappleArrow : BasicArrow
 {
     public float pullForce = 10000.0f;
+    public float duration = 1f;
     private LineRenderer grappleLine;
     private Vector3 grapplePoint;
     private bool grappleActive;
@@ -21,16 +23,37 @@ public class GrappleArrow : BasicArrow
         grappleLine.SetPosition(0, transform.position);
         grappleActive = true;
         grappleLine.enabled = true;
+
+        StartCoroutine(GrappleDespawnTimer());
     }
 
     public override void OnHit(Collider other)
     {
         base.OnHit(other);
         grapplePoint = transform.position;
-        // Give player an impulse towards the grapple point
+
+        // Start the coroutine to apply the grapple force smoothly
+        StartCoroutine(GrappleForce());
+    }
+
+    private IEnumerator GrappleForce()
+    {
         PlayerController playerController = PlayerController.Instance;
-        Vector3 pullDirection = (grapplePoint - playerController.transform.position).normalized;
-        playerController.grappleVelocity += (pullDirection * pullForce) / playerController.rb.mass;
+
+        // Cancel the player's vertical velocity.
+        playerController.rb.velocity = Vector3.zero;
+
+        // The grapple effect duration
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            Vector3 pullDirection = (grapplePoint - playerController.transform.position).normalized;
+            playerController.rb.AddForce(pullDirection * pullForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
         grappleActive = false;
         grappleLine.enabled = false;
     }
@@ -42,5 +65,17 @@ public class GrappleArrow : BasicArrow
             grappleLine.SetPosition(0, transform.position);
             grappleLine.SetPosition(1, PlayerController.Instance.transform.position);
         }
+    }
+
+    private IEnumerator GrappleDespawnTimer()
+    {
+        float startTime = Time.time;
+
+        while (Time.time - startTime < 10f)
+        {
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3180870}
   - component: {fileID: 3180871}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245600739}
   - component: {fileID: 245600740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3193,6 +3193,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZLPC_Crystal_A_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1844311990666850, guid: eb19abd4bed47bc4185cf0c613c3e9dd, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4026791585657208, guid: eb19abd4bed47bc4185cf0c613c3e9dd, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -3253,6 +3257,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 819025796452160321, guid: eb19abd4bed47bc4185cf0c613c3e9dd, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 966018263635170568, guid: eb19abd4bed47bc4185cf0c613c3e9dd, type: 3}
       propertyPath: m_Intensity
       value: 5.15
@@ -3274,9 +3282,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8329327645559901325}
     m_Modifications:
+    - target: {fileID: 1250914275547122, guid: 5bef73d492060c640851ae1d3c71c0c9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1666147448912366, guid: 5bef73d492060c640851ae1d3c71c0c9, type: 3}
       propertyPath: m_Name
       value: ZLPC_Lamp_03_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666147448912366, guid: 5bef73d492060c640851ae1d3c71c0c9, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4884501307536488, guid: 5bef73d492060c640851ae1d3c71c0c9, type: 3}
       propertyPath: m_RootOrder
@@ -3442,6 +3458,10 @@ PrefabInstance:
     - target: {fileID: 1571844828950630, guid: 09f29cb768c917e49a2d574d50580e2c, type: 3}
       propertyPath: m_Name
       value: ZLPC_Crystal_C_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571844828950630, guid: 09f29cb768c917e49a2d574d50580e2c, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4251876579518988, guid: 09f29cb768c917e49a2d574d50580e2c, type: 3}
       propertyPath: m_RootOrder
@@ -6651,6 +6671,10 @@ PrefabInstance:
     - target: {fileID: 1802094367928604, guid: bee3d66b45b6c5e47b8c7d9ab639b64f, type: 3}
       propertyPath: m_Name
       value: ZLPC_Crystal_A_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802094367928604, guid: bee3d66b45b6c5e47b8c7d9ab639b64f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4844839315426930, guid: bee3d66b45b6c5e47b8c7d9ab639b64f, type: 3}
       propertyPath: m_RootOrder
@@ -11529,6 +11553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2988880825149015064, guid: f9569786e5e0fd14bb2b40b08878ca52, type: 3}
+    - {fileID: 6015495893185581568, guid: f9569786e5e0fd14bb2b40b08878ca52, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9569786e5e0fd14bb2b40b08878ca52, type: 3}
 --- !u!4 &7682351413000473531 stripped
 Transform:
@@ -14518,10 +14543,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8329327644061215632}
     m_Modifications:
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: iceArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: ff373fa205dc4724bb924bf38bde6be4, type: 3}
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: bombArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 900a2369b7085cd47af589f6fbd8442e, type: 3}
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: timeArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: e797e929baebfc0468e9e9dcb843e74b, type: 3}
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: windArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 9d9b734c8acdf9842bd2b4019b8878e6, type: 3}
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: bubbleArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 1a2f3a307b9ba14488d80e00fa4a7250, type: 3}
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: grappleArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: 3bca1016473375a458373f6a3de2c45e, type: 3}
+    - target: {fileID: 471064608049349383, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: gravityArrowPrefab
+      value: 
+      objectReference: {fileID: 4382902291757207984, guid: a18d8837508b96542bb773a1310cc166, type: 3}
+    - target: {fileID: 2379360065467642518, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: grappleDamping
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2379360065467642518, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
       propertyPath: voidStartPoint
       value: 
       objectReference: {fileID: 7725310978087340458}
+    - target: {fileID: 2379360065467642518, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
+      propertyPath: explosionDamping
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2379360065467642518, guid: 3c33ce5f7678ff04eb460a201d15ec0a, type: 3}
       propertyPath: jungleStartPoint
       value: 

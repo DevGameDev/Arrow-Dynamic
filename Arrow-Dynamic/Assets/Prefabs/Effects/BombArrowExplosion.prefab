@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906d92acac5ea3e4caa12c118e997d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 50
-  power: 2000
+  radius: 150
+  power: 12000

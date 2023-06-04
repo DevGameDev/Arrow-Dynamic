@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool gameStarted = false;
+    private float gameTimeScale;
     public void UpdateGameState(GameStates newState)
     {
         state.lastState = state.currentState;
@@ -67,20 +68,36 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(LoadTutorialChamber());
                     gameStarted = true;
                 }
+                else
+                {
+                    Time.timeScale = gameTimeScale;
+                }
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 break;
             case GameStates.MainMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                if (gameStarted)
+                {
+                    gameStarted = false;
+                    Time.timeScale = gameTimeScale;
+                }
                 break;
             case GameStates.PauseMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
+                gameTimeScale = Time.timeScale;
+                Time.timeScale = 0f;
                 break;
             case GameStates.SettingsMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                Time.timeScale = gameTimeScale;
                 break;
             default:
                 Debug.LogError($"SetGameState undefined current state: {state.currentState}"); // $ makes formatted string
@@ -334,6 +351,25 @@ public class GameManager : MonoBehaviour
         GameplaySetInputEnabled(true);
 
         yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));
+
+        yield return null;
+    }
+
+    private IEnumerator LoadMainMenu()
+    {
+        tutorialChamber.SetActive(true);
+        tutorialToOnePass.SetActive(true);
+        tutorialBlocker.SetActive(false);
+        levelOneChamber.SetActive(true);
+        OneToTwoPass.SetActive(true);
+        levelOneBlocker.SetActive(false);
+        levelTwoChamber.SetActive(true);
+        jungleLevel.SetActive(false);
+        voidLevel.SetActive(false);
+
+        PlayerController.Instance.SetSpawnPoint(SpawnPoints.TutorialStart);
+        PlayerController.Instance.SpawnPlayer(SpawnPoints.TutorialStart);
+        playerObj.SetActive(false);
 
         yield return null;
     }
