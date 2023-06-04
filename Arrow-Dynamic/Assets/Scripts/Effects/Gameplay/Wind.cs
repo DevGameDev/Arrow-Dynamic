@@ -34,8 +34,9 @@ public class Wind : MonoBehaviour
                 {
                     rb.AddForce(windDirection * windStrength);
                 }
+                timeRemaining -= Time.fixedDeltaTime;
             }
-            else if (timeRemaining == 0)
+            else if (timeRemaining <= 0)
                 Destroy(this);
         }
     }

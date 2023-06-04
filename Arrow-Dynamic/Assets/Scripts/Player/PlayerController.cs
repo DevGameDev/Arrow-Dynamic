@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public static bool disabled = false;
     public bool gravityArrowActive = false;
     public bool timeArrowActive = false;
+    public bool windArrowActive = false;
     public bool arrowWheelActive = false;
     public bool timeSlowed = false;
 
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
         mousePosition = Vector2.Lerp(mousePosition, mousePosition + mouseDelta, 1.0f / viewSmoothing);
 
-        mousePosition.y = Mathf.Clamp(mousePosition.y, -60.0f, 90.0f); // Don't allow 360 y-axis
+        mousePosition.y = Mathf.Clamp(mousePosition.y, -75.0f, 90.0f); // Don't allow 360 y-axis
     }
 
     public void HandleJump(InputAction.CallbackContext context)
@@ -225,6 +226,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (arrowWheelActive)
+            Time.timeScale = 0.1f;
+        else if (timeArrowActive)
+            Time.timeScale = 0.5f;
+        else Time.timeScale = 1f;
         if (move.magnitude > 0)
         {
             float controlFactor = IsGrounded() ? groundControlFactor : airControlFactor;
