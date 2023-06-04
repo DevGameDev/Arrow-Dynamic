@@ -23,6 +23,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject virtualCamera;
     [SerializeField] private Image FadeImage;
 
+    [Header("Effect Icons")]
+    [SerializeField] private GameObject gravityEffectIcon;
+    [SerializeField] private GameObject windEffectIcon;
+    [SerializeField] private GameObject wind2x;
+    [SerializeField] private GameObject wind3x;
+    [SerializeField] private GameObject timeEffectIcon;
+
     public AnimationCurve Curve;
     public float openFadeDuration = 1f;
     public Color openFadeColor = Color.white;
@@ -42,6 +49,11 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(HandleGameStart());
                 gameplayStarted = true;
             }
+            else
+            {
+                GameplayPanel.SetActive(true);
+                GameManager.Instance.UpdateGameState(GameStates.Gameplay);
+            }
         }
         else
         {
@@ -52,12 +64,20 @@ public class UIManager : MonoBehaviour
     {
         if (enabled)
         {
-            CanvasGroup group = MainMenuPanel.GetComponent<CanvasGroup>();
+            if (gameplayStarted)
+            {
+                StartCoroutine(HandleGameplayQuit());
+                gameplayStarted = false;
+            }
+            else
+            {
+                CanvasGroup group = MainMenuPanel.GetComponent<CanvasGroup>();
+                group.interactable = true;
+                group.alpha = 1;
+                MainMenuPanel.SetActive(true);
 
-            group.interactable = true;
-            group.alpha = 1;
-            MainMenuPanel.SetActive(true);
-            GameManager.Instance.UpdateGameState(GameStates.MainMenu);
+                GameManager.Instance.UpdateGameState(GameStates.MainMenu);
+            }
         }
         else
         {
@@ -90,12 +110,10 @@ public class UIManager : MonoBehaviour
             if (state.lastState == GameStates.MainMenu)
             {
                 ControlMainPanel(true);
-                GameManager.Instance.UpdateGameState(GameStates.MainMenu);
             }
             else if (state.lastState == GameStates.PauseMenu)
             {
                 ControlPausePanel(true);
-                GameManager.Instance.UpdateGameState(GameStates.PauseMenu);
             }
             SettingsPanel.SetActive(false);
 
@@ -130,23 +148,23 @@ public class UIManager : MonoBehaviour
         yield return StartCoroutine(ControlFade(false, gameStartFadeDuration));
     }
 
-    private IEnumerator MoveCameraToPosition(Transform cameraTransform, Vector3 newPosition, Quaternion newRotation)
+    private IEnumerator HandleGameplayQuit()
     {
-        float elapsedTime = 0f;
-        Vector3 startingPos = cameraTransform.position;
-        Quaternion startingRot = cameraTransform.rotation;
+        GameManager.Instance.UpdateGameState(GameStates.MainMenu);
 
-        while (elapsedTime < openFadeDuration * 2) // x2 for fade in and out
-        {
-            float t = Curve.Evaluate(elapsedTime / openFadeDuration);
-            cameraTransform.position = Vector3.Lerp(startingPos, newPosition, t);
-            cameraTransform.rotation = Quaternion.Slerp(startingRot, newRotation, t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.MenuTheme, gameStartFadeDuration * 2));
+        yield return StartCoroutine(ControlFade(true, gameStartFadeDuration));
 
-        cameraTransform.position = newPosition;
-        cameraTransform.rotation = newRotation;
+        mainMenuCamera.SetActive(true);
+        mainMenuCamFollow.SetActive(true);
+        virtualCamera.SetActive(true);
+        cameraTrack.SetActive(true);
+        MainMenuPanel.SetActive(true);
+
+        yield return StartCoroutine(ControlFade(false, gameStartFadeDuration));
+
+        yield return StartCoroutine(FadeCanvasGroupToVisible(MainMenuPanel.GetComponent<CanvasGroup>(), gameStartFadeDuration));
+
     }
 
     public void SetFadeColor(Color color)
@@ -171,9 +189,9 @@ public class UIManager : MonoBehaviour
             FadeImage.raycastTarget = false;
         }
 
-        while (elapsedTime < openFadeDuration)
+        while (elapsedTime < duration)
         {
-            float t = Curve.Evaluate(elapsedTime / openFadeDuration);
+            float t = Curve.Evaluate(elapsedTime / duration);
             FadeImage.color = new Color(FadeImage.color.r, FadeImage.color.g, FadeImage.color.b, Mathf.Lerp(startAlpha, finalAlpha, t));
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -242,6 +260,10 @@ public class UIManager : MonoBehaviour
 
         state = GameManager.GetState();
 
+        ControlWindEffectIcon(false, 1);
+        ControlGravityEffectIcon(false);
+        ControlTimeEffectIcon(false);
+
         SetFadeColor(openFadeColor);
 
         StartCoroutine(StartSequence(false)); // true to skip
@@ -271,5 +293,60 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.UpdateGameState(initialMenuType);
 
         yield return null;
+    }
+
+    public void ControlGravityEffectIcon(bool on)
+    {
+        if (on)
+            gravityEffectIcon.SetActive(true);
+        else
+            gravityEffectIcon.SetActive(false);
+
+    }
+
+    public void ControlWindEffectIcon(bool on, int activeWindEffects)
+    {
+        if (on)
+        {
+            switch (activeWindEffects)
+            {
+                case (0):
+                    windEffectIcon.SetActive(true);
+                    break;
+                case (1):
+                    wind2x.SetActive(true);
+                    break;
+                case (2):
+                    wind2x.SetActive(false);
+                    wind3x.SetActive(true);
+                    break;
+            };
+        }
+        else
+        {
+            switch (activeWindEffects)
+            {
+                case (1):
+                    windEffectIcon.SetActive(false);
+                    break;
+                case (2):
+                    wind2x.SetActive(false);
+                    break;
+                case (3):
+                    wind3x.SetActive(false);
+                    wind2x.SetActive(true);
+                    break;
+            };
+        }
+
+    }
+
+    public void ControlTimeEffectIcon(bool on)
+    {
+        if (on)
+            timeEffectIcon.SetActive(true);
+        else
+            timeEffectIcon.SetActive(false);
+
     }
 }

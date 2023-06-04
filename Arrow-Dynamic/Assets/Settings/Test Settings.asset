@@ -19,16 +19,16 @@ MonoBehaviour:
   gameplay:
     initialState: 2
     baseTimeScale: 1
-    speed: 18.21
+    speed: 24
     maxVelocity: 0.001
     moveSmoothing: 10
     sidewaysSpeedMultiplier: 0.8
     reverseSpeedMultiplier: 0.5
     sprintSpeedMultiplier: 1.5
-    aimSpeedMultiplier: 0.8
-    jumpForce: 70
-    doubleJumpForce: 70
-    airSpeedMultiplier: 0.5
+    aimSpeedMultiplier: 0.9
+    jumpForce: 60
+    doubleJumpForce: 60
+    airSpeedMultiplier: 0.8
     lowJumpMultiplier: 1
     fallMultiplier: 1
     airControl: 1

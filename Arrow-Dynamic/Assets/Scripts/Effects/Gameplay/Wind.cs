@@ -34,9 +34,14 @@ public class Wind : MonoBehaviour
                 {
                     rb.AddForce(windDirection * windStrength);
                 }
+                timeRemaining -= Time.fixedDeltaTime;
             }
-            else if (timeRemaining == 0)
+            else if (timeRemaining <= 0)
+            {
+                if (WindArrow.activeWindEffects > 0) UIManager.Instance.ControlWindEffectIcon(false, WindArrow.activeWindEffects);
+                WindArrow.activeWindEffects -= 1;
                 Destroy(this);
+            }
         }
     }
 }

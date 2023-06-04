@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     // Public Properties and Methods
     //////////////////////////////////////////////////
 
+    public static PlayerController Instance { get; set; }
+
     // Components
     public Rigidbody rb;
     public Transform camTransform;
@@ -24,14 +26,35 @@ public class PlayerController : MonoBehaviour
     public RespawnPoint voidStartPoint;
 
     public SpawnPoints lastSpawnPoint = SpawnPoints.TutorialStart;
-
+    private Dictionary<SpawnPoints, RespawnPoint> points = new Dictionary<SpawnPoints, RespawnPoint>();
 
     //for player damege
     public float player_health = 5f;
     public float health_cur;
     public float health;
+    public float playerGravity = 100f;
 
-    public static PlayerController Instance { get; set; }
+    // State
+    private Vector2 move = Vector2.zero;
+    private Vector2 mousePosition = Vector2.zero;
+    // private float currentSpeed = 0f;
+    private bool canDoubleJump = false;
+    private bool isSprinting = false;
+    private bool isCrouching = false;
+    private bool isAiming = false;
+    private float bobTimer = 0;
+    private float camBaseHeight;
+    public static bool disabled = false;
+    public bool gravityArrowActive = false;
+    public bool timeArrowActive = false;
+    public bool windArrowActive = false;
+    public bool arrowWheelActive = false;
+    public bool timeSlowed = false;
+
+    public float groundControlFactor = 1f;
+    public float airControlFactor = 0.7f;
+    [SerializeField] private float dampingAmount = 5f;
+    [SerializeField] private float frictionAmount = 10f;
 
     public void SetSpawnPoint(SpawnPoints pointType)
     {
@@ -57,14 +80,14 @@ public class PlayerController : MonoBehaviour
 
     public void HandleLook(InputAction.CallbackContext context)
     {
-        if (disabled)
+        if (disabled || arrowWheelActive)
             return;
 
         Vector2 mouseDelta = context.ReadValue<Vector2>() * mouseSensitivity;
 
         mousePosition = Vector2.Lerp(mousePosition, mousePosition + mouseDelta, 1.0f / viewSmoothing);
 
-        mousePosition.y = Mathf.Clamp(mousePosition.y, -60.0f, 90.0f); // Don't allow 360 y-axis
+        mousePosition.y = Mathf.Clamp(mousePosition.y, -75.0f, 90.0f); // Don't allow 360 y-axis
     }
 
     public void HandleJump(InputAction.CallbackContext context)
@@ -90,7 +113,7 @@ public class PlayerController : MonoBehaviour
                 currentVelocity.y = 0; // reset y velocity before so jump always feels the same
                 rb.velocity = currentVelocity;
                 canDoubleJump = false;
-                rb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
     }
@@ -139,6 +162,14 @@ public class PlayerController : MonoBehaviour
 
     public void HandleArrowWheel(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            arrowWheelActive = true;
+        }
+        else if (context.canceled)
+        {
+            arrowWheelActive = false;
+        }
     }
 
     public IEnumerator ShakeCamera(float duration, float magnitude, float speed)
@@ -161,34 +192,6 @@ public class PlayerController : MonoBehaviour
 
         transform.localPosition = originalPosition;
     }
-
-    //////////////////////////////////////////////////
-    // Private Fields and Methods
-    //////////////////////////////////////////////////
-
-    // State
-    private Vector2 move = Vector2.zero;
-    private Vector2 mousePosition = Vector2.zero;
-    // private float currentSpeed = 0f;
-    private bool canDoubleJump = false;
-    private bool isSprinting = false;
-    private bool isCrouching = false;
-    private bool isAiming = false;
-    private float bobTimer = 0;
-    private float camBaseHeight;
-    public static bool disabled = false;
-    public bool gravityArrowActive = false;
-    public bool timeArrowActive = false;
-    public bool arrowWheelActive = false;
-    public bool timeSlowed = false;
-
-    public Vector3 grappleVelocity = Vector3.zero;
-    public float grappleDamping = 1f;
-
-    public Vector3 explosionVelocity = Vector3.zero;
-    public float explosionDamping = 1f;
-
-    private Dictionary<SpawnPoints, RespawnPoint> points = new Dictionary<SpawnPoints, RespawnPoint>();
 
     private void Awake()
     {
@@ -221,50 +224,45 @@ public class PlayerController : MonoBehaviour
         points[SpawnPoints.VoidStart] = voidStartPoint;
     }
 
-    float currMaxSpeed;
-    private void Update()
+    private void FixedUpdate()
     {
-        if (arrowWheelActive || timeArrowActive)
+        if (arrowWheelActive)
+            Time.timeScale = 0.1f;
+        else if (timeArrowActive)
             Time.timeScale = 0.5f;
         else Time.timeScale = 1f;
-
-        if (WeaponWheelController.Instance.open)
+        if (move.magnitude > 0)
         {
-            disabled = true;
-            return;
+            float controlFactor = IsGrounded() ? groundControlFactor : airControlFactor;
+
+            float multiplier = 1;
+
+            if (isSprinting) multiplier *= sprintSpeedMultiplier;
+            if (isCrouching) multiplier *= crouchSpeedMultiplier;
+            if (isAiming) multiplier *= aimSpeedMultiplier;
+
+            Vector3 moveDirection = new Vector3(move.x, 0, move.y).normalized;
+            moveDirection = transform.TransformDirection(moveDirection); // Transform the direction from local to world coordinates.
+            Vector3 targetVelocity = moveDirection * speed * multiplier;
+
+            // Calculate the velocity change required to reach the target velocity
+            Vector3 velocityChange = targetVelocity - new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            // Apply the force based on control factor
+            rb.AddForce(velocityChange * controlFactor, ForceMode.VelocityChange);
+
+            // Handle jumping
+            if (rb.velocity.y < 0)
+            {
+                // Apply the fall multiplier when falling to speed up fall
+                rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                // Apply the low jump multiplier when the jump key is not held down to shorten jump
+                rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+            }
         }
-        else disabled = false;
-
-        float sideways = move.x;
-        float forward = move.y;
-
-        // if (move.magnitude == 0) return;
-
-        var inputDir = new Vector3(sideways, 0, forward).normalized;
-        var velocity = ((transform.forward * inputDir.z) + (transform.right * inputDir.x)) * speed;
-
-        if (isSprinting && forward > 0) // Only sprint when moving forward
-            velocity *= sprintSpeedMultiplier;
-
-        if (forward < 0) velocity *= reverseSpeedMultiplier;
-        else if (Mathf.Abs(sideways) > Mathf.Abs(forward)) velocity *= sidewaysSpeedMultiplier;
-
-        if (isCrouching) velocity *= crouchSpeedMultiplier;
-
-        if (isAiming) velocity *= aimSpeedMultiplier;
-
-        if (!IsGrounded())
-            velocity = ((1 - airSpeedMultiplier) * rb.velocity) + (airSpeedMultiplier * velocity); // Preserve momentum
-
-        velocity += grappleVelocity;
-        grappleVelocity *= Mathf.Exp(-grappleDamping * Time.deltaTime);
-
-        velocity += explosionVelocity;
-        explosionVelocity *= Mathf.Exp(-explosionDamping * Time.deltaTime);
-
-        // Preserve vertical velocity (gravity)
-        velocity.y = rb.velocity.y;
-        rb.velocity = velocity;
     }
 
     private void LateUpdate()

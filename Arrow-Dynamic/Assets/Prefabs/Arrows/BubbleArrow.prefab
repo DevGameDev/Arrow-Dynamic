@@ -506,7 +506,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!136 &4262778335109395216
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -539,7 +539,6 @@ MonoBehaviour:
   - {fileID: 4262778335109395216}
   impactSpeedThreshold: 0.5
   bubblePrefab: {fileID: 9149159475798725743, guid: 9ec38efe6a5376f43aa1508593844bdf, type: 3}
-  despawnTime: 10
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0

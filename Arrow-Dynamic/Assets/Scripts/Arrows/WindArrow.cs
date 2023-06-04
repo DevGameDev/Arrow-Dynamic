@@ -5,22 +5,28 @@ using UnityEngine;
 public class WindArrow : BasicArrow
 {
     public GameObject windPrefab;
+    public static int activeWindEffects = 0;
 
-    public override void OnHit(Collider other)
+    public override void OnRelease()
     {
-        base.OnHit(other);
+        base.OnRelease();
 
-        StartCoroutine(ApplyWindEffect());
+        if (activeWindEffects < 3)
+        {
+            UIManager.Instance.ControlWindEffectIcon(true, activeWindEffects);
+
+            ApplyWindEffect();
+        }
+        else Destroy(gameObject);
     }
 
-    IEnumerator ApplyWindEffect()
+    private void ApplyWindEffect()
     {
-        Instantiate(windPrefab, transform.position, Quaternion.identity);
+        activeWindEffects += 1;
 
-        windPrefab.GetComponent<Wind>().ActivateWind(transform.forward);
+        GameObject windObj = Instantiate(windPrefab, transform.position, Quaternion.identity);
 
+        windObj.GetComponent<Wind>().ActivateWind(-transform.up);
         Destroy(gameObject);
-
-        yield return null;
     }
 }
