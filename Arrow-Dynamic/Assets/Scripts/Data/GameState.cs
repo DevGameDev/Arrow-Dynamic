@@ -20,4 +20,5 @@ public enum GameStates
     SettingsMenu,
     Gameplay,
     PauseMenu,
+    ControlsMenu,
 }

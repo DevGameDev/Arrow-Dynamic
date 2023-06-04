@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.SettingsMenu:
                 break;
+            case GameStates.ControlsMenu:
+                break;
             default:
                 Debug.LogError($"SetGameState undefined last state: {state.lastState}"); // $ makes formatted string
                 break;
@@ -72,9 +74,9 @@ public class GameManager : MonoBehaviour
                 {
                     Time.timeScale = gameTimeScale;
                 }
+                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
                 break;
             case GameStates.MainMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
@@ -84,20 +86,26 @@ public class GameManager : MonoBehaviour
                 {
                     gameStarted = false;
                     Time.timeScale = gameTimeScale;
+                    StartCoroutine(LoadMainMenu());
                 }
                 break;
             case GameStates.PauseMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
-                gameTimeScale = Time.timeScale;
+                if (state.lastState == GameStates.Gameplay)
+                    gameTimeScale = Time.timeScale;
                 Time.timeScale = 0f;
                 break;
             case GameStates.SettingsMenu:
                 InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
-                Time.timeScale = gameTimeScale;
+                break;
+            case GameStates.ControlsMenu:
+                InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Menu);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
                 break;
             default:
                 Debug.LogError($"SetGameState undefined current state: {state.currentState}"); // $ makes formatted string
@@ -107,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     public void HandlePause(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
             UIManager.Instance.ControlPausePanel(true); // Will call UpdateGameForNewState
             UIManager.Instance.ControlGameplayPanel(false);
@@ -211,6 +219,8 @@ public class GameManager : MonoBehaviour
             case GameStates.PauseMenu:
                 break;
             case GameStates.SettingsMenu:
+                break;
+            case GameStates.ControlsMenu:
                 break;
             default:
                 Debug.LogError($"GameManager.Update() undefined current state: {state.currentState}"); // $ makes formatted string

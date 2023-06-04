@@ -538,7 +538,7 @@ MonoBehaviour:
   myColliders:
   - {fileID: 4262778335109395216}
   impactSpeedThreshold: 0.5
-  effectDuration: 3
+  effectDuration: 2
   effectGravity: 20
 --- !u!1 &4491547016597668332
 GameObject:

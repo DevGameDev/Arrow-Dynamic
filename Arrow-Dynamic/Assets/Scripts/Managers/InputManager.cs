@@ -19,7 +19,8 @@ public class InputManager : MonoBehaviour
         Disabled,
         Gameplay,
         ArrowWheel,
-        Menu
+        Menu,
+        Instructions
     }
 
     public void SetInputActionMap(InputMapType type)
@@ -33,6 +34,8 @@ public class InputManager : MonoBehaviour
             arrowWheelMap.Enable();
         else if (type is InputMapType.Menu)
             menusMap.Enable();
+        else if (type is InputMapType.Instructions)
+            instructionsMap.Enable();
     }
 
     //////////////////////////////////////////////////
@@ -43,6 +46,7 @@ public class InputManager : MonoBehaviour
     private InputActionMap gameplayMap;
     private InputActionMap arrowWheelMap;
     private InputActionMap menusMap;
+    private InputActionMap instructionsMap;
     private List<InputActionMap> allMaps = new List<InputActionMap>();
 
     private void Awake()
@@ -65,5 +69,8 @@ public class InputManager : MonoBehaviour
 
         menusMap = inputAsset.FindActionMap("Menus");
         allMaps.Add(menusMap);
+
+        instructionsMap = inputAsset.FindActionMap("Instructions");
+        allMaps.Add(instructionsMap);
     }
 }

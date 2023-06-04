@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private GameObject GameplayPanel;
     [SerializeField] private GameObject PausePanel;
+    [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject creditsPanel;
 
     [Header("Settings")]
@@ -23,7 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject virtualCamera;
     [SerializeField] private Image FadeImage;
 
-    [Header("Effect Icons")]
+    [Header("Gameplay UI components")]
     [SerializeField] private GameObject gravityEffectIcon;
     [SerializeField] private GameObject windEffectIcon;
     [SerializeField] private GameObject wind2x;
@@ -52,12 +54,17 @@ public class UIManager : MonoBehaviour
             else
             {
                 GameplayPanel.SetActive(true);
+                CanvasGroup group = GameplayPanel.GetComponent<CanvasGroup>();
+                group.alpha = 1;
+                group.interactable = true;
                 GameManager.Instance.UpdateGameState(GameStates.Gameplay);
             }
         }
         else
         {
-            GameplayPanel.SetActive(false);
+            CanvasGroup group = GameplayPanel.GetComponent<CanvasGroup>();
+            group.alpha = 0;
+            group.interactable = false;
         }
     }
     public void ControlMainPanel(bool enabled)
@@ -72,9 +79,9 @@ public class UIManager : MonoBehaviour
             else
             {
                 CanvasGroup group = MainMenuPanel.GetComponent<CanvasGroup>();
+                MainMenuPanel.SetActive(true);
                 group.interactable = true;
                 group.alpha = 1;
-                MainMenuPanel.SetActive(true);
 
                 GameManager.Instance.UpdateGameState(GameStates.MainMenu);
             }
@@ -98,6 +105,27 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ControlControlsPanel(bool enabled)
+    {
+        if (enabled)
+        {
+            controlsPanel.SetActive(true);
+            GameManager.Instance.UpdateGameState(GameStates.ControlsMenu);
+        }
+        else
+        {
+            if (state.lastState == GameStates.MainMenu)
+            {
+                ControlMainPanel(true);
+            }
+            else if (state.lastState == GameStates.PauseMenu)
+            {
+                ControlPausePanel(true);
+            }
+            controlsPanel.SetActive(false);
+        }
+    }
+
     public void ControlSettingsPanel(bool enabled)
     {
         if (enabled)
@@ -117,6 +145,15 @@ public class UIManager : MonoBehaviour
             }
             SettingsPanel.SetActive(false);
 
+        }
+    }
+
+    public void HandleInstructionsContinue(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            controlsPanel.SetActive(false);
+            InputManager.Instance.SetInputActionMap(InputManager.InputMapType.Gameplay);
         }
     }
 
@@ -145,9 +182,9 @@ public class UIManager : MonoBehaviour
         cameraTrack.SetActive(false);
 
         GameManager.Instance.UpdateGameState(GameStates.Gameplay);
+
         yield return StartCoroutine(ControlFade(false, gameStartFadeDuration));
     }
-
     private IEnumerator HandleGameplayQuit()
     {
         GameManager.Instance.UpdateGameState(GameStates.MainMenu);
