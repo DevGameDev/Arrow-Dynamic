@@ -400,6 +400,34 @@
             "id": "21db682a-db49-43f8-a278-8e1cfa0294b8",
             "actions": [],
             "bindings": []
+        },
+        {
+            "name": "Instructions",
+            "id": "2daf9188-c8c2-4200-998b-43574769e9df",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "5a13bf9f-548d-47c4-b646-30ca76a397c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3647f4a-5e5a-4160-b777-19577d2877ee",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

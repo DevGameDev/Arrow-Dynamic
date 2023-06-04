@@ -422,6 +422,34 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""id"": ""21db682a-db49-43f8-a278-8e1cfa0294b8"",
             ""actions"": [],
             ""bindings"": []
+        },
+        {
+            ""name"": ""Instructions"",
+            ""id"": ""2daf9188-c8c2-4200-998b-43574769e9df"",
+            ""actions"": [
+                {
+                    ""name"": ""Continue"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a13bf9f-548d-47c4-b646-30ca76a397c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e3647f4a-5e5a-4160-b777-19577d2877ee"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -447,6 +475,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_ArrowWheel_Select = m_ArrowWheel.FindAction("Select", throwIfNotFound: true);
         // Loading
         m_Loading = asset.FindActionMap("Loading", throwIfNotFound: true);
+        // Instructions
+        m_Instructions = asset.FindActionMap("Instructions", throwIfNotFound: true);
+        m_Instructions_Continue = m_Instructions.FindAction("Continue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -760,6 +791,52 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public LoadingActions @Loading => new LoadingActions(this);
+
+    // Instructions
+    private readonly InputActionMap m_Instructions;
+    private List<IInstructionsActions> m_InstructionsActionsCallbackInterfaces = new List<IInstructionsActions>();
+    private readonly InputAction m_Instructions_Continue;
+    public struct InstructionsActions
+    {
+        private @InputActions m_Wrapper;
+        public InstructionsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Continue => m_Wrapper.m_Instructions_Continue;
+        public InputActionMap Get() { return m_Wrapper.m_Instructions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InstructionsActions set) { return set.Get(); }
+        public void AddCallbacks(IInstructionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InstructionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InstructionsActionsCallbackInterfaces.Add(instance);
+            @Continue.started += instance.OnContinue;
+            @Continue.performed += instance.OnContinue;
+            @Continue.canceled += instance.OnContinue;
+        }
+
+        private void UnregisterCallbacks(IInstructionsActions instance)
+        {
+            @Continue.started -= instance.OnContinue;
+            @Continue.performed -= instance.OnContinue;
+            @Continue.canceled -= instance.OnContinue;
+        }
+
+        public void RemoveCallbacks(IInstructionsActions instance)
+        {
+            if (m_Wrapper.m_InstructionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInstructionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InstructionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InstructionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InstructionsActions @Instructions => new InstructionsActions(this);
     public interface IGameplayActions
     {
         void OnJump(InputAction.CallbackContext context);
@@ -784,5 +861,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     }
     public interface ILoadingActions
     {
+    }
+    public interface IInstructionsActions
+    {
+        void OnContinue(InputAction.CallbackContext context);
     }
 }
