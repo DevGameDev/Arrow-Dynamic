@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkullFloorTrigger : MonoBehaviour
-{
+{/*
     //floor to be moved
     [SerializeField] GameObject floor;
 
@@ -70,5 +70,5 @@ public class SkullFloorTrigger : MonoBehaviour
     //{
     //    door1.transform.position += new Vector3(xComp, yComp, zComp);
     //    door2.transform.position += new Vector3(-xComp, -yComp, -zComp);
-    //}
+    //} */
 }

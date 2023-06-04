@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetSystem : MonoBehaviour
-{
+{/*
     //doors to be moved
     [SerializeField] GameObject door1;
     [SerializeField] GameObject door2;
@@ -80,5 +80,5 @@ public class TargetSystem : MonoBehaviour
     //{
     //    door1.transform.position += new Vector3(xComp, yComp, zComp);
     //    door2.transform.position += new Vector3(-xComp, -yComp, -zComp);
-    //}
+    //} */
 }
