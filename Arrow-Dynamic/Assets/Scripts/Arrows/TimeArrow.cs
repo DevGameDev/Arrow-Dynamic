@@ -13,6 +13,8 @@ public class TimeArrow : BasicArrow
         if (!PlayerController.Instance.timeArrowActive)
         {
             PlayerController.Instance.timeArrowActive = true;
+            UIManager.Instance.ControlTimeEffectIcon(true);
+
             StartCoroutine(ApplyTimeEffect());
         }
     }
@@ -22,5 +24,6 @@ public class TimeArrow : BasicArrow
         yield return new WaitForSeconds(effectDuration);
 
         PlayerController.Instance.timeArrowActive = false;
+        UIManager.Instance.ControlTimeEffectIcon(false);
     }
 }
