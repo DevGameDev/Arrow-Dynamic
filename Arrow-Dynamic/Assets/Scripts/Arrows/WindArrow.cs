@@ -13,6 +13,8 @@ public class WindArrow : BasicArrow
 
         if (activeWindEffects < 3)
         {
+            UIManager.Instance.ControlWindEffectIcon(true, activeWindEffects);
+
             ApplyWindEffect();
         }
         else Destroy(gameObject);
@@ -25,8 +27,6 @@ public class WindArrow : BasicArrow
         GameObject windObj = Instantiate(windPrefab, transform.position, Quaternion.identity);
 
         windObj.GetComponent<Wind>().ActivateWind(-transform.up);
-
-        activeWindEffects -= 1;
         Destroy(gameObject);
     }
 }

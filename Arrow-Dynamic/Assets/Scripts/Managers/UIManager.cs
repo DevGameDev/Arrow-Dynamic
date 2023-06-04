@@ -23,6 +23,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject virtualCamera;
     [SerializeField] private Image FadeImage;
 
+    [Header("Effect Icons")]
+    [SerializeField] private GameObject gravityEffectIcon;
+    [SerializeField] private GameObject windEffectIcon;
+    [SerializeField] private GameObject wind2x;
+    [SerializeField] private GameObject wind3x;
+    [SerializeField] private GameObject timeEffectIcon;
+
     public AnimationCurve Curve;
     public float openFadeDuration = 1f;
     public Color openFadeColor = Color.white;
@@ -253,6 +260,10 @@ public class UIManager : MonoBehaviour
 
         state = GameManager.GetState();
 
+        ControlWindEffectIcon(false, 1);
+        ControlGravityEffectIcon(false);
+        ControlTimeEffectIcon(false);
+
         SetFadeColor(openFadeColor);
 
         StartCoroutine(StartSequence(false)); // true to skip
@@ -282,5 +293,60 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.UpdateGameState(initialMenuType);
 
         yield return null;
+    }
+
+    public void ControlGravityEffectIcon(bool on)
+    {
+        if (on)
+            gravityEffectIcon.SetActive(true);
+        else
+            gravityEffectIcon.SetActive(false);
+
+    }
+
+    public void ControlWindEffectIcon(bool on, int activeWindEffects)
+    {
+        if (on)
+        {
+            switch (activeWindEffects)
+            {
+                case (0):
+                    windEffectIcon.SetActive(true);
+                    break;
+                case (1):
+                    wind2x.SetActive(true);
+                    break;
+                case (2):
+                    wind2x.SetActive(false);
+                    wind3x.SetActive(true);
+                    break;
+            };
+        }
+        else
+        {
+            switch (activeWindEffects)
+            {
+                case (1):
+                    windEffectIcon.SetActive(false);
+                    break;
+                case (2):
+                    wind2x.SetActive(false);
+                    break;
+                case (3):
+                    wind3x.SetActive(false);
+                    wind2x.SetActive(true);
+                    break;
+            };
+        }
+
+    }
+
+    public void ControlTimeEffectIcon(bool on)
+    {
+        if (on)
+            timeEffectIcon.SetActive(true);
+        else
+            timeEffectIcon.SetActive(false);
+
     }
 }

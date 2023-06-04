@@ -14,6 +14,7 @@ public class GravityArrow : BasicArrow
         if (!PlayerController.Instance.gravityArrowActive)
         {
             PlayerController.Instance.gravityArrowActive = true;
+            UIManager.Instance.ControlGravityEffectIcon(true);
             StartCoroutine(ChangeGravity());
         }
     }
@@ -30,6 +31,7 @@ public class GravityArrow : BasicArrow
         // PlayerController.Instance.playerGravity = originalPlayerGravity;
 
         PlayerController.Instance.gravityArrowActive = false;
+        UIManager.Instance.ControlGravityEffectIcon(false);
     }
 }
 

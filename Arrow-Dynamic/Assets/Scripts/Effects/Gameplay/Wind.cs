@@ -37,7 +37,11 @@ public class Wind : MonoBehaviour
                 timeRemaining -= Time.fixedDeltaTime;
             }
             else if (timeRemaining <= 0)
+            {
+                if (WindArrow.activeWindEffects > 0) UIManager.Instance.ControlWindEffectIcon(false, WindArrow.activeWindEffects);
+                WindArrow.activeWindEffects -= 1;
                 Destroy(this);
+            }
         }
     }
 }
