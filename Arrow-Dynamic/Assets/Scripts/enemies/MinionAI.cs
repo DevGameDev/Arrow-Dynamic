@@ -125,6 +125,8 @@ public class MinionAI : MonoBehaviour
 
     public void AttackPlayer()
     {
+        transform.LookAt(player);
+
         if (!alreadyAttacked){
             animator.ResetTrigger("isWalk");
             animator.ResetTrigger("isIdle");
@@ -135,8 +137,6 @@ public class MinionAI : MonoBehaviour
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 64f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
             else{
                 PlayerHealth.Instance.doDamege(3);
@@ -150,7 +150,7 @@ public class MinionAI : MonoBehaviour
 
         }
         /*
-        //Instantiate(explosionEffect, transform.position, transform.rotation);
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
         foreach(Collider collider in colliders)
         {
@@ -164,6 +164,7 @@ public class MinionAI : MonoBehaviour
              DestroyEnemy();
         }
         */
+        
     }
     private void ResetAttack()
     {
