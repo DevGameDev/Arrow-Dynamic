@@ -50,7 +50,6 @@ public class PlayerHealth : MonoBehaviour
         }
         if ((currentHealth < maxHealth) && (currentHealth > 0))
         {
-            Debug.Log(currentHealth);
             currentHealth += Time.deltaTime;                
         }
         

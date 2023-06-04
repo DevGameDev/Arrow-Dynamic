@@ -413,11 +413,11 @@ GameObject:
   - component: {fileID: 9208627822618190023}
   - component: {fileID: 8920170896936416982}
   - component: {fileID: 2988880825149015064}
-  - component: {fileID: 4262778335109395216}
   - component: {fileID: 6015495893185581568}
+  - component: {fileID: 3803118896080675617}
   m_Layer: 9
   m_Name: BasicArrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,20 +507,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!136 &4262778335109395216
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4382902291757207984}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.01
-  m_Height: 0.02
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.01, z: 0}
 --- !u!114 &6015495893185581568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,8 +522,21 @@ MonoBehaviour:
   myEnabled: 0
   myRb: {fileID: 2988880825149015064}
   myColliders:
-  - {fileID: 4262778335109395216}
+  - {fileID: 3803118896080675617}
   impactSpeedThreshold: 3
+--- !u!135 &3803118896080675617
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382902291757207984}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0008496489
+  m_Center: {x: -0.00000021674414, y: -0.0026404604, z: 0.00000021674416}
 --- !u!1 &4491547016597668332
 GameObject:
   m_ObjectHideFlags: 0
