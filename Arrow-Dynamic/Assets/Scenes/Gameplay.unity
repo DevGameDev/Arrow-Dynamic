@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ddca29bb094a4134c91a3f087690bee6, type: 3}
       propertyPath: m_Name
-      value: scull lp
+      value: 1Skull1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddca29bb094a4134c91a3f087690bee6, type: 3}
@@ -834,7 +834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ddca29bb094a4134c91a3f087690bee6, type: 3}
       propertyPath: m_Name
-      value: scull lp (2)
+      value: 1Skull3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddca29bb094a4134c91a3f087690bee6, type: 3}
@@ -886,6 +886,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &774468409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8862472452103089640, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+  m_PrefabInstance: {fileID: 6948367608307411728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &774468415
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774468409}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bceeade7c6ff14f4abe4c108f31390f7, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bceeade7c6ff14f4abe4c108f31390f7, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &774468416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774468409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcc1618d0561d54184d6ead13a6d1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skull1: {fileID: 426346915}
+  skull2: {fileID: 445859217}
+  skull3: {fileID: 1236012122}
 --- !u!1001 &866728404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1373,7 +1409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ddca29bb094a4134c91a3f087690bee6, type: 3}
       propertyPath: m_Name
-      value: scull lp (1)
+      value: 1Skull2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddca29bb094a4134c91a3f087690bee6, type: 3}
@@ -1384,6 +1420,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1746958166, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: ee03c5ff9c9fe1f4cb4ea894837ecaec, type: 2}
+    - target: {fileID: 1746958166, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746958166, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746958166, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: ee03c5ff9c9fe1f4cb4ea894837ecaec, type: 2}
     - target: {fileID: 2224226457548978757, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -1488,6 +1540,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -13.38
       objectReference: {fileID: 0}
+    - target: {fileID: 8193739945885740261, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193739945885740261, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2129714411, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
     - {fileID: 892686760, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
@@ -1498,4 +1558,5 @@ PrefabInstance:
     - {fileID: 6772266140025684796, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
     - {fileID: 6772266140294238646, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
     - {fileID: 6772266138876559928, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
+    - {fileID: 832412699, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2f99c39789f70cb4691d686ccc837519, type: 3}
