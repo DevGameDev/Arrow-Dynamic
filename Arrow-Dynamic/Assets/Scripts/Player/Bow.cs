@@ -223,9 +223,6 @@ public class Bow : MonoBehaviour
         isBowPulled = false;
         if (currentArrow == null) return;
 
-        // Shoot the arrow
-
-
         Rigidbody arrowRigidbody = currentArrow.rb;
         arrowRigidbody.isKinematic = false;
         arrowRigidbody.useGravity = true;
@@ -234,6 +231,7 @@ public class Bow : MonoBehaviour
         arrowTransform = null;
 
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
+        ScoreManager.Instance.UseArrow(currentArrowType);
         currentArrow.OnRelease();
 
         shotArrows.Enqueue(currentArrowObj);
