@@ -64,5 +64,6 @@ public class BasicArrow : MonoBehaviour, IArrow
 
     virtual public void OnHit(Collider other)
     {
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.ArrowHit, 0.7f);
     }
 }
