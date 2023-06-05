@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
         Explosion,
         Jump,
         PowerUp,
+        BowDraw,
+        ArrowHit,
     }
 
     public enum Song
@@ -115,11 +117,11 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play sound effects
-    public void PlaySFX(SoundEffect sfx)
+    public void PlaySFX(SoundEffect sfx, float adjust)
     {
         if (sfxDict.ContainsKey(sfx))
         {
-            sfxSource.PlayOneShot(sfxDict[sfx], audioVolume);
+            sfxSource.PlayOneShot(sfxDict[sfx], audioVolume * adjust);
         }
     }
 }
