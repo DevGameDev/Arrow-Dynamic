@@ -208,6 +208,7 @@ public class Bow : MonoBehaviour
         arrowTransform = currentArrowObj.transform;
         arrowTransform.parent = cameraTransform;
         currentArrowObj.SetActive(true);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowDraw, 1.0f);
     }
 
     private void CancelPull()
@@ -242,6 +243,7 @@ public class Bow : MonoBehaviour
         currentArrow = null;
 
         AudioSource audioSource = GetComponent<AudioSource>();
+
         if (audioSource != null)
         {
             audioSource.Play();
@@ -282,21 +284,23 @@ public class Bow : MonoBehaviour
             }
             currentPullTime = maxPullTime;
             ReleaseBow();
+
             // Play the audio clip
-            string arrowSwishClipPath = "Audio/SFX/arrow_swish";
-            AudioSource audioSource = GetComponent<AudioSource>();
-            if (audioSource != null)
-            {
-                AudioClip arrowSwishClip = Resources.Load<AudioClip>(arrowSwishClipPath);
-                if (arrowSwishClip != null)
-                {
-                    audioSource.PlayOneShot(arrowSwishClip);
-                }
-                else
-                {
-                    Debug.LogWarning("Arrow swish audio clip not found: " + arrowSwishClipPath);
-                }
-            }
+            //old audio code
+            //string arrowSwishClipPath = "Audio/SFX/arrow_swish";
+            //AudioSource audioSource = GetComponent<AudioSource>();
+            //if (audioSource != null)
+            //{
+            //    AudioClip arrowSwishClip = Resources.Load<AudioClip>(arrowSwishClipPath);
+            //    if (arrowSwishClip != null)
+            //    {
+            //        audioSource.PlayOneShot(arrowSwishClip);
+            //    }
+            //    else
+            //    {
+            //        Debug.LogWarning("Arrow swish audio clip not found: " + arrowSwishClipPath);
+            //    }
+            //}
             yield return new WaitForSeconds(autoFireInterval);
         }
     }
