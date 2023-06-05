@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,7 +31,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject wind2x;
     [SerializeField] private GameObject wind3x;
     [SerializeField] private GameObject timeEffectIcon;
-    [SerializeField] private TextMeshProUGUI objectiveText;
 
     public AnimationCurve Curve;
     public float openFadeDuration = 1f;
@@ -302,7 +300,6 @@ public class UIManager : MonoBehaviour
         ControlWindEffectIcon(false, 1);
         ControlGravityEffectIcon(false);
         ControlTimeEffectIcon(false);
-        FadeImage.gameObject.SetActive(true);
 
         SetFadeColor(openFadeColor);
 
@@ -388,38 +385,5 @@ public class UIManager : MonoBehaviour
         else
             timeEffectIcon.SetActive(false);
 
-    }
-
-    public IEnumerator UpdateObjectiveText(string newObjectiveText)
-    {
-        Color originalColor = objectiveText.color;
-        objectiveText.color = Color.green;
-
-        float fadeDuration = 2f;
-        float fadeTimer = 0f;
-        while (fadeTimer < fadeDuration)
-        {
-            fadeTimer += Time.deltaTime;
-            float fadeAmount = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
-            objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, fadeAmount);
-            yield return null;
-        }
-
-        objectiveText.text = newObjectiveText;
-        objectiveText.color = originalColor;
-
-        fadeTimer = 0f;
-        while (fadeTimer < fadeDuration)
-        {
-            fadeTimer += Time.deltaTime;
-            float fadeAmount = Mathf.Lerp(0f, 1f, fadeTimer / fadeDuration);
-            objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, fadeAmount);
-            yield return null;
-        }
-    }
-
-    public IEnumerator GameFinishSequence()
-    {
-        yield return null;
     }
 }
