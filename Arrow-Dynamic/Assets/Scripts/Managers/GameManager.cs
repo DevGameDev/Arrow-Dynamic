@@ -364,6 +364,8 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.VoidTheme, 2));
 
+        RenderSettings.skybox = void_skybox;
+
         GameplaySetInputEnabled(true);
 
         yield return StartCoroutine(UIManager.Instance.ControlFade(false, 2));

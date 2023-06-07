@@ -12,11 +12,15 @@ public class VoidInteractable : MonoBehaviour
         transform.Rotate(rotationSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider arrow)
+    void OnCollisionEnter(Collision col)
     {
-        // Disable the object or remove it from the scene
-        gameObject.SetActive(false);
-        Door1Trig++;
+        if (col.gameObject.tag == "Arrow"){
+            gameObject.SetActive(false);
+            
+        }
+            
+        
+        
+      
     }
-
 }
