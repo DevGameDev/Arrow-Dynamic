@@ -8,6 +8,7 @@ public class DeathBarrier : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.Death, 0.7f);
             other.GetComponent<PlayerController>().RespawnPoint();
         }
     }
