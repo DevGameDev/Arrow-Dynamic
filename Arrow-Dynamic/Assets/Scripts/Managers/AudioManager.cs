@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] Slider volumeSlider;
     [Serializable]
     public class SongClip
     {
@@ -48,6 +49,8 @@ public class AudioManager : MonoBehaviour
     private Dictionary<Song, AudioClip> songDict = new Dictionary<Song, AudioClip>();
     private Dictionary<SoundEffect, AudioClip> sfxDict = new Dictionary<SoundEffect, AudioClip>();
     private float audioVolume = 1f; // The current audio volume
+    private float musicVolume = 1f; // The current music volume
+    private float sfxVolume = 1f; // The current sfx volume
 
     void Awake()
     {
@@ -122,7 +125,7 @@ public class AudioManager : MonoBehaviour
     {
         if (sfxDict.ContainsKey(sfx))
         {
-            sfxSource.PlayOneShot(sfxDict[sfx], audioVolume * adjust);
+            sfxSource.PlayOneShot(sfxDict[sfx], audioVolume * sfxVolume * adjust);
         }
     }
 }
