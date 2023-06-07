@@ -291,9 +291,9 @@ public class GameManager : MonoBehaviour
     {
         GameplaySetInputEnabled(false);
         StartCoroutine(PlayerController.Instance.ShakeCamera(4, 20f, 2));
-        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockImpact, 1.0f);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockImpact, 0.7f);
         yield return new WaitForSeconds(0.5f);
-        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockFall, 1.0f);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockFall, 0.7f);
 
         tutorialChamber.SetActive(false);
         tutorialBlocker.SetActive(true);
@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
     {
         GameplaySetInputEnabled(false);
         StartCoroutine(PlayerController.Instance.ShakeCamera(5, 20f, 2));
-        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockFall, 1.0f);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.RockFall, 0.7f);
 
         tutorialBlocker.SetActive(false);
         tutorialToOnePass.SetActive(false);
