@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
         PowerUp,
         BowDraw,
         ArrowHit,
+        Death,
     }
 
     public enum Song
