@@ -10,6 +10,7 @@ public class IceArrow : BasicArrow
     public override void OnHit(Collider other)
     {
         base.OnHit(other);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.ArrowHit, 0.7f);
 
         // Spawn ice block
         if (!other.gameObject.GetComponent<IceBlock>()) // can't stack

@@ -9,6 +9,7 @@ public class TimeArrow : BasicArrow
     public override void OnHit(Collider other)
     {
         base.OnHit(other);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.ArrowHit, 0.7f);
 
         if (!PlayerController.Instance.timeArrowActive)
         {

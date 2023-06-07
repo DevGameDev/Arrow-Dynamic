@@ -17,6 +17,7 @@ public class GravityArrow : BasicArrow
             UIManager.Instance.ControlGravityEffectIcon(true);
             StartCoroutine(ChangeGravity());
         }
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.ArrowHit, 0.7f);
     }
 
     IEnumerator ChangeGravity()

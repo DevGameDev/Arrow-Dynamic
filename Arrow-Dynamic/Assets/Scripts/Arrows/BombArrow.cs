@@ -11,6 +11,7 @@ public class BombArrow : BasicArrow
         base.OnHit(other);
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.ArrowHit, 0.7f);
         Destroy(gameObject);
     }
 }

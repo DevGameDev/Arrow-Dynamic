@@ -14,6 +14,7 @@ public class BubbleArrow : BasicArrow
 
         // Spawn bubble
         bubbleObj = Instantiate(bubblePrefab, transform.position, Quaternion.LookRotation(directionFromHit));
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.ArrowHit, 0.7f);
         Bubble bubble = bubbleObj.GetComponent<Bubble>();
 
         bubble.StartCoroutine(bubble.StartDespawnTimer());
