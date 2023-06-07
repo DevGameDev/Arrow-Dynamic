@@ -19,8 +19,9 @@ public class TargetTrigger : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Arrow"){
-            gameObject.SetActive(false);
             onHit.Play();
+            gameObject.SetActive(false);
+            
         }
             
         

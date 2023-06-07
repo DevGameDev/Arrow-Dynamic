@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     public GameObject jungleLevel;
     public GameObject voidLevel;
 
+    ////SkyBoxes
+    public Material jungle_skybox;
+    public Material void_skybox;
+
     public GameObject playerObj;
 
     public static GameSettings GetSettings()
@@ -338,6 +342,8 @@ public class GameManager : MonoBehaviour
         OneToTwoPass.SetActive(false);
 
         StartCoroutine(AudioManager.Instance.ChangeSong(AudioManager.Song.JungleTheme, 2));
+
+        RenderSettings.skybox = jungle_skybox;
 
         GameplaySetInputEnabled(true);
 
