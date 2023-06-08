@@ -242,12 +242,13 @@ public class Bow : MonoBehaviour
         currentArrowObj = null;
         currentArrow = null;
 
-        AudioSource audioSource = GetComponent<AudioSource>();
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowRelease, 1.0f);
+        //AudioSource audioSource = GetComponent<AudioSource>();
 
-        if (audioSource != null)
-        {
-            audioSource.Play();
-        }
+        //if (audioSource != null)
+        //{
+        //    audioSource.Play();
+        //}
     }
 
     private void UpdateBowPullAnimation(float pullTime)
