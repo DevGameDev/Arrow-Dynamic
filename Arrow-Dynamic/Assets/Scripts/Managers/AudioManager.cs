@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
         ArrowHit,
         Death,
         Teleport,
+        BowRelease,
     }
 
     public enum Song
@@ -49,9 +50,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private SFXClip[] soundEffects; // Sound effects
     private Dictionary<Song, AudioClip> songDict = new Dictionary<Song, AudioClip>();
     private Dictionary<SoundEffect, AudioClip> sfxDict = new Dictionary<SoundEffect, AudioClip>();
-    private float audioVolume = 1f; // The current audio volume
-    private float musicVolume = 1f; // The current music volume
-    private float sfxVolume = 1f; // The current sfx volume
+    [SerializeField] private float audioVolume = 1f; // The current audio volume
+    [SerializeField] private float musicVolume = 1f; // The current music volume
+    [SerializeField] private float sfxVolume = 1f; // The current sfx volume
 
     void Awake()
     {
@@ -88,7 +89,7 @@ public class AudioManager : MonoBehaviour
     }
     public void ChangeMusicVolume(float value)
     {
-        musicVolume = value;
+        musicSource.volume = value;
     }
 
 
