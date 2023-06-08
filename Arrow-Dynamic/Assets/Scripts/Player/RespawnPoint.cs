@@ -10,6 +10,7 @@ public class RespawnPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.Teleport, 0.7f);
         if (other.CompareTag("Player") && !triggered)
         {
             if (!(pointType is SpawnPoints.Disabled))
