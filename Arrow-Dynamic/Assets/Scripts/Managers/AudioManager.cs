@@ -82,6 +82,15 @@ public class AudioManager : MonoBehaviour
     {
         AudioListener.volume = value;
     }
+    public void ChangeSFXVolume(float value)
+    {
+        sfxVolume = value;
+    }
+    public void ChangeMusicVolume(float value)
+    {
+        musicVolume = value;
+    }
+
 
     // Start a song
     public void StartSong(Song song)
