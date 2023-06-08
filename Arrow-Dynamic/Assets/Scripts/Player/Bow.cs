@@ -231,7 +231,7 @@ public class Bow : MonoBehaviour
         arrowTransform = null;
 
         arrowRigidbody.AddForce(shootDirection * currentPullTime * arrowSpeed, ForceMode.Impulse);
-        ScoreManager.Instance.UseArrow(currentArrowType);
+        //ScoreManager.Instance.UseArrow(currentArrowType);
         currentArrow.OnRelease();
 
         shotArrows.Enqueue(currentArrowObj);
