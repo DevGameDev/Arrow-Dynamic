@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;
+    //[SerializeField] Slider volumeSlider;
     [Serializable]
     public class SongClip
     {
