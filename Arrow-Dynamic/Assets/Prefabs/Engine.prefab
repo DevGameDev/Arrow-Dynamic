@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8396675124021703382}
   - component: {fileID: 56836866516660973}
   - component: {fileID: 2014293411}
+  - component: {fileID: 1527779614347022990}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -60,6 +61,8 @@ MonoBehaviour:
   levelTwoChamber: {fileID: 0}
   jungleLevel: {fileID: 0}
   voidLevel: {fileID: 0}
+  jungle_skybox: {fileID: 2100000, guid: f3b3f6a697514944da8524250aa64277, type: 2}
+  void_skybox: {fileID: 2100000, guid: 83d2273640144436a8da2022ca704508, type: 2}
   playerObj: {fileID: 0}
 --- !u!114 &4599570019574644632
 MonoBehaviour:
@@ -548,3 +551,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1527779614347022990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337170606564957237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057f449d39a54136b499fa218ba58b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10

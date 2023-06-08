@@ -25,8 +25,9 @@ public class PlayerHealth : MonoBehaviour
     public void doDamege(float damege)
     {
         currentHealth -= damege;
+        Debug.Log(currentHealth);
     }
-    void awake()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -43,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("here!");
         if(currentHealth <=  0f)
         {
             Debug.Log("Dead");

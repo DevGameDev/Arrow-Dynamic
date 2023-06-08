@@ -139,7 +139,7 @@ public class MinionAI : MonoBehaviour
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
             }
             else{
-                PlayerHealth.Instance.doDamege(3);
+                PlayerHealth.Instance.doDamege(5);
             }
             //todo add attack here
         }
