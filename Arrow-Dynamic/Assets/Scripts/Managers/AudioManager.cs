@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
         BowDraw,
         ArrowHit,
         Death,
+        Teleport,
     }
 
     public enum Song
