@@ -318,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 3469416390471697538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.67, y: -2.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4190696285160296792}
@@ -437,13 +437,14 @@ MonoBehaviour:
   blastRadius: 10
   explosionForce: 1000
   DestroyOnImpact: 0
+  hasProjectile: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 30
   timeBetweenAttacks: 3
   projectile: {fileID: 0}
   health: 10
   sightRange: 1000
-  attackRange: 2
+  attackRange: 3.5
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!1 &3579550771384267837
