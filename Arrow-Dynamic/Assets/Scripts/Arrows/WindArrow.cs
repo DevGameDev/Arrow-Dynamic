@@ -16,7 +16,7 @@ public class WindArrow : BasicArrow
             UIManager.Instance.ControlWindEffectIcon(true, activeWindEffects);
 
             ApplyWindEffect();
-            AudioManager.Instance.PlaySFX(this.sfxSource, 1.0f, AudioManager.SoundEffect.Death);
+            //AudioManager.Instance.PlaySFX(this.sfxSource, 1.0f, AudioManager.SoundEffect.Death);
             Debug.Log("wind arrow");
         }
         else Destroy(gameObject);
