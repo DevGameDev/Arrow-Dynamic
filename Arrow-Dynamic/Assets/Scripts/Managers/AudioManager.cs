@@ -31,6 +31,12 @@ public class AudioManager : MonoBehaviour
         BowFire,
         Death,
         Teleport,
+        GrappleHit,
+        GrappleReel,
+        BounceHit,
+        IceHit,
+        TimeHit,
+        WindHit,
     }
 
     public enum Song
@@ -51,7 +57,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<SoundEffect, AudioClip> sfxDict = new Dictionary<SoundEffect, AudioClip>();
     [SerializeField] private float audioVolume = 1f; // The current audio volume
     [SerializeField] private float musicVolume = 1f; // The current audio volume
-    [SerializeField] private float sfxVolume = 1f; // The current audio volume
+    [SerializeField] public float sfxVolume = 1f; // The current audio volume
     
 
     void Awake()
@@ -136,6 +142,14 @@ public class AudioManager : MonoBehaviour
         if (sfxDict.ContainsKey(sfx))
         {
             sfxSource.PlayOneShot(sfxDict[sfx], audioVolume * sfxVolume * offset);
+        }
+    }
+    public void PlaySFX(AudioSource sourceObject, float offset, SoundEffect sfx)
+    {
+        if (sfxDict.ContainsKey(sfx))
+        {
+            sourceObject.PlayOneShot(sfxDict[sfx], audioVolume * sfxVolume * offset);
+            Debug.Log("New audio hit");
         }
     }
 }
