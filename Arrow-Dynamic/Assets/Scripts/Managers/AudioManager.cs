@@ -44,7 +44,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private SFXClip[] soundEffects; // Sound effects
     private Dictionary<Song, AudioClip> songDict = new Dictionary<Song, AudioClip>();
     private Dictionary<SoundEffect, AudioClip> sfxDict = new Dictionary<SoundEffect, AudioClip>();
-    private float audioVolume = 1f; // The current audio volume
+    [SerializeField] private float audioVolume = 1f; // The current audio volume
+    [SerializeField] private float musicVolume = 1f; // The current audio volume
+    [SerializeField] private float sfxVolume = 1f; // The current audio volume
+    
 
     void Awake()
     {
@@ -74,6 +77,14 @@ public class AudioManager : MonoBehaviour
     public void ChangeMasterVolume(float value)
     {
         AudioListener.volume = value;
+    }
+    public void ChangeSFXVolume(float value)
+    {
+        sfxVolume = value;
+    }
+    public void ChangeMusicVolume(float value)
+    {
+        musicSource.volume = value;
     }
 
     // Start a song
@@ -115,11 +126,11 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play sound effects
-    public void PlaySFX(SoundEffect sfx)
+    public void PlaySFX(SoundEffect sfx, float offset)
     {
         if (sfxDict.ContainsKey(sfx))
         {
-            sfxSource.PlayOneShot(sfxDict[sfx], audioVolume);
+            sfxSource.PlayOneShot(sfxDict[sfx], audioVolume * sfxVolume * offset);
         }
     }
 }
