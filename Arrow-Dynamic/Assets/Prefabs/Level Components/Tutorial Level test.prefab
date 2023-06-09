@@ -1731,6 +1731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZLPC_Prop_C_13
       objectReference: {fileID: 0}
+    - target: {fileID: 1545868175167242, guid: e12939193d8fbc948b87bd379558c5e3, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4035114518764026, guid: e12939193d8fbc948b87bd379558c5e3, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -1823,6 +1827,10 @@ PrefabInstance:
     - target: {fileID: 1229796374531258, guid: 178d9a805414cca44ba1a818b8ffc300, type: 3}
       propertyPath: m_Name
       value: ZLPC_Cave_A_14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229796374531258, guid: 178d9a805414cca44ba1a818b8ffc300, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4487190857916172, guid: 178d9a805414cca44ba1a818b8ffc300, type: 3}
       propertyPath: m_RootOrder
@@ -2849,6 +2857,10 @@ PrefabInstance:
     - target: {fileID: 1685359716943998, guid: 32ddb7d24bc044b4aaad69f48478c89a, type: 3}
       propertyPath: m_Name
       value: ZLPC_Cliff_A_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685359716943998, guid: 32ddb7d24bc044b4aaad69f48478c89a, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4772597483481414, guid: 32ddb7d24bc044b4aaad69f48478c89a, type: 3}
       propertyPath: m_RootOrder
@@ -3902,6 +3914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZLPC_Prop_C_03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1871902645363012, guid: 3a9aab4cb6274c446ba6ab56e686af2f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4147094556916574, guid: 3a9aab4cb6274c446ba6ab56e686af2f, type: 3}
       propertyPath: m_RootOrder
       value: 31
@@ -4270,6 +4286,10 @@ PrefabInstance:
     - target: {fileID: 1545868175167242, guid: e12939193d8fbc948b87bd379558c5e3, type: 3}
       propertyPath: m_Name
       value: ZLPC_Prop_C_13 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1545868175167242, guid: e12939193d8fbc948b87bd379558c5e3, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4035114518764026, guid: e12939193d8fbc948b87bd379558c5e3, type: 3}
       propertyPath: m_RootOrder
@@ -4738,6 +4758,10 @@ PrefabInstance:
     - target: {fileID: 1871902645363012, guid: 3a9aab4cb6274c446ba6ab56e686af2f, type: 3}
       propertyPath: m_Name
       value: ZLPC_Prop_C_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1871902645363012, guid: 3a9aab4cb6274c446ba6ab56e686af2f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4147094556916574, guid: 3a9aab4cb6274c446ba6ab56e686af2f, type: 3}
       propertyPath: m_RootOrder
@@ -5334,6 +5358,10 @@ PrefabInstance:
     - target: {fileID: 1401667745819582, guid: f6e3f0a95e085b440aafc9f80d646977, type: 3}
       propertyPath: m_Name
       value: ZLPC_Fence_A_08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401667745819582, guid: f6e3f0a95e085b440aafc9f80d646977, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4283444365925190, guid: f6e3f0a95e085b440aafc9f80d646977, type: 3}
       propertyPath: m_RootOrder
@@ -6555,6 +6583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZLPC_Cliff_A_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1914660049025354, guid: 6b1eca0515c885340a585932794c7764, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4952639068535720, guid: 6b1eca0515c885340a585932794c7764, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -6708,6 +6740,10 @@ PrefabInstance:
     - target: {fileID: 1516156957917510, guid: 70f50ed237619c1409f05d3f4f6533f4, type: 3}
       propertyPath: m_Name
       value: ZLPC_Prop_C_08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516156957917510, guid: 70f50ed237619c1409f05d3f4f6533f4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4374674137227020, guid: 70f50ed237619c1409f05d3f4f6533f4, type: 3}
       propertyPath: m_RootOrder
@@ -6898,6 +6934,10 @@ PrefabInstance:
     - target: {fileID: 1123501519257456, guid: 8b8f9afbab89f2a4b900b5c8b6b9f160, type: 3}
       propertyPath: m_Name
       value: ZLPC_Prop_C_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123501519257456, guid: 8b8f9afbab89f2a4b900b5c8b6b9f160, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4082693119280956, guid: 8b8f9afbab89f2a4b900b5c8b6b9f160, type: 3}
       propertyPath: m_RootOrder
