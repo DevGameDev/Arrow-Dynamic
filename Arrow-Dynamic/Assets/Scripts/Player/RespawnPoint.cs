@@ -19,6 +19,7 @@ public class RespawnPoint : MonoBehaviour
             {
                 GameManager.Instance.HandleGameEvent(onFirstTriggerEvent);
                 triggered = true;
+                AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.Teleport, 1.0f);
             }
         }
     }
