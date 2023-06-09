@@ -7,7 +7,7 @@ public class VoidPlank : MonoBehaviour
     public GameObject Cone1;    
     public GameObject Cone2;
     public GameObject Cone3;
-    public GameObject throne;
+   
 
     
 
@@ -36,7 +36,6 @@ public class VoidPlank : MonoBehaviour
 
             anim.Play("VoidPlank");
             isOpen = true;
-            throne.SetActive(true);
         }
     }
 }
