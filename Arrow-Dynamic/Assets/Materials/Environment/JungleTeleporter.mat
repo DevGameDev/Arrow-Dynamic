@@ -99,7 +99,7 @@ Material:
     - _speed: 0
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 0, g: 738.8863, b: 766.9961, a: 1}
+    - _EmissionColor: {r: 0, g: 1024, b: 117.947754, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _addColor: {r: 1, g: 1, b: 1, a: 1}
     - _backColor: {r: 0, g: 0, b: 0, a: 1}
