@@ -34,6 +34,8 @@ public class GrappleArrow : BasicArrow
 
         // Start the coroutine to apply the grapple force smoothly
         StartCoroutine(GrappleForce());
+        AudioManager.Instance.PlaySFX(this.sfxSource, 1.0f, AudioManager.SoundEffect.GrappleHit);
+        Debug.Log("grapple arrow");
     }
 
     private IEnumerator GrappleForce()

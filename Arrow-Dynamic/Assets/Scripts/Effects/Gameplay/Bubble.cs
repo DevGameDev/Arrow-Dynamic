@@ -5,6 +5,7 @@ public class Bubble : MonoBehaviour
 {
     public float power = 10.0f;
     public float despawnTime = 10.0f;
+    public AudioSource sfxSource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,9 +14,10 @@ public class Bubble : MonoBehaviour
             Vector3 directionToPlayer = other.transform.position - transform.position;
             Rigidbody playerRb = other.GetComponent<Rigidbody>();
             playerRb.AddForce(power * directionToPlayer, ForceMode.VelocityChange);
+            AudioManager.Instance.PlaySFX(this.sfxSource, 1.0f, AudioManager.SoundEffect.BounceHit);
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 1.0f);
     }
 
     public IEnumerator StartDespawnTimer()

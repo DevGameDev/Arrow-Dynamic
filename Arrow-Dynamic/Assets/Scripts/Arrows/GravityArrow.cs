@@ -16,6 +16,8 @@ public class GravityArrow : BasicArrow
             PlayerController.Instance.gravityArrowActive = true;
             UIManager.Instance.ControlGravityEffectIcon(true);
             StartCoroutine(ChangeGravity());
+            AudioManager.Instance.PlaySFX(this.sfxSource, 1.0f, AudioManager.SoundEffect.Death);
+            Debug.Log("grav arrow");
         }
     }
 

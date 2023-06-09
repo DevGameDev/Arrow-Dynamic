@@ -16,6 +16,8 @@ public class TimeArrow : BasicArrow
             UIManager.Instance.ControlTimeEffectIcon(true);
 
             StartCoroutine(ApplyTimeEffect());
+            AudioManager.Instance.PlaySFX(this.sfxSource, 0.7f, AudioManager.SoundEffect.TimeHit);
+            Debug.Log("time arrow");
         }
     }
 

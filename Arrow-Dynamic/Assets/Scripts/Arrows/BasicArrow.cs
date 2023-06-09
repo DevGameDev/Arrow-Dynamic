@@ -14,6 +14,7 @@ public class BasicArrow : MonoBehaviour, IArrow
     public bool myEnabled = false;
 
     [SerializeField] private Rigidbody myRb;
+    [SerializeField] public AudioSource sfxSource;
     public Rigidbody rb
     {
         get { return myRb; }
@@ -64,6 +65,12 @@ public class BasicArrow : MonoBehaviour, IArrow
 
     virtual public void OnHit(Collider other)
     {
-        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowHit, 1.0f);
+        //old sfx code
+        //AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowHit, 1.0f);
+
+        sfxSource.volume *= AudioManager.Instance.sfxVolume;
+        
+        AudioManager.Instance.PlaySFX(sfxSource, 0.5f, AudioManager.SoundEffect.BowHit);
+
     }
 }

@@ -18,6 +18,8 @@ public class IceArrow : BasicArrow
             IceBlock iceBlock = iceBlockObj.GetComponent<IceBlock>();
 
             iceBlock.StartCoroutine(iceBlock.Shrink());
+            AudioManager.Instance.PlaySFX(this.sfxSource, 1.0f, AudioManager.SoundEffect.Death);
+            Debug.Log("ice arrow");
         }
 
         Destroy(gameObject);
