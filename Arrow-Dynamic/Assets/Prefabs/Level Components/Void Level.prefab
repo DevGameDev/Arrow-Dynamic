@@ -2850,7 +2850,6 @@ MonoBehaviour:
   Cone1: {fileID: 6140052869157587251}
   Cone2: {fileID: 6140052870314092756}
   Cone3: {fileID: 6140052868991111672}
-  throne: {fileID: 121056070}
 --- !u!1 &2108233940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +2941,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108233940}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4976,7 +4975,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052870439003982}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5077,7 +5076,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052870825414254}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5296,7 +5295,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052870324665268}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5410,7 +5409,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052870278588166}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5625,7 +5624,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052869655081990}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5840,7 +5839,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052869812049172}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -6055,7 +6054,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6140052868806642149}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -6379,7 +6378,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5932859947529095290}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ac767203d60cd374d8d9a24a4d05e441, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -6721,7 +6720,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dc754e70495a8d24db29daebfdc6eaec, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: aabf730865c407746aa231a491be1dcb, type: 2}
+      objectReference: {fileID: 2100000, guid: dd3a3a8180a743343b930f35889c570f, type: 2}
     - target: {fileID: 919132149155446097, guid: dc754e70495a8d24db29daebfdc6eaec, type: 3}
       propertyPath: m_Name
       value: VoidTriagnlePlat (8)
