@@ -361,23 +361,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 118524798, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 83.00017
+      value: 83.0002
       objectReference: {fileID: 0}
     - target: {fileID: 118524798, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.63537073
+      value: -0.6353709
       objectReference: {fileID: 0}
     - target: {fileID: 118524798, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.690556
+      value: -0.6905562
       objectReference: {fileID: 0}
     - target: {fileID: 118524798, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19827972
+      value: 0.1982791
       objectReference: {fileID: 0}
     - target: {fileID: 118524798, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.28305772
+      value: -0.28305715
       objectReference: {fileID: 0}
     - target: {fileID: 394092865, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_RaycastTarget
@@ -385,23 +385,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479494432, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 83.00017
+      value: 83.0002
       objectReference: {fileID: 0}
     - target: {fileID: 479494432, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.63537073
+      value: -0.6353709
       objectReference: {fileID: 0}
     - target: {fileID: 479494432, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.690556
+      value: -0.6905562
       objectReference: {fileID: 0}
     - target: {fileID: 479494432, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19827972
+      value: 0.1982791
       objectReference: {fileID: 0}
     - target: {fileID: 479494432, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.28305772
+      value: -0.28305715
       objectReference: {fileID: 0}
     - target: {fileID: 519822145, guid: 32c405451e5e96947b32fe9730bc951d, type: 3}
       propertyPath: m_RaycastTarget
@@ -698,6 +698,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031596996}
   m_CullTransparentMesh: 1
+--- !u!1 &1112235354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5014723886053134815, guid: 56d498dac95b2054c8969f834cb6420a, type: 3}
+  m_PrefabInstance: {fileID: 385086418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1114008786
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 5337170606564957239, guid: a6b55b6ce7973eb46b120f4c58d09f53, type: 3}
       propertyPath: tutorialChamber
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1112235354}
     - target: {fileID: 5337170606564957239, guid: a6b55b6ce7973eb46b120f4c58d09f53, type: 3}
       propertyPath: tutorialToOnePass
       value: 
