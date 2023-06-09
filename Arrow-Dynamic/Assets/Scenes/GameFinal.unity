@@ -295,22 +295,6 @@ PrefabInstance:
       propertyPath: scoreChangeTextPrefab
       value: 
       objectReference: {fileID: 2037196282}
-    - target: {fileID: 5014723886053134814, guid: 56d498dac95b2054c8969f834cb6420a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1847
-      objectReference: {fileID: 0}
-    - target: {fileID: 5014723886053134814, guid: 56d498dac95b2054c8969f834cb6420a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1303
-      objectReference: {fileID: 0}
-    - target: {fileID: 5014723886053134814, guid: 56d498dac95b2054c8969f834cb6420a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2682
-      objectReference: {fileID: 0}
-    - target: {fileID: 5376746903377115892, guid: 56d498dac95b2054c8969f834cb6420a, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8329327644061215631, guid: 56d498dac95b2054c8969f834cb6420a, type: 3}
       propertyPath: m_Name
       value: World
