@@ -26,6 +26,9 @@ public class AudioManager : MonoBehaviour
         Explosion,
         Jump,
         PowerUp,
+        BowDraw,
+        BowHit,
+        BowFire,
     }
 
     public enum Song
