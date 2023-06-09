@@ -208,8 +208,8 @@ public class Bow : MonoBehaviour
         arrowTransform = currentArrowObj.transform;
         arrowTransform.parent = cameraTransform;
         currentArrowObj.SetActive(true);
-        
-        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowDraw, 1.0f);
+
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowDraw, 0.6f);
     }
 
     private void CancelPull()
@@ -242,7 +242,7 @@ public class Bow : MonoBehaviour
         currentArrow = null;
 
 
-        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowFire, 1.0f);
+        AudioManager.Instance.PlaySFX(AudioManager.SoundEffect.BowFire, .6f);
 
         //AudioSource audioSource = GetComponent<AudioSource>();
         //if (audioSource != null)
